@@ -1,0 +1,40 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+a{
+  color: unset;
+  text-decoration: none;
+}
+
+body{
+  width: 100%;
+  height: 100vh;
+}
+
+/* Estilizando a barra de rolagem no Google Chrome */
+::-webkit-scrollbar {
+  width: 14px;
+  background-color: #323232; /* Largura da barra de rolagem */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888; /* Cor do polegar da barra de rolagem */
+  border-radius: 6px; /* Arredondamento do polegar */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Cor do polegar quando o mouse passa por cima */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* Removendo o background da trilha da barra de rolagem */
+  border-radius: 6px; /* Arredondamento da trilha */
+}
+
+::-webkit-scrollbar-button {
+  display: none; /* Oculta os botões de seta da barra de rolagem */
+}

@@ -1,0 +1,7 @@
+<div class="container" *ngIf="this.popupService.message">
+  <div class="top">
+    <h1>Mensagem de LearnHub</h1>
+    <button (click)="this.popupService.clear()"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <p>{{this.popupService.message}}</p>
+</div>

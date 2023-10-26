@@ -1,0 +1,46 @@
+.container{
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1.5em;
+}
+
+.logo h1{
+  font-size: 2em;
+  letter-spacing: 2px;
+}
+
+.title-error{
+  color: #404040;
+}
+
+.text-error p{
+  font-size: 1.1em;
+  color: #3a3a3a;
+}
+
+.btn-field button{
+  padding: 10px 20px;
+  cursor: pointer;
+  background: none;
+  border: 2px solid rgb(91,0,238);
+  font-size: 1rem;
+  font-weight: bold;
+  color: rgb(91,0,238);
+  transition: .4s;
+  border-radius: 6px;
+}
+
+.btn-field button:hover{
+  background-color: rgb(91,0,238);
+  color: #fff;
+}

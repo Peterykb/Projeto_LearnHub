@@ -1,0 +1,140 @@
+.box{
+  min-width: 1200px;
+  width: 1200px;
+  height: 600px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.box :where(.left, .right){
+  width: 50%;
+  height: 100%;
+  border: 1px solid #636363;
+}
+
+.preview-video{
+  background-color: #434343;
+  color: #fff;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.content-course {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 30%;
+}
+
+.content-course .top{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 10px;
+}
+
+.content-course .top .like{
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.content-course .bottom{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 10px;
+}
+
+.bottom .price span{
+  font-size: 1.7em;
+}
+
+.bottom .buttons{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.buttons button{
+  padding: 10px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: .3s;
+}
+
+.buttons .add-cart{
+  background-color: #323232;
+  color: #fff;
+  border-radius: 4px;
+}
+
+.buttons .add-cart:hover{
+  color: #323232;
+  background-color: #fff;
+  border-color: #434343;
+}
+
+.buttons .buy{
+  width: 150px;
+  text-transform: uppercase;
+  background-color: #5F00E3;
+  color: #fff;
+}
+
+.buttons .buy:hover{
+  background-color: #4b02b1;
+}
+
+.right{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.right .title{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title h3{
+  padding-bottom: 20px;
+  font-size: 1.5em;
+  border-bottom: 1px solid #666666;
+}
+
+.details-course{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+
+.labels,.info-text{
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.about-course p{
+  margin: 1em 0;
+  text-align: justify;
+  line-height: 2em;
+}
+
+.feedback i{
+  color: gold;
+}

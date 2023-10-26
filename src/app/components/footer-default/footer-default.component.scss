@@ -1,0 +1,28 @@
+.collection-item {
+  background-color: transparent;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.collection-item:hover {
+  color: rgb(128, 128, 128);
+}
+
+.title-footer {
+  font-size: 2em;
+}
+
+.collection {
+  border: none;
+}
+
+.footer-copyright {
+  height: 90px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 120px;
+  align-items: center;
+  background-color: #111111;
+}

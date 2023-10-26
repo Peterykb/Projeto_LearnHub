@@ -1,0 +1,130 @@
+.container{
+    width: 100%;
+    min-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+  }
+
+  .banners {
+    width: 100%;
+    height: 300px;
+  }
+
+  .banners :where(.banner){
+    width: 100%;
+    height: 100%;
+    background-color: #222222;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+  }
+
+
+  .your-courses{
+    width: 100%;
+  }
+
+  .your-courses .title{
+    width: 100%;
+    text-align: center;
+    margin: 2rem 0;
+  }
+
+  .cards-container{
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1.3rem;
+    flex-wrap: wrap;
+  }
+
+  .card{
+    max-width: 400px;
+    box-shadow: 0 1px 10px #000;
+  }
+
+  .card-banner{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    background-color: #434343;
+    color: #fff;
+  }
+
+  .card-content{
+    padding: 10px 15px;
+  }
+
+  .card-content > .top{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+  }
+
+  .card-content > .top h1{
+    font-size: 1.2rem;
+  }
+
+  .card-content > .top i{
+    width: 35px;
+    height: 35px;
+    font-size: .9rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: .4s;
+    border-radius: 50%;
+  }
+
+  .card-content > .top i:hover{
+    background-color: #6363636b;
+  }
+
+  .text-description{
+    width: 100%;
+  }
+
+  .text-description p {
+    text-align: justify;
+    color: #434343;
+  }
+
+  .card-footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+  }
+
+  .card-footer small{
+    font-size: .9rem;
+  }
+
+  .card-footer .btn-field button{
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: rgb(99, 0, 228);
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .3s;
+  }
+
+  .card-footer .btn-field button:hover{
+    background-color: rgb(80, 0, 184);
+  }
+
+

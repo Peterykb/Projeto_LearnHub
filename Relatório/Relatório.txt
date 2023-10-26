@@ -1,0 +1,24 @@
+Projeto LearnHub - 25/10/2023
+
+João Guilherme: Front-End
+Pedro Yago: Back-End
+
+Ideia do Projeto: Trata-se de uma plataforma EAD que disponibiliza cursos online(gratuitos ou pagos) voltados para a área de tecnologia.
+
+O que já temos feito:
+
+- Front-End:
+*Templates: Telas de login; tela home do usuário; tela dos cursos do usuário; tela para visualizar o curso(Comprar curso); tela de carrinho.
+*Funcionalidades do Front-End: Validação dos forms.
+
+-Back-End: 
+*Dotnet: API para os cursos e para as categorias.
+*Banco de dados: Tabelas aluno, curso, categoria criadas; relacionamentos configurados entre as tabelas.
+
+O que falta fazer: 
+
+-Front-End: Criar as telas de cadastro, home do professor, sendo ela responsável por criar englobar todas as outras telas do professor, além da tela do curso(Assistir as aulas), visualização dos cursos, alterações do curso, bem como a relação de alunos inscritos em cada curso.
+
+-Back-End: 
+*Dotnet: API para os alunos e os professores; Autenticação no back-end.
+*Banco de dados: Criar as tabelas do aluno e do professor, além de configurar seus relacionamentos; criar a tabela para o carrinho.
