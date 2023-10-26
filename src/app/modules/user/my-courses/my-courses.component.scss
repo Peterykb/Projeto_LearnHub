@@ -18,9 +18,9 @@
 .row {
   width: 100%;
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 20px; /* Espaçamento horizontal entre os cards */
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
 
 .card {

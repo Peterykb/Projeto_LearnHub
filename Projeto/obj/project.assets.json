@@ -3344,19 +3344,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\pedro\\.nuget\\packages\\": {}
+    "C:\\Users\\joao.silva\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\pedro\\OneDrive\\Documentos\\Projeto Oficial\\learn-hub\\Projeto\\Projeto.csproj",
+      "projectUniqueName": "C:\\Projeto_LearnHub\\Projeto\\Projeto.csproj",
       "projectName": "Projeto",
-      "projectPath": "C:\\Users\\pedro\\OneDrive\\Documentos\\Projeto Oficial\\learn-hub\\Projeto\\Projeto.csproj",
-      "packagesPath": "C:\\Users\\pedro\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\pedro\\OneDrive\\Documentos\\Projeto Oficial\\learn-hub\\Projeto\\obj\\",
+      "projectPath": "C:\\Projeto_LearnHub\\Projeto\\Projeto.csproj",
+      "packagesPath": "C:\\Users\\joao.silva\\.nuget\\packages\\",
+      "outputPath": "C:\\Projeto_LearnHub\\Projeto\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\pedro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\joao.silva\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -3430,7 +3430,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }
