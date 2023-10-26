@@ -6,9 +6,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./my-cart.component.scss']
 })
 export class MyCartComponent {
-  number = 2;
+  number = 1;
 
   courses = [
+    {
+      name: 'Banco de Dados - SQL',
+      prof: 'Guilherme Souza',
+      carga: '100h',
+      preco: 200,
+      avaliacao: 3000,
+      curtidas: 1000
+    },
     {
       name: 'Banco de Dados - SQL',
       prof: 'Guilherme Souza',

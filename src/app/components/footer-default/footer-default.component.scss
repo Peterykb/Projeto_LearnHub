@@ -1,3 +1,8 @@
+
+footer{
+  width: 100%;
+}
+
 .collection-item {
   background-color: transparent;
   border: none;
@@ -6,8 +11,9 @@
   transition: 0.3s;
 }
 
+
 .collection-item:hover {
-  color: rgb(128, 128, 128);
+  color: rgb(109, 109, 109);
 }
 
 .title-footer {
@@ -19,10 +25,14 @@
 }
 
 .footer-copyright {
-  height: 90px;
+  height: 50px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding: 0 120px;
-  align-items: center;
-  background-color: #111111;
+  align-items: flex-end;
+}
+
+.socials a i
+{
+  margin-left: 20px;
 }

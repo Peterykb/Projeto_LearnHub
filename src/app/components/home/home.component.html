@@ -1,16 +1,15 @@
 <main class="container">
   <section class="banners">
-    <div class="banner">
-      <h1>Meu Banner</h1>
-    </div>
+
   </section>
+
   <section class="your-courses">
     <div class="title">
       <h1>Cursos mais Acessados</h1>
+      <hr>
     </div>
-    <hr>
      <div class="cards-container">
-      <div class="card">
+      <div class="card-course">
         <div class="card-banner">
           <p>Banner</p>
         </div>
@@ -31,9 +30,24 @@
         </div>
       </div>
     </div>
+  </section>
 
-
-
+  <section class="categories">
+    <div class="title">
+      <h1>Principais Categorias</h1>
+      <hr>
+    </div>
+    <div class="cards-categories">
+      <div class="card" *ngFor="let category of categories">
+        <div class="icon-category bg-dark">
+          <i class="{{category.class}}"></i>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{category.titleCat}}</h5>
+          <p class="card-text">{{category.descCat}}</p>
+        </div>
+      </div>
+    </div>
   </section>
 </main>
 

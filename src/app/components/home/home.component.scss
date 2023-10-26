@@ -1,130 +1,200 @@
-.container{
-    width: 100%;
-    min-width: 1200px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2em;
-  }
+.container {
+  width: 100%;
+  min-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2em;
+}
 
-  .banners {
-    width: 100%;
-    height: 300px;
-  }
+.container :where(section) {
+  width: 100%;
+  margin-bottom: 50px;
+}
 
-  .banners :where(.banner){
-    width: 100%;
-    height: 100%;
-    background-color: #222222;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-  }
+.banners {
+  height: 300px;
+}
 
+/* Slider */
 
-  .your-courses{
-    width: 100%;
-  }
+#mainSlider .carousel-inner, #mainSlider .carousel-item {
+  height: 200px;
+}
 
-  .your-courses .title{
-    width: 100%;
-    text-align: center;
-    margin: 2rem 0;
-  }
+#mainSlider .carousel-caption {
+  top: 30%;
+}
 
-  .cards-container{
-    margin: 2rem 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 1.3rem;
-    flex-wrap: wrap;
-  }
+#mainSlider .carousel-caption h2 {
+  font-size: 50px;
+  margin-bottom: 30px;
+}
 
-  .card{
-    max-width: 400px;
-    box-shadow: 0 1px 10px #000;
-  }
+#mainSlider .carousel-caption p {
+  font-size: 22px;
+  font-weight: 300;
+  margin-bottom: 100px;
+  color: #FFF;
+}
 
-  .card-banner{
-    width: 100%;
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5rem;
-    background-color: #434343;
-    color: #fff;
-  }
+.main-btn {
+  background-color: #65DAF9;
+  color: #FFF;
+  text-transform: uppercase;
+  width: 200px;
+  height: 60px;
+  padding: 10px 20px;
+  border-radius: 30px;
+  border: 3px solid transparent;
+  transition: .5s;
+}
 
-  .card-content{
-    padding: 10px 15px;
-  }
+.main-btn:hover {
+  text-decoration: none;
+  color: #FFF;
+  background-color: transparent;
+  border-color: #3EC1D5;
+}
 
-  .card-content > .top{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 0;
-  }
-
-  .card-content > .top h1{
-    font-size: 1.2rem;
-  }
-
-  .card-content > .top i{
-    width: 35px;
-    height: 35px;
-    font-size: .9rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: .4s;
-    border-radius: 50%;
-  }
-
-  .card-content > .top i:hover{
-    background-color: #6363636b;
-  }
-
-  .text-description{
-    width: 100%;
-  }
-
-  .text-description p {
-    text-align: justify;
-    color: #434343;
-  }
-
-  .card-footer{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-  }
-
-  .card-footer small{
-    font-size: .9rem;
-  }
-
-  .card-footer .btn-field button{
-    padding: 10px 15px;
-    border-radius: 8px;
-    font-size: 1rem;
-    background-color: rgb(99, 0, 228);
-    border: none;
-    color: #fff;
-    font-weight: bold;
-    cursor: pointer;
-    transition: .3s;
-  }
-
-  .card-footer .btn-field button:hover{
-    background-color: rgb(80, 0, 184);
-  }
+.carousel-indicators .active {
+  background-color: #65DAF9;
+}
 
 
+.banners :where(.banner) {
+  width: 100%;
+  height: 100%;
+  background-color: #222222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+section .title {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 3em;
+
+}
+
+.cards-container {
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1.3rem;
+  flex-wrap: wrap;
+}
+
+.card-course {
+  max-width: 400px;
+  box-shadow: 0 1px 10px #6363639a;
+  padding: 0;
+}
+
+.card-banner {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  background-color: #434343;
+  color: #fff;
+}
+
+.card-content {
+  padding: 10px 15px;
+}
+
+.card-content > .top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.card-content > .top h1 {
+  font-size: 1.2rem;
+}
+
+.card-content > .top i {
+  width: 35px;
+  height: 35px;
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+.card-content > .top i:hover {
+  background-color: #6363636b;
+}
+
+.text-description {
+  width: 100%;
+}
+
+.text-description p {
+  text-align: justify;
+  color: #434343;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+}
+
+.card-footer small {
+  font-size: 0.9rem;
+}
+
+.card-footer .btn-field button {
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: rgb(99, 0, 228);
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.card-footer .btn-field button:hover {
+  background-color: rgb(80, 0, 184);
+}
+
+
+.cards-categories{
+  display: flex;
+  flex-direction: row;
+  gap: 2em;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.cards-categories .card{
+  cursor: pointer;
+  flex: 0 0 calc(100% - 20px);
+  max-width: calc(33.33% - 20px);
+  min-width: calc(33.33% - 20px);
+}
+
+.cards-categories .card .icon-category{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100px;
+  font-size: 2em;
+}
