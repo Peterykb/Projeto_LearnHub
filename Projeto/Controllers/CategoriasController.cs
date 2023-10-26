@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Projeto.Models;
@@ -35,15 +31,18 @@ namespace Projeto.Controllers
         [HttpPost]
         public async Task<ActionResult<Categorias>> CreateCategoria(Categorias categoria)
         {
+          var existecategoria = await context.categorias.FirstOrDefaultAsync(c => c.Name == categoria.Name);
             if (categoria == null)
             {
                 return BadRequest("Valor nulo");
             }
+            if(existecategoria != null) return BadRequest("Categoria já existe");
+
 
             context.categorias.Add(categoria);
             await context.SaveChangesAsync();
 
-            return CreatedAtAction("BuscarCategorias", new { id = categoria.Id_categoria }, categoria);
+            return Ok(categoria);
         }
         [HttpPut("{id}")]
         public async Task <ActionResult<Categorias>> ChangeCategoria(Categorias categoria, int id){
@@ -75,6 +74,6 @@ namespace Projeto.Controllers
             }
             return NoContent();
         }
-        
+
     }
 }
