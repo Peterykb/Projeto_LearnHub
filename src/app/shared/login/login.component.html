@@ -6,8 +6,13 @@
     <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" #formDir="ngForm">
       <div class="field">
         <label>Email</label>
-        <input type="email" placeholder="teste@email.com" formControlName="email" required
-          [ngClass]="{'error': formSubmitted && email.invalid}" />
+        <input
+          type="email"
+          placeholder="teste@email.com"
+          formControlName="email"
+          required
+          [ngClass]="{ error: formSubmitted && email.invalid }"
+        />
         <ng-container *ngIf="formSubmitted && email.invalid">
           <div class="error-message">
             <span>email invalido</span>
@@ -16,8 +21,12 @@
       </div>
       <div class="field">
         <label>Senha</label>
-        <input type="password" formControlName="password" required
-          [ngClass]="{'error': formSubmitted && password.invalid}" />
+        <input
+          type="password"
+          formControlName="password"
+          required
+          [ngClass]="{ error: formSubmitted && password.invalid }"
+        />
         <ng-container *ngIf="password.invalid && formSubmitted">
           <div class="error-message">
             <span *ngIf="password.errors?.['required']">Senha inválida</span>
@@ -38,7 +47,9 @@
       </div>
     </form>
     <div class="help">
-      <small>Não tem uma conta? <a routerLink="home">Cadastre-se</a></small>
+      <small
+        >Não tem uma conta? <a routerLink="/register">Cadastre-se</a></small
+      >
     </div>
   </div>
 </main>

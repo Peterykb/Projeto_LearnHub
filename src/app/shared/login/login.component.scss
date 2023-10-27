@@ -8,7 +8,7 @@ main {
 
 .container {
   width: 600px;
-  height: 500px;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -122,9 +122,12 @@ form{
 }
 
 .help{
-  position: absolute;
-  bottom: 1.5rem;
-  right: 1rem;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  width: 100%;
+  font-size: 1.2rem;
+  margin: 1.5rem 0;
 }
 
 .help a{

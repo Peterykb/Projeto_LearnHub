@@ -19,6 +19,8 @@ import { CoursePreviewComponent } from './components/course-preview/course-previ
 import { HomeComponent } from './components/home/home.component';
 import { MyProfileComponent } from './modules/user/my-profile/my-profile.component';
 import { MyCartComponent } from './modules/user/my-cart/my-cart.component';
+import { RegisterComponent } from './shared/register/register.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -32,9 +34,10 @@ import { MyCartComponent } from './modules/user/my-cart/my-cart.component';
     HeaderDefaultComponent,
     HomeComponent,
     MyProfileComponent,
-    MyCartComponent
+    MyCartComponent,
+    RegisterComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, NgxPaginationModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, NgxPaginationModule, FontAwesomeModule],
   providers: [],
   bootstrap: [AppComponent],
 })

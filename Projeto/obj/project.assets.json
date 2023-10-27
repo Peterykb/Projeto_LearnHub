@@ -3177,7 +3177,8 @@
       "code": "Undefined",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\pedro.barbosa\\Documents\\Projeto Oficial\\Projeto_LearnHub\\Projeto\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+
+      "message": "Problem reading the cache file C:\\Projeto_LearnHub\\Projeto\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
     }
   ]
 }
