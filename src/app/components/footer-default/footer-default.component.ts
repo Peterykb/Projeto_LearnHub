@@ -10,6 +10,6 @@ export class FooterDefaultComponent {
   constructor(private router: Router) {}
 
   mostrarCabRod() {
-    return !this.router.url.includes('login') && !this.router.url.includes('signup');
+    return !this.router.url.includes('login') && !this.router.url.includes('register');
   }
 }

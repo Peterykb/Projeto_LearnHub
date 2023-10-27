@@ -7,15 +7,17 @@ import { MyProfileComponent } from './modules/user/my-profile/my-profile.compone
 import { CoursePreviewComponent } from './components/course-preview/course-preview.component';
 import { MyCartComponent } from './modules/user/my-cart/my-cart.component';
 import { MyCoursesComponent } from './modules/user/my-courses/my-courses.component';
+import { RegisterComponent } from './shared/register/register.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'home', component: HomeComponent },
   { path: 'course-preview', component: CoursePreviewComponent },
   { path: 'my-cart', component: MyCartComponent },
   { path: 'my-courses', component: MyCoursesComponent },
   { path: 'profile', component: MyProfileComponent },
-  { path: 'login', component: LoginComponent },
   { path: '**', component: NotFoundComponent },
 ];
 

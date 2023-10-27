@@ -1,0 +1,73 @@
+<ng-container *ngIf=" submitted && this.formRegister.invalid">
+  <div class="alert alert-danger text-center" role="alert">
+    Preencha todos os campos!
+  </div>
+</ng-container>
+<ng-container *ngIf=" submitted && senha.value !== confirmSenha.value">
+  <div class="alert alert-danger text-center" role="alert">
+    As senhas não coincidem!
+  </div>
+</ng-container>
+<form (ngSubmit)="onRegist()" [formGroup]="formRegister" #formDir="ngForm">
+  <div class="title">
+    <fa-icon [icon]="faLock" class="fa-3x"></fa-icon>
+    <h3>Junte-se a nós</h3>
+    <p class="text-secondary">Torne-se um aluno e faça parte da maior plataforma de cursos online do Brasil.</p>
+  </div>
+  <div class="form-group">
+    <label>Nome Completo</label>
+    <input
+    type="email"
+    class="form-control"
+    aria-describedby="emailHelp"
+      placeholder="Insira o seu nome"
+      formControlName="nome_completo"
+      required
+      />
+    </div>
+  <div class="form-group">
+    <label>Data de Nascimento</label>
+    <input
+    type="date"
+    class="form-control"
+    formControlName="data_nascimento"
+      required
+      />
+  </div>
+  <div class="form-group">
+    <label>Email</label>
+    <input
+    type="email"
+    class="form-control"
+    placeholder="Insira o seu email"
+    formControlName="email"
+    required
+    />
+  </div>
+  <div class="form-group">
+    <label>Senha</label>
+    <input
+    type="password"
+    class="form-control"
+    placeholder="Insira sua Senha"
+    formControlName="senha"
+    required
+    />
+    <ng-container *ngIf="submitted && senha.invalid">
+      <div class="alert-warning" role="alert">
+        Senha invalida
+      </div>
+    </ng-container>
+  </div>
+  <div class="form-group">
+    <label>Confirmar Senha</label>
+    <input
+    type="password"
+    class="form-control"
+    placeholder="Confirmar Senha"
+    formControlName="confirmar_senha"
+    required
+    />
+  </div>
+  <button type="submit" class="w-100 btn btn-primary">Cadastrar</button>
+</form>

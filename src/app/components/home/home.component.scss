@@ -1,6 +1,5 @@
 .container {
   width: 100%;
-  min-width: 1200px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,71 +11,52 @@
   margin-bottom: 50px;
 }
 
+/* SLIDER BANNER */
 .banners {
-  height: 300px;
-}
-
-/* Slider */
-
-#mainSlider .carousel-inner, #mainSlider .carousel-item {
-  height: 200px;
-}
-
-#mainSlider .carousel-caption {
-  top: 30%;
-}
-
-#mainSlider .carousel-caption h2 {
-  font-size: 50px;
-  margin-bottom: 30px;
-}
-
-#mainSlider .carousel-caption p {
-  font-size: 22px;
-  font-weight: 300;
-  margin-bottom: 100px;
-  color: #FFF;
-}
-
-.main-btn {
-  background-color: #65DAF9;
-  color: #FFF;
-  text-transform: uppercase;
-  width: 200px;
-  height: 60px;
-  padding: 10px 20px;
-  border-radius: 30px;
-  border: 3px solid transparent;
-  transition: .5s;
-}
-
-.main-btn:hover {
-  text-decoration: none;
-  color: #FFF;
-  background-color: transparent;
-  border-color: #3EC1D5;
-}
-
-.carousel-indicators .active {
-  background-color: #65DAF9;
-}
-
-
-.banners :where(.banner) {
-  width: 100%;
-  height: 100%;
-  background-color: #222222;
+  width: 1400px;
+  height: 400px;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #fff;
 }
+
+#carouselExample,
+.carousel-item {
+  width: 1400px;
+  height: 400px;
+  background-color: #252525;
+}
+
+.carousel-item {
+  transition-duration: 1s;
+  transition-timing-function: ease-in-out;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+button.carousel-control-prev,
+button.carousel-control-next {
+  border: none;
+  background: none;
+  opacity: 1;
+  color: #000;
+  width: 100px;
+  height: 300px;
+  margin: 50px 0;
+}
+
 section .title {
   width: 100%;
   text-align: center;
   margin-bottom: 3em;
-
 }
+
+/* CARDS DE CURSOS ACESSADOS */
 
 .cards-container {
   margin: 2rem 0;
@@ -84,14 +64,22 @@ section .title {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 1.3rem;
   flex-wrap: wrap;
+  gap: 1.3rem;
 }
 
 .card-course {
   max-width: 400px;
   box-shadow: 0 1px 10px #6363639a;
+  flex: 0 0 calc(100% - 50px);
+  min-width: calc(50% - 50px);
+  min-width: calc(50% - 50px);
   padding: 0;
+}
+
+.card-course.full-width-card {
+  flex: 0 0 100%;
+  min-width: 100%;
 }
 
 .card-banner {
@@ -173,8 +161,9 @@ section .title {
   background-color: rgb(80, 0, 184);
 }
 
+/* CARDS DE CATEGORIAS DE CURSOS */
 
-.cards-categories{
+.cards-categories {
   display: flex;
   flex-direction: row;
   gap: 2em;
@@ -183,14 +172,20 @@ section .title {
   width: 100%;
 }
 
-.cards-categories .card{
+.cards-categories .card {
   cursor: pointer;
   flex: 0 0 calc(100% - 20px);
   max-width: calc(33.33% - 20px);
   min-width: calc(33.33% - 20px);
+  transition: 0.3s ease-in-out;
 }
 
-.cards-categories .card .icon-category{
+.cards-categories .card:hover {
+  transform: scale(1.04);
+  box-shadow: 0 3px 15px rgb(21, 21, 21, 0.5);
+}
+
+.cards-categories .card .icon-category {
   display: flex;
   justify-content: center;
   align-items: center;
