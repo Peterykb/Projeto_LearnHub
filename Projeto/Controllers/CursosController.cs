@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Projeto.Models;
@@ -14,14 +15,14 @@ namespace Projeto.Controllers
     {
       context = _context;
     }
-
+    [Authorize]
     [HttpGet]
     public async Task<ActionResult<List<Cursos>>> GetCursos()
     {
       var cursos = await context.cursos.ToListAsync();
       return Ok(cursos);
     }
-
+    [Authorize]
     [HttpPost]
     public async Task<ActionResult<Cursos>> CriarCurso(Cursos curso)
     {
@@ -40,7 +41,7 @@ namespace Projeto.Controllers
 
       return CreatedAtAction(nameof(GetCurso), new { id = curso.Id_curso }, curso);
     }
-
+    [Authorize]
     [HttpGet("{id}")]
     public async Task<ActionResult<Cursos>> GetCurso(int id)
     {
@@ -51,7 +52,7 @@ namespace Projeto.Controllers
 
       return Ok(curso);
     }
-
+    [Authorize]
     [HttpPut("{id}")]
     public async Task<ActionResult<Cursos>> AtualizarCurso(int id, Cursos curso)
     {
@@ -77,7 +78,7 @@ namespace Projeto.Controllers
 
       return NoContent();
     }
-
+    [Authorize]
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeletarCurso(int id)
     {
@@ -99,7 +100,7 @@ namespace Projeto.Controllers
 
       return NoContent();
     }
-
+    [Authorize]
     [HttpDelete]
     public async Task<ActionResult<List<Cursos>>> DeleteAll()
     {

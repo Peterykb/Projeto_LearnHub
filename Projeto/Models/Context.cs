@@ -10,6 +10,7 @@ namespace Projeto.Models
         public DbSet<Aluno> alunos {get;set;}
         public DbSet<AlunoCurso> alunoCursos {get;set;}
         public DbSet<Aulas> aulas { get; set; }
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

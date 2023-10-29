@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Projeto.Models;
@@ -13,6 +14,7 @@ namespace Projeto.Controllers
         {
             context = Context;
         }
+        [Authorize]
         [HttpGet]
 
         public async Task<ActionResult<List<Categorias>>> GetCategorias()
@@ -21,6 +23,7 @@ namespace Projeto.Controllers
 
             return Ok(categorias);
         }
+        [Authorize]
         [HttpGet("{id}")]
         public async Task <ActionResult<Categorias>> GetCategoria(int id){
             var categoria = await context.categorias.FindAsync(id);
@@ -28,6 +31,7 @@ namespace Projeto.Controllers
 
             return Ok(categoria);
         }
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<Categorias>> CreateCategoria(Categorias categoria)
         {
@@ -44,6 +48,7 @@ namespace Projeto.Controllers
 
             return Ok(categoria);
         }
+        [Authorize]
         [HttpPut("{id}")]
         public async Task <ActionResult<Categorias>> ChangeCategoria(Categorias categoria, int id){
          if(id != categoria.Id_categoria) return BadRequest("Categoria não existe");
@@ -57,6 +62,7 @@ namespace Projeto.Controllers
          }
          return NoContent();
         }
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task <ActionResult<Categorias>> DeleteCategoria(int id){
             var categoria = await context.categorias.FindAsync(id);

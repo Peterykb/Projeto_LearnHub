@@ -20,5 +20,5 @@ O que falta fazer:
 -Front-End: Criar a tela de cadastro do professor, home do professor, sendo ela responsável por criar englobar todas as outras telas do professor, além da tela do curso(Assistir as aulas), visualização dos cursos, alterações do curso, bem como a relação de alunos inscritos em cada curso.
 
 -Back-End:
-*Dotnet: API para os alunos e os professores; Autenticação no back-end.
-*Banco de dados: Criar as tabelas do aluno e do professor, além de configurar seus relacionamentos; criar a tabela para o carrinho.
+*Dotnet: API para os alunos e os professores; Autenticação no back-end, integração com o front-end.
+*Banco de dados: modelagem do banco de dados, criar as tabelas do aluno e do professor, além de configurar seus relacionamentos; criar a tabela para o carrinho.
