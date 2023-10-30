@@ -1,8 +1,7 @@
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 using Projeto.Models;
+using Projeto.Models.Authentication;
+using Projeto.Services;
 
 namespace Projeto.Controllers
 {
@@ -17,47 +16,16 @@ namespace Projeto.Controllers
       context = _context;
     }
 
-    [HttpPost("login")]
-    public IActionResult Login([FromBody] Aluno model)
-    {
+        [HttpPost]
 
-      var user = context.alunos.SingleOrDefault(u => u.Email == model.Email && u.Pass == model.Pass);
+        public IActionResult Auth(string username, string pass){
+          var user = context.alunos.SingleOrDefault(a => a.Nome == username && a.Pass == pass);
 
-      if (user == null)
-      {
-        // Usuário não encontrado ou credenciais inválidas.
-        return BadRequest("Falha na autenticação.");
-      }
-
-      // 2. Crie as reivindicações do usuário.
-      var claims = new List<Claim>
-    {
-        new Claim(ClaimTypes.NameIdentifier, user.Id_aluno.ToString()),
-        new Claim(ClaimTypes.Name, user.Nome),
-        // Adicione outras reivindicações conforme necessário.
-    };
-
-      // 3. Configure as opções do token.
-      var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("sua_chave_secreta"));
-      var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-      var tokenDescriptor = new SecurityTokenDescriptor
-      {
-        Subject = new ClaimsIdentity(claims),
-        Expires = DateTime.UtcNow.AddHours(1),
-        SigningCredentials = creds
-      };
-
-      // 4. Use o JwtSecurityTokenHandler para criar o token.
-      var tokenHandler = new JwtSecurityTokenHandler();
-      var token = tokenHandler.CreateToken(tokenDescriptor);
-
-      // 5. Retorne o token gerado para o cliente.
-      return Ok(new
-      {
-        token = tokenHandler.WriteToken(token)
-      });
-    }
-
+            if(user != null){
+                var token = TokenService.GenerateToken(new Aluno());
+                return Ok(token);
+            }
+            return BadRequest("Username or password invalid");
+        }
   }
 }
