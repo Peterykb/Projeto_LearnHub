@@ -58,7 +58,10 @@ builder.Services.AddAuthentication(x =>
   x.TokenValidationParameters = new TokenValidationParameters
   {
     ValidateIssuerSigningKey = true,
-    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Key.Secret))
+    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Key.Secret)),
+    ValidIssuer = "https://localhost:7009",
+    ValidAudience = "audience"
+
   };
 });
 

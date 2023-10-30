@@ -9,20 +9,22 @@ namespace Projeto.Services
 
     public class TokenService
     {
-        public static string GenerateToken(Aluno usu)
+        public static string GenerateToken(Instrutor usu)
         {
             var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Key.Secret));
 
             var claims = new[]
             {
-                new Claim("Usuarioid", usu.Id_aluno.ToString())
+                new Claim("Instrutorid", usu.Id_Instrutor.ToString())
             };
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
                 Expires = DateTime.UtcNow.AddHours(3),
-                SigningCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature)
+                SigningCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature),
+                Audience = "audience",
+                Issuer = "https://localhost:7009"
             };
 
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -30,5 +32,4 @@ namespace Projeto.Services
             return tokenHandler.WriteToken(token);
         }
     }
-
 }

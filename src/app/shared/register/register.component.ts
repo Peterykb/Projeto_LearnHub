@@ -18,14 +18,23 @@ export class RegisterComponent {
     this.formRegister = registerBuilder.group({
       nome_completo: ['', Validators.required],
       data_nascimento: ['', Validators.required],
-      email: ['', Validators.required],
-      senha: ['', Validators.compose([Validators.required,Validators.minLength(8), Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/)])],
+      email: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i)])],
+      senha: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(8),
+          Validators.pattern(
+            /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/
+          ),
+        ]),
+      ],
       confirmar_senha: ['', Validators.required],
     });
   }
 
   onRegist() {
-    this.submitted = true
+    this.submitted = true;
     if (this.formRegister.valid) {
     } else {
       return;

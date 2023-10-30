@@ -14,8 +14,8 @@ namespace Projeto.Controllers
         {
             context = Context;
         }
-        [Authorize]
         [HttpGet]
+        [Authorize]
 
         public async Task<ActionResult<List<Categorias>>> GetCategorias()
         {
@@ -23,16 +23,16 @@ namespace Projeto.Controllers
 
             return Ok(categorias);
         }
-        [Authorize]
         [HttpGet("{id}")]
+        [Authorize]
         public async Task <ActionResult<Categorias>> GetCategoria(int id){
             var categoria = await context.categorias.FindAsync(id);
             if(categoria == null) return BadRequest("Categoria não encontrada");
 
             return Ok(categoria);
         }
-        [Authorize]
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Categorias>> CreateCategoria(Categorias categoria)
         {
           var existecategoria = await context.categorias.FirstOrDefaultAsync(c => c.Name == categoria.Name);
@@ -48,8 +48,8 @@ namespace Projeto.Controllers
 
             return Ok(categoria);
         }
-        [Authorize]
         [HttpPut("{id}")]
+        [Authorize]
         public async Task <ActionResult<Categorias>> ChangeCategoria(Categorias categoria, int id){
          if(id != categoria.Id_categoria) return BadRequest("Categoria não existe");
          context.Update(categoria);
@@ -62,8 +62,8 @@ namespace Projeto.Controllers
          }
          return NoContent();
         }
-        [Authorize]
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task <ActionResult<Categorias>> DeleteCategoria(int id){
             var categoria = await context.categorias.FindAsync(id);
             if(categoria == null) return NotFound();

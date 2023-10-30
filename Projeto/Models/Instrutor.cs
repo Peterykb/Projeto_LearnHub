@@ -8,6 +8,6 @@ namespace Projeto.Models
         [Key]
         public int Id_Instrutor {get;set;}
         public string Nome {get;set;} = String.Empty;
-
+        public string Pass {get;set;} = String.Empty;
     }
 }

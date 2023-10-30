@@ -44,10 +44,17 @@ button.carousel-control-next {
   border: none;
   background: none;
   opacity: 1;
-  color: #000;
   width: 100px;
   height: 300px;
   margin: 50px 0;
+  z-index: 1000;
+}
+
+button.carousel-control-prev span,
+button.carousel-control-next span{
+  color: rgb(167, 99, 255);
+  font-weight: bold;
+  font-size: 2em;
 }
 
 section .title {

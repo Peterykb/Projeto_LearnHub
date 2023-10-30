@@ -10,8 +10,7 @@ import { MyCoursesComponent } from './modules/user/my-courses/my-courses.compone
 import { PopupErrorComponent } from './components/popup-error/popup-error.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
-
-import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { FooterDefaultComponent } from './components/footer-default/footer-default.component';
 import { HeaderDefaultComponent } from './components/header-default/header-default.component';
@@ -35,9 +34,16 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HomeComponent,
     MyProfileComponent,
     MyCartComponent,
-    RegisterComponent
+    RegisterComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, NgxPaginationModule, FontAwesomeModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxPaginationModule,
+    FontAwesomeModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
