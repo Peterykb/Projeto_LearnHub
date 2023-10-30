@@ -1,0 +1,41 @@
+.container-fluid {
+  height: 600px;
+}
+
+.row {
+  height: 100%;
+}
+
+.logo{
+  font-size: 2em;
+}
+
+#menu, .nav-item{
+  width: 100%;
+}
+
+.container {
+  width: 100%;
+  margin: 0;
+}
+
+.dropdown-toggle {
+  width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dropdown-toggle .user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user .img,
+img {
+  border-radius: 50%;
+  object-fit: cover;
+  width: 30px;
+  height: 30px;
+}

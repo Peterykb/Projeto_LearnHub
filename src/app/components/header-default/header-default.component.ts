@@ -10,7 +10,7 @@ export class HeaderDefaultComponent {
   constructor(private router: Router) {}
 
   mostrarCabRod() {
-    return !this.router.url.includes('login') && !this.router.url.includes('register');
+    return !this.router.url.includes('login') && !this.router.url.includes('register') && !this.router.url.includes('dashboard-teacher');
   }
 
   number = 2

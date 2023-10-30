@@ -1,7 +1,27 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
+<<<<<<< HEAD
+    "C:\\Projeto_LearnHub\\Projeto\\Projeto.csproj": {}
+  },
+  "projects": {
+    "C:\\Projeto_LearnHub\\Projeto\\Projeto.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Projeto_LearnHub\\Projeto\\Projeto.csproj",
+        "projectName": "Projeto",
+        "projectPath": "C:\\Projeto_LearnHub\\Projeto\\Projeto.csproj",
+        "packagesPath": "C:\\Users\\joao.silva\\.nuget\\packages\\",
+        "outputPath": "C:\\Projeto_LearnHub\\Projeto\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\joao.silva\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+    "C:\\Users\\pedro\\OneDrive\\Documentos\\Projeto - LearnHub\\Projeto_LearnHub\\Projeto\\Projeto.csproj": {}
+=======
     "C:\\Users\\pedro.barbosa\\Documents\\Projeto Oficial\\Projeto_LearnHub\\Projeto\\Projeto.csproj": {}
+>>>>>>> 88f153e9dcd7980936e08aa003185434214bc37e
   },
   "projects": {
     "C:\\Users\\pedro.barbosa\\Documents\\Projeto Oficial\\Projeto_LearnHub\\Projeto\\Projeto.csproj": {
@@ -14,7 +34,13 @@
         "outputPath": "C:\\Users\\pedro.barbosa\\Documents\\Projeto Oficial\\Projeto_LearnHub\\Projeto\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
+<<<<<<< HEAD
+          "C:\\Users\\pedro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> fb1ed0f9505bcc9ed445fb5d8ae8519f38722f69
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+=======
           "C:\\Users\\pedro.barbosa\\AppData\\Roaming\\NuGet\\NuGet.Config"
+>>>>>>> 88f153e9dcd7980936e08aa003185434214bc37e
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -94,7 +120,15 @@
               "privateAssets": "all"
             }
           },
+<<<<<<< HEAD
+<<<<<<< HEAD
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+=======
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+>>>>>>> fb1ed0f9505bcc9ed445fb5d8ae8519f38722f69
+=======
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
+>>>>>>> 88f153e9dcd7980936e08aa003185434214bc37e
         }
       }
     }

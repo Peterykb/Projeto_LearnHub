@@ -8,12 +8,14 @@ import { CoursePreviewComponent } from './components/course-preview/course-previ
 import { MyCartComponent } from './modules/user/my-cart/my-cart.component';
 import { MyCoursesComponent } from './modules/user/my-courses/my-courses.component';
 import { RegisterComponent } from './shared/register/register.component';
+import { DashboardComponent } from './modules/teacher/dashboard/dashboard.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full'},
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'dashboard-teacher', component: DashboardComponent },
   { path: 'course-preview', component: CoursePreviewComponent },
   { path: 'my-cart', component: MyCartComponent },
   { path: 'my-courses', component: MyCoursesComponent },
