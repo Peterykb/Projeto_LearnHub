@@ -15,15 +15,15 @@ namespace Projeto.Controllers
     {
       context = _context;
     }
-    [Authorize]
     [HttpGet]
+    [Authorize]
     public async Task<ActionResult<List<Cursos>>> GetCursos()
     {
       var cursos = await context.cursos.ToListAsync();
       return Ok(cursos);
     }
-    [Authorize]
     [HttpPost]
+    [Authorize]
     public async Task<ActionResult<Cursos>> CriarCurso(Cursos curso)
     {
       if (curso == null) return BadRequest("Valor nulo");
@@ -41,8 +41,8 @@ namespace Projeto.Controllers
 
       return CreatedAtAction(nameof(GetCurso), new { id = curso.Id_curso }, curso);
     }
-    [Authorize]
     [HttpGet("{id}")]
+    [Authorize]
     public async Task<ActionResult<Cursos>> GetCurso(int id)
     {
       var curso = await context.cursos.FindAsync(id);
@@ -52,8 +52,8 @@ namespace Projeto.Controllers
 
       return Ok(curso);
     }
-    [Authorize]
     [HttpPut("{id}")]
+    [Authorize]
     public async Task<ActionResult<Cursos>> AtualizarCurso(int id, Cursos curso)
     {
       if (id != curso.Id_curso)
@@ -78,8 +78,8 @@ namespace Projeto.Controllers
 
       return NoContent();
     }
-    [Authorize]
     [HttpDelete("{id}")]
+    [Authorize]
     public async Task<IActionResult> DeletarCurso(int id)
     {
       var curso = await context.cursos.FindAsync(id);
@@ -100,8 +100,8 @@ namespace Projeto.Controllers
 
       return NoContent();
     }
-    [Authorize]
     [HttpDelete]
+    [Authorize]
     public async Task<ActionResult<List<Cursos>>> DeleteAll()
     {
       var cursos = await context.cursos.ToListAsync();
