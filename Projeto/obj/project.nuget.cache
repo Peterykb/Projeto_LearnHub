@@ -2,7 +2,7 @@
   "version": 2,
   "dgSpecHash": "MOuiMCfETBjw2RmL3kCwhh3E/NAmH4GuxZtUSVHJ79vGRy9Er8rir9VY4gzINkieSDcqz2YnY7C52ulTPRRlRw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\pedro.barbosa\\Documents\\Projeto Oficial\\Projeto_LearnHub\\Projeto\\Projeto.csproj",
+  "projectFilePath": "C:\\Projeto_LearnHub\\Projeto\\Projeto.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\joao.silva\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\joao.silva\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
@@ -68,14 +68,5 @@
     "C:\\Users\\joao.silva\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\joao.silva\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Projeto_LearnHub\\Projeto\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-
-    }
-  ]
+  "logs": []
 }
->>>>>>> Front-End
