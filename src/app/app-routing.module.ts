@@ -9,13 +9,14 @@ import { MyCartComponent } from './modules/user/my-cart/my-cart.component';
 import { MyCoursesComponent } from './modules/user/my-courses/my-courses.component';
 import { RegisterComponent } from './shared/register/register.component';
 import { DashboardComponent } from './modules/teacher/dashboard/dashboard.component';
+import { TeacherModule } from './modules/teacher/teacher.module';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'dashboard-teacher', component: DashboardComponent },
+  { path: 'dashboard-teacher', component: DashboardComponent},
   { path: 'course-preview', component: CoursePreviewComponent },
   { path: 'my-cart', component: MyCartComponent },
   { path: 'my-courses', component: MyCoursesComponent },
@@ -25,6 +26,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule, TeacherModule],
 })
 export class AppRoutingModule {}

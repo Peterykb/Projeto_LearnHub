@@ -1,17 +1,17 @@
 /* FORMULARIO */
 
-form{
+form {
   width: 700px;
   padding: 40px 30px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
-.error-message{
-  margin: 5px 0;
+.error-message {
+  font-size: 0.9em;
 }
 
-.title{
+.title {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -19,16 +19,50 @@ form{
   margin-bottom: 1px;
 }
 
-.alert{
-  position: absolute;
-  top: 3rem;
-  max-width: 700px;
+.form-group label {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+input {
+  border: 2px solid #e7e7e7;
+}
+
+input:focus.active {
+  box-shadow: 0 0 5pt 1pt #d3d3d38c;
+  border-color: #d3d3d38c;
+}
+
+input:focus.valid,
+input.valid {
+  border-width: 2px;
+  border-color: lightgreen;
+  transition: 0.3s;
+}
+
+.error-message {
+  font-weight: 500;
+}
+
+.recomendation {
+  padding: 5px 0;
+  font-size: 0.8rem;
+}
+.return-login {
   width: 100%;
-  font-size: 1.1rem;
+  display: flex;
+  flex-direction: row-reverse;
+  margin: 20px 0;
 }
 
-.alert-warning{
-  padding: 5px 10px;
-  margin-top: 10px;
+.btn {
+  background-color: rgb(91, 0, 238);
+  color: #fff;
+  box-shadow: none;
+  transition: .3s;
 }
 
+.btn:hover{
+  background-color: rgb(63, 0, 163);
+}
