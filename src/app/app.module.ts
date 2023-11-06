@@ -20,6 +20,7 @@ import { MyProfileComponent } from './modules/user/my-profile/my-profile.compone
 import { MyCartComponent } from './modules/user/my-cart/my-cart.component';
 import { RegisterComponent } from './shared/register/register.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ProfileComponent } from './modules/teacher/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MyProfileComponent,
     MyCartComponent,
     RegisterComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

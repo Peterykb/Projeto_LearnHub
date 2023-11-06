@@ -3,7 +3,6 @@ nav{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 100px;
   border-bottom: .5px solid #dfdfdf;
   z-index: 1000;
   position: fixed;
@@ -15,7 +14,7 @@ nav{
 
 
 .title-header{
-  font-size: 2em;
+  font-size: 1.7em;
 }
 
 .nav-wrapper{
