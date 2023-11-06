@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rV2Z1CLeJUpHrFO96oO0G/dn01HOKk//uGG+qhJ7DEKhR+7p5k9lM51NUfwlHHtjfkEWtL7Omt+RmmoI86Tx7Q==",
+  "dgSpecHash": "chNSPS/S4pwhaF20Ryy8yWJ7ZZuksK/9xjorhFWxeX+h1/0jzQ9WGVxCUOtHrrWIxIAE1Z0Z6qir6u6Bq6sodQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\pedro.barbosa\\Documents\\Projeto Oficial\\Projeto_LearnHub\\Projeto\\Projeto.csproj",
+  "projectFilePath": "C:\\Users\\pedro.barbosa\\Documents\\Projeto oficial\\Projeto_LearnHub\\Projeto\\Projeto.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\pedro.barbosa\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\pedro.barbosa\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
