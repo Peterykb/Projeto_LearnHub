@@ -1,4 +1,5 @@
 import { Component, ElementRef, ViewChildren, QueryList } from '@angular/core';
+import { AuthUserService } from 'src/app/service/auth-user.service';
 
 @Component({
   selector: 'app-my-profile',
@@ -6,6 +7,8 @@ import { Component, ElementRef, ViewChildren, QueryList } from '@angular/core';
   styleUrls: ['./my-profile.component.scss']
 })
 export class MyProfileComponent {
+
+  constructor(public authUser: AuthUserService){}
 
   canEdit: boolean = false;
 

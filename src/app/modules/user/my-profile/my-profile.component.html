@@ -30,7 +30,7 @@
         <label>Senha</label>
         <input type="password" disabled>
         <a href="#" *ngIf="canEdit">Alterar Senha</a>
-        <a routerLink="/login">Encerrar Sessão</a>
+        <a (click)="authUser.logout()">Encerrar Sessão</a>
       </div>
     </div>
     <div class="buttons-field">

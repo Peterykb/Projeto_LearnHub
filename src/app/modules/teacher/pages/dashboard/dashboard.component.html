@@ -5,7 +5,6 @@
         class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white"
       >
         <a
-          href="/"
           class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none"
         >
           <span class="fs-5 d-none d-sm-inline logo">LearnHub</span>
@@ -15,7 +14,7 @@
           id="menu"
         >
           <li class="nav-item">
-            <a href="#" class="nav-link align-middle px-0">
+            <a routerLink="./overview" class="nav-link align-middle px-0">
               <i class="fs-4 bi-house"></i>
               <span class="ms-1 d-none d-sm-inline">Home</span>
             </a>
@@ -99,10 +98,7 @@
       </div>
     </div>
     <div class="navigation-teacher">
-      <nav class="navbar navbar-light bg-dark d-flex justify-content-between">
-        <div class="container">
-          <a class="navbar-brand text-white" href="#">Navbar scroll</a>
-        </div>
+      <nav class="navbar navbar-light bg-dark d-flex justify-content-end">
         <div>
           <div class="btn-group">
             <button
@@ -122,20 +118,15 @@
               </div>
             </button>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Ver perfil</a></li>
+              <li><a class="dropdown-item" routerLink="./profile">Ver perfil</a></li>
               <li><hr class="dropdown-divider" /></li>
-              <li><a class="dropdown-item" href="#">Logout</a></li>
+              <li (click)="logout()"><a class="dropdown-item">Logout</a></li>
             </ul>
           </div>
         </div>
       </nav>
-      <div class="conteudo">
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus
-          aut ullam, commodi totam voluptatem ratione velit blanditiis saepe
-          sint voluptatibus ab dolores laborum suscipit consequatur dolor fuga
-          debitis a deserunt?
-        </p>
+      <div class="container-xl">
+       <router-outlet></router-outlet>
       </div>
     </div>
   </div>
