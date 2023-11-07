@@ -12,7 +12,7 @@ namespace Projeto.Models
         public string Pass { get; set; } = String.Empty;
         [ForeignKey("Id_curso")]
         public int Id_curso { get; set; }
-        public ICollection<AlunoCurso>? AlunoCursos { get; set; } = new List<AlunoCurso>();
+        public ICollection<Matricula>? matriculas { get; set; } = new List<Matricula>();
 
     }
 }

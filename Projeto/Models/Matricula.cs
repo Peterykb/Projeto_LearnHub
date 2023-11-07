@@ -2,7 +2,7 @@
 
 namespace Projeto.Models
 {
-    public class AlunoCurso
+    public class Matricula
     {
         public int AlunoId { get; set; }
         public Aluno? Aluno { get; set; }

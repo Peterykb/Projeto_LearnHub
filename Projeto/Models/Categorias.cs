@@ -7,9 +7,9 @@ namespace Projeto.Models
     {
         [Key]
         public int Id_categoria {get;set;}
-        public string Name {get;set;} = String.Empty;
+        public string Name {get;set;} = string.Empty;
         public ICollection<Cursos>? Cursos {get;set;}
-   
-        
+
+
     }
 }

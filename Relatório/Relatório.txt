@@ -11,14 +11,14 @@ O que já temos feito:
 *Templates: Telas de login; tela home do usuário; tela dos cursos do usuário; tela para visualizar o curso(Comprar curso); tela de carrinho, tela de cadastro do usuário.
 *Funcionalidades do Front-End: Validação dos forms, Implementação da API no Angular.
 
--Back-End:
+- Back-End:
 *Dotnet: API para os cursos e para as categorias.
-*Banco de dados: Tabelas aluno, curso, categoria criadas; relacionamentos configurados entre as tabelas.
+*Banco de dados: Tabelas aluno, curso, instrutor e categoria criadas; relacionamentos configurados entre as tabelas.
 
 O que falta fazer:
 
--Front-End: Criar a tela de cadastro do professor, home do professor, sendo ela responsável por criar englobar todas as outras telas do professor, além da tela do curso(Assistir as aulas), visualização dos cursos, alterações do curso, bem como a relação de alunos inscritos em cada curso.
+- Front-End: Criar a tela de cadastro do professor, home do professor, sendo ela responsável por criar englobar todas as outras telas do professor, além da tela do curso(Assistir as aulas), visualização dos cursos, alterações do curso, bem como a relação de alunos inscritos em cada curso.
 
--Back-End:
-*Dotnet: API para os alunos e os professores; Autenticação no back-end, integração com o front-end.
-*Banco de dados: modelagem do banco de dados, criar as tabelas do aluno e do professor, além de configurar seus relacionamentos; criar a tabela para o carrinho.
+- Back-End:
+*Dotnet: API para os alunos e os professores; Autenticação em rotas diferentes, integração com o front-end.
+*Banco de dados: modelagem do banco de dados, além de configurar seus relacionamentos; criar a tabela para o carrinho.

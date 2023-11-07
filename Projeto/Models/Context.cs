@@ -9,13 +9,14 @@ namespace Projeto.Models
     public DbSet<Cursos> cursos { get; set; }
     public DbSet<Aluno> alunos { get; set; }
     public DbSet<Instrutor> instrutors { get; set; }
-    public DbSet<AlunoCurso> alunoCursos { get; set; }
+    public DbSet<Matricula> matriculas { get; set; }
     public DbSet<Aulas> aulas { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
       base.OnModelCreating(modelBuilder);
 
+      //Definindo a relação entre cursos e categorias
       modelBuilder.Entity<Cursos>().HasOne(c => c.Categoria).WithMany().HasForeignKey(c => c.Id_categoria).IsRequired(false);
       modelBuilder.Entity<Cursos>()
      .HasMany(c => c.Aulas)
@@ -23,22 +24,25 @@ namespace Projeto.Models
      .HasForeignKey(a => a.Id_curso)
      .IsRequired(false);
 
+      //Definindo a relação entre cursos e aulas
       modelBuilder.Entity<Aulas>()
           .HasOne(a => a.Curso)
           .WithMany(c => c.Aulas)
           .HasForeignKey(a => a.Id_curso)
           .IsRequired(false);
-      modelBuilder.Entity<AlunoCurso>()
+
+      //Definindo a relação n:n entre alunos e cursos através da tabela matricula
+      modelBuilder.Entity<Matricula>()
           .HasKey(ac => new { ac.AlunoId, ac.CursoId });
 
-      modelBuilder.Entity<AlunoCurso>()
+      modelBuilder.Entity<Matricula>()
           .HasOne(ac => ac.Aluno)
-          .WithMany(a => a.AlunoCursos)
+          .WithMany(a => a.matriculas) //Representação da quantidade de matriculas do aluno em cursos
           .HasForeignKey(ac => ac.AlunoId);
 
-      modelBuilder.Entity<AlunoCurso>()
+      modelBuilder.Entity<Matricula>()
           .HasOne(ac => ac.Curso)
-          .WithMany(c => c.AlunoCursos)
+          .WithMany(c => c.matriculas) //Representação da quantidade de matriculas existentes no curso
           .HasForeignKey(ac => ac.CursoId);
 
 
