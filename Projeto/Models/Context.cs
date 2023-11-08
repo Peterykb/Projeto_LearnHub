@@ -44,9 +44,6 @@ namespace Projeto.Models
           .HasOne(ac => ac.Curso)
           .WithMany(c => c.matriculas) //Representação da quantidade de matriculas existentes no curso
           .HasForeignKey(ac => ac.CursoId);
-
-
     }
-
   }
 }

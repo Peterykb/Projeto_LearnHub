@@ -1,13 +1,14 @@
-using System.ComponentModel.DataAnnotations;
+  using System.ComponentModel.DataAnnotations;
 
 
-namespace Projeto.Models
-{
-    public class Instrutor
-    {
-        [Key]
-        public int Id_Instrutor {get;set;}
-        public string Nome {get;set;} = string.Empty;
-        public string Pass {get;set;} = string.Empty;
-    }
-}
+  namespace Projeto.Models
+  {
+      public class Instrutor
+      {
+          [Key]
+          public Guid Id_Instrutor {get;set;}
+          public string Nome {get;set;} = string.Empty;
+          public string Pass {get;set;} = string.Empty;
+
+      }
+  }

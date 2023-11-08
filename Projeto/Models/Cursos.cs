@@ -11,10 +11,9 @@ namespace Projeto.Models
         public string Name { get; set; } = string.Empty;
         public int Data_criacao { get; set; }
 
-        [ForeignKey("Categoria")] // Usar o nome da propriedade de navegação
+        [ForeignKey("Id_Categoria")] // Usar o nome da propriedade de navegação
         public int? Id_categoria { get; set; }
         public Categorias? Categoria { get; set; }
-
         public ICollection<Aulas>? Aulas { get; set; }
         public ICollection<Matricula>? matriculas { get; set; } = new List<Matricula>();
     }
