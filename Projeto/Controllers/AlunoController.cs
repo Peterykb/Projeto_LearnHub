@@ -24,7 +24,7 @@ namespace Projeto.Controllers
     [HttpGet]
     public async Task<ActionResult<List<Aluno>>> GetAlunos()
     {
-      var alunos = context.alunos.ToListAsync();
+      var alunos = await context.alunos.ToListAsync();
 
       if(alunos == null) return Ok("Não há alunos cadastrados");
 
@@ -34,7 +34,7 @@ namespace Projeto.Controllers
     [HttpGet("{id}")]
 
     public async Task <ActionResult<Aluno>> GetAluno(int id){
-      var aluno = context.alunos.FindAsync(id);
+      var aluno = await context.alunos.FindAsync(id);
       if(aluno == null) return BadRequest("Aluno não encontrado");
 
       return Ok(aluno);

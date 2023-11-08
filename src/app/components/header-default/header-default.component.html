@@ -7,7 +7,9 @@
       <li><a routerLink="home" class="custom-link">Home</a></li>
       <li><a routerLink="my-courses" class="custom-link">Meus Cursos</a></li>
       <li><a routerLink="my-cart" class="custom-link">Carrinho</a></li>
-      <li routerLink="profile">
+      <li *ngIf="!authUser.isLoggedIn()"><a routerLink="/register" class="custom-link">Cadastrar</a></li>
+      <li *ngIf="!authUser.isLoggedIn()"><a routerLink="/login" class="custom-link">Login</a></li>
+      <li routerLink="profile" *ngIf="authUser.isLoggedIn()">
         <div class="user-profile">
           <i class="fa-solid fa-user"></i>
           <span class="tooltip">Meu Perfil</span>

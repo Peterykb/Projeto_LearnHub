@@ -1,5 +1,7 @@
 .container-fluid {
+  width: 80%;
   height: 600px;
+  margin: auto;
 }
 
 .row {
@@ -8,6 +10,10 @@
 
 .logo{
   font-size: 2em;
+}
+
+.navigation-teacher{
+  width: 100%;
 }
 
 #menu, .nav-item{
@@ -38,4 +44,8 @@ img {
   object-fit: cover;
   width: 30px;
   height: 30px;
+}
+
+.container-xl{
+  height: calc(100% - 100px);
 }

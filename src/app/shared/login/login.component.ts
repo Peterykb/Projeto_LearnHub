@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthUserService } from 'src/app/service/auth-user.service';
 import { PopupErrorService } from 'src/app/service/popup-error.service';
 
 @Component({
@@ -14,14 +15,19 @@ export class LoginComponent implements OnInit {
   constructor(
     private loginBuilder: FormBuilder,
     private router: Router,
-    private popupService: PopupErrorService
+    private popupService: PopupErrorService,
+    private authUser: AuthUserService
   ) {
     this.loginForm = loginBuilder.group({
       email: ['', [Validators.required /*  this.emailValidator */]],
       password: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if(this.authUser.isLoggedIn()){
+      this.router.navigate(['teacher'])
+    }
+  }
 
   onSubmit() {
     this.formSubmitted = true;
@@ -29,15 +35,11 @@ export class LoginComponent implements OnInit {
     if (!this.loginForm.valid) {
       this.popupService.addMessage('Preencha os campos obrigatórios!');
     } else {
-      if (
-        this.email.value === 'email@email.com' &&
-        this.password.value === '12345678'
-      ) {
-        this.router.navigate(['home']);
-      } else {
-        this.popupService.addMessage('Usuário e/ou Senha inválido(a)(s)!');
-        this.router.navigate(['login']);
-      }
+      this.authUser.login(this.loginForm.value).subscribe(res => {
+        this.router.navigate(['home'])
+      }, (err: Error) =>{
+        alert(err.message)
+      })
     }
   }
 
