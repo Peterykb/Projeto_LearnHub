@@ -18,17 +18,17 @@ export class AuthUserService {
   }
 
   isLoggedIn() {
-    return this.getToken() !== null;
+    return this.getToken() === "UsuarioLogado";
   }
 
   logout() {
     localStorage.removeItem('token')
-    this.router.navigate(['login']);
+    this.router.navigate(['home']);
   }
 
   login({email, password}: any): Observable<any>{
     if(email === 'email@email.com' && password === '12345678'){
-      this.setToken('abcdefghijklmnopqrstuvwxyz')
+      this.setToken('UsuarioLogado')
       return of({name: 'João Guilherme', email: 'email@email.com'})
     }
     return throwError(new Error('Falha no login'))

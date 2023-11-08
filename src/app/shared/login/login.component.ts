@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthUserService } from 'src/app/service/auth-user.service';
-import { PopupErrorService } from 'src/app/service/popup-error.service';
+import { AuthTeacherService } from 'src/app/services/auth-teacher.service';
+import { AuthUserService } from 'src/app/services/auth-user.service';
+import { PopupErrorService } from 'src/app/services/popup-error.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
     private loginBuilder: FormBuilder,
     private router: Router,
     private popupService: PopupErrorService,
-    private authUser: AuthUserService
+    private authUser: AuthUserService,
+    private authTeacher: AuthTeacherService
   ) {
     this.loginForm = loginBuilder.group({
       email: ['', [Validators.required /*  this.emailValidator */]],
@@ -24,9 +26,9 @@ export class LoginComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    if(this.authUser.isLoggedIn()){
-      this.router.navigate(['teacher'])
-    }
+   /*  if (this.authUser.isLoggedIn()) {
+      this.router.navigate(['home']);
+    } */
   }
 
   onSubmit() {
@@ -35,11 +37,22 @@ export class LoginComponent implements OnInit {
     if (!this.loginForm.valid) {
       this.popupService.addMessage('Preencha os campos obrigatórios!');
     } else {
-      this.authUser.login(this.loginForm.value).subscribe(res => {
-        this.router.navigate(['home'])
-      }, (err: Error) =>{
-        alert(err.message)
-      })
+      /* this.authUser.login(this.loginForm.value).subscribe(
+        (res) => {
+          this.router.navigate(['home']);
+        },
+        (err: Error) => {
+          alert(err.message);
+        }
+      ); */
+      this.authTeacher.loginTeacher(this.loginForm.value).subscribe(
+        (res) => {
+          this.router.navigate(['teacher']);
+        },
+        (err: Error) => {
+          alert(err.message);
+        }
+      );
     }
   }
 

@@ -11,6 +11,7 @@ export class RegisterComponent {
   faLock = faLock;
   formRegister: any;
   errorMessage: string = '';
+  regTeacher: boolean = false;
 
   submitted: boolean = false;
 
@@ -59,6 +60,10 @@ export class RegisterComponent {
         this.errorMessage = 'As senhas não coincidem';
       }
     }
+  }
+
+  registTeacher(){
+    this.regTeacher = !this.regTeacher
   }
 
   borda() {
