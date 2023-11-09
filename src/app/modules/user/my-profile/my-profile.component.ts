@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChildren, QueryList } from '@angular/core';
-import { AuthUserService } from 'src/app/services/auth-user.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-my-profile',
@@ -7,7 +7,7 @@ import { AuthUserService } from 'src/app/services/auth-user.service';
   styleUrls: ['./my-profile.component.scss'],
 })
 export class MyProfileComponent {
-  constructor(public authUser: AuthUserService) {}
+  constructor( private auth: AuthService) {}
 
   canEdit: boolean = false;
 
@@ -21,6 +21,10 @@ export class MyProfileComponent {
         inputElement.setAttribute('disabled', 'false');
       });
     }
+  }
+
+  logout(){
+    this.auth.logout()
   }
 
   cancelEdit() {

@@ -11,10 +11,11 @@ import { RegisterComponent } from './shared/register/register.component';
 import { TeacherModule } from './modules/teacher/teacher.module';
 import { UserGuard } from './guards/user.guard';
 import { TeacherGuard } from './guards/teacher.guard';
+import { BlockGuard } from './guards/block.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent, canActivate: [BlockGuard]},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'course-preview', component: CoursePreviewComponent },

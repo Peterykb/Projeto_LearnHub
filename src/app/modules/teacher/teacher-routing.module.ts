@@ -6,9 +6,10 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
-    path: 'teacher',
+    path: '',
     component: DashboardComponent,
     children: [
+      {path: '', redirectTo: 'overview', pathMatch: 'full'},
       { path: 'overview', component: OverviewComponent },
       { path: 'my-profile', component: ProfileComponent },
     ],
