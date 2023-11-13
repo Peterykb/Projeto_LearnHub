@@ -15,9 +15,9 @@ import { BlockGuard } from './guards/block.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent, canActivate: [BlockGuard]},
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'home', component: HomeComponent, canActivate:[BlockGuard]},
+  { path: 'login', component: LoginComponent, canActivate: [BlockGuard]},
+  { path: 'register', component: RegisterComponent, canActivate: [BlockGuard] },
   { path: 'course-preview', component: CoursePreviewComponent },
   { path: 'my-cart', component: MyCartComponent, canActivate: [UserGuard] },
   {
@@ -30,7 +30,7 @@ const routes: Routes = [
     path: 'teacher',
     canActivate: [TeacherGuard],
     loadChildren: () =>
-      import('./modules/teacher/teacher.module').then((m) => m.TeacherModule),
+    import('./modules/teacher/teacher.module').then((m) => m.TeacherModule),
   },
   { path: '**', component: NotFoundComponent },
 ];

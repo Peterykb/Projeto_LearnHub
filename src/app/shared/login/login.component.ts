@@ -26,9 +26,12 @@ export class LoginComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-   /*  if (this.authUser.isLoggedIn()) {
+     /* if (this.authUser.isLoggedIn()) {
       this.router.navigate(['home']);
     } */
+    if(this.authTeacher.isLoggedIn()){
+      this.router.navigate(['teacher'])
+    }
   }
 
   onSubmit() {
@@ -36,23 +39,27 @@ export class LoginComponent implements OnInit {
 
     if (!this.loginForm.valid) {
       this.popupService.addMessage('Preencha os campos obrigatórios!');
-    } else {
-      /* this.authUser.login(this.loginForm.value).subscribe(
+    } else {  
+      
+      // LOGIN ESTUDANTE
+       /* this.authUser.login(this.loginForm.value).subscribe(
         (res) => {
           this.router.navigate(['home']);
         },
         (err: Error) => {
           alert(err.message);
         }
-      ); */
-      this.authTeacher.loginTeacher(this.loginForm.value).subscribe(
+      );  */
+
+      // LOGIN DO PROFESSOR
+       this.authTeacher.loginTeacher(this.loginForm.value).subscribe(
         (res) => {
           this.router.navigate(['teacher']);
         },
         (err: Error) => {
           alert(err.message);
         }
-      );
+      ); 
     }
   }
 

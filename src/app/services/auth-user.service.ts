@@ -11,13 +11,14 @@ export class AuthUserService {
   constructor(private router: Router, private auth: AuthService) { }
 
   isLoggedIn() {
-    return this.auth.getToken() === "UsuarioLogado";
+    const token = this.auth.getToken()
+    return token ? token.trim().toLowerCase() === 'usuariologado' : false;
   }
 
 
   login({email, password}: any): Observable<any>{
     if(email === 'email@email.com' && password === '12345678'){
-      this.auth.setToken('UsuarioLogado')
+      this.auth.setToken('usuariologado')
       return of({name: 'João Guilherme', email: 'email@email.com'})
     }
     return throwError(new Error('Falha no login'))
