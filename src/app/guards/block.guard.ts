@@ -1,21 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 
 import {
   ActivatedRouteSnapshot,
   CanActivate,
-  CanActivateFn,
-
+  CanDeactivate,
   Router,
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
-
 import { AuthTeacherService } from '../services/auth-teacher.service';
 @Injectable({
   providedIn: 'root',
 })
-export class TeacherGuard implements CanActivate {
+export class BlockGuard implements CanActivate {
   constructor(
     private router: Router,
     private authTeacher: AuthTeacherService
@@ -25,9 +22,9 @@ export class TeacherGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-    if (!this.authTeacher.isLoggedIn()) {
-      this.router.navigate(['/home']);
+    if (this.authTeacher.isLoggedIn()) {
+      this.router.navigate(['/teacher']);
     }
-    return this.authTeacher.isLoggedIn();
+    return !this.authTeacher.isLoggedIn();
   }
 }

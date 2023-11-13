@@ -5,10 +5,10 @@
   <div class="nav-wrapper">
     <ul id="nav-mobile">
       <li><a routerLink="home" class="custom-link">Home</a></li>
-      <li><a routerLink="my-courses" class="custom-link">Meus Cursos</a></li>
-      <li><a routerLink="my-cart" class="custom-link">Carrinho</a></li>
-      <li *ngIf="!authUser.isLoggedIn()"><a routerLink="/register" class="custom-link">Cadastrar</a></li>
-      <li *ngIf="!authUser.isLoggedIn()"><a routerLink="/login" class="custom-link">Login</a></li>
+      <li *ngIf="authUser.isLoggedIn()"><a routerLink="my-courses" class="custom-link">Meus Cursos</a></li>
+      <li *ngIf="authUser.isLoggedIn()"><a routerLink="my-cart" class="custom-link">Carrinho</a></li>
+      <li *ngIf="!authUser.isLoggedIn()"><a routerLink="/register" class="custom-link">Registrar</a></li>
+      <li *ngIf="!authUser.isLoggedIn()"><a routerLink="/login" class="custom-link">Entrar</a></li>
       <li routerLink="profile" *ngIf="authUser.isLoggedIn()">
         <div class="user-profile">
           <i class="fa-solid fa-user"></i>
@@ -16,5 +16,8 @@
         </div>
       </li>
     </ul>
+    <div class="menu-burguer">
+      <i class="fa-solid fa-bars"></i>
+    </div>
   </div>
 </nav>

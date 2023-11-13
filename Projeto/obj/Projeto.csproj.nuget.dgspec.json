@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\pedro.barbosa\\Documents\\Projeto oficial\\Projeto_LearnHub\\Projeto\\Projeto.csproj": {}
+    "C:\\Projeto_LearnHub\\Projeto\\Projeto.csproj": {}
   },
   "projects": {
-    "C:\\Users\\pedro.barbosa\\Documents\\Projeto oficial\\Projeto_LearnHub\\Projeto\\Projeto.csproj": {
+    "C:\\Projeto_LearnHub\\Projeto\\Projeto.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\pedro.barbosa\\Documents\\Projeto oficial\\Projeto_LearnHub\\Projeto\\Projeto.csproj",
+        "projectUniqueName": "C:\\Projeto_LearnHub\\Projeto\\Projeto.csproj",
         "projectName": "Projeto",
-        "projectPath": "C:\\Users\\pedro.barbosa\\Documents\\Projeto oficial\\Projeto_LearnHub\\Projeto\\Projeto.csproj",
-        "packagesPath": "C:\\Users\\pedro.barbosa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\pedro.barbosa\\Documents\\Projeto oficial\\Projeto_LearnHub\\Projeto\\obj\\",
+        "projectPath": "C:\\Projeto_LearnHub\\Projeto\\Projeto.csproj",
+        "packagesPath": "C:\\Users\\joao.silva\\.nuget\\packages\\",
+        "outputPath": "C:\\Projeto_LearnHub\\Projeto\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\pedro.barbosa\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\joao.silva\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -98,7 +100,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

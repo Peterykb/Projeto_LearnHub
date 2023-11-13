@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthUserService } from 'src/app/service/auth-user.service';
+import { AuthUserService } from 'src/app/services/auth-user.service';
 
 @Component({
   selector: 'app-header-default',
@@ -11,7 +11,7 @@ export class HeaderDefaultComponent {
   constructor(private router: Router, public authUser: AuthUserService) {}
 
   mostrarCabRod() {
-    return !this.router.url.includes('login') && !this.router.url.includes('register') && !this.router.url.includes('teacher');
+    return !this.router.url.includes('teacher');
   }
 
   number = 2

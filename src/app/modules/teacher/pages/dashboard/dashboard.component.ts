@@ -1,14 +1,27 @@
-import { Component } from '@angular/core';
-import { AuthUserService } from './../../../../service/auth-user.service';
+import { Component, OnInit } from '@angular/core';
+import { AuthTeacherService } from 'src/app/services/auth-teacher.service';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent {
-  constructor(private authUser: AuthUserService) {}
+export class DashboardComponent implements OnInit {
+  constructor(
+    private authTeacher: AuthTeacherService,
+    private router: Router,
+    private auth: AuthService
+  ) {}
+
+  ngOnInit(): void {
+    if(this.authTeacher.isLoggedIn()){
+      this.router.navigate(['./teacher'])
+    }
+  }
+
   logout() {
-    this.authUser.logout();
+    this.auth.logout();
   }
 }

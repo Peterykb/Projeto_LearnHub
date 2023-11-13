@@ -10,19 +10,25 @@ import { MyCoursesComponent } from './modules/user/my-courses/my-courses.compone
 import { RegisterComponent } from './shared/register/register.component';
 import { TeacherModule } from './modules/teacher/teacher.module';
 import { UserGuard } from './guards/user.guard';
+import { TeacherGuard } from './guards/teacher.guard';
+import { BlockGuard } from './guards/block.guard';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent, canActivate: [BlockGuard]},
   { path: 'login', component: LoginComponent },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'register', component: RegisterComponent },
-  { path: 'home', component: HomeComponent },
   { path: 'course-preview', component: CoursePreviewComponent },
-  { path: 'my-cart', component: MyCartComponent },
-  { path: 'my-courses', component: MyCoursesComponent },
-  { path: 'profile', component: MyProfileComponent },
+  { path: 'my-cart', component: MyCartComponent, canActivate: [UserGuard] },
+  {
+    path: 'my-courses',
+    component: MyCoursesComponent,
+    canActivate: [UserGuard],
+  },
+  { path: 'profile', component: MyProfileComponent, canActivate: [UserGuard] },
   {
     path: 'teacher',
-    canActivate: [UserGuard],
+    canActivate: [TeacherGuard],
     loadChildren: () =>
       import('./modules/teacher/teacher.module').then((m) => m.TeacherModule),
   },
