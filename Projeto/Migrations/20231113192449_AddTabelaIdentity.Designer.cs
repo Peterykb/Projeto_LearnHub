@@ -12,8 +12,8 @@ using Projeto.Models;
 namespace Projeto.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20231030180753_AddPassInInstrutor")]
-    partial class AddPassInInstrutor
+    [Migration("20231113192449_AddTabelaIdentity")]
+    partial class AddTabelaIdentity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace Projeto.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Projeto.Models.Aluno", b =>
+            modelBuilder.Entity("Projeto.Models.AlunoInformacoes", b =>
                 {
                     b.Property<int>("Id_aluno")
                         .ValueGeneratedOnAdd()
@@ -33,39 +33,20 @@ namespace Projeto.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_aluno"));
 
-                    b.Property<string>("Email")
+                    b.Property<string>("CPF")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Id_curso")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("DataNascimento")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Pass")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id_aluno");
 
                     b.ToTable("alunos");
-                });
-
-            modelBuilder.Entity("Projeto.Models.AlunoCurso", b =>
-                {
-                    b.Property<int>("AlunoId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CursoId")
-                        .HasColumnType("int");
-
-                    b.HasKey("AlunoId", "CursoId");
-
-                    b.HasIndex("CursoId");
-
-                    b.ToTable("alunoCursos");
                 });
 
             modelBuilder.Entity("Projeto.Models.Aulas", b =>
@@ -75,6 +56,9 @@ namespace Projeto.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_aulas"));
+
+                    b.Property<int?>("CursoId_curso")
+                        .HasColumnType("int");
 
                     b.Property<int>("Id_curso")
                         .HasColumnType("int");
@@ -89,7 +73,7 @@ namespace Projeto.Migrations
 
                     b.HasKey("Id_aulas");
 
-                    b.HasIndex("Id_curso");
+                    b.HasIndex("CursoId_curso");
 
                     b.ToTable("aulas");
                 });
@@ -111,6 +95,24 @@ namespace Projeto.Migrations
                     b.ToTable("categorias");
                 });
 
+            modelBuilder.Entity("Projeto.Models.CursoCategoria", b =>
+                {
+                    b.Property<int>("CursoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CategoriaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.HasKey("CursoId", "CategoriaId");
+
+                    b.HasIndex("CategoriaId");
+
+                    b.ToTable("CursoCategorias");
+                });
+
             modelBuilder.Entity("Projeto.Models.Cursos", b =>
                 {
                     b.Property<int>("Id_curso")
@@ -125,9 +127,6 @@ namespace Projeto.Migrations
                     b.Property<int>("Data_criacao")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Id_categoria")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -136,24 +135,23 @@ namespace Projeto.Migrations
 
                     b.HasIndex("CategoriasId_categoria");
 
-                    b.HasIndex("Id_categoria");
-
                     b.ToTable("cursos");
                 });
 
-            modelBuilder.Entity("Projeto.Models.Instrutor", b =>
+            modelBuilder.Entity("Projeto.Models.InstrutorInformacoes", b =>
                 {
-                    b.Property<int>("Id_Instrutor")
+                    b.Property<Guid>("Id_Instrutor")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_Instrutor"));
-
-                    b.Property<string>("Nome")
+                    b.Property<string>("CPF")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Pass")
+                    b.Property<DateTime>("DataNascimento")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -162,16 +160,66 @@ namespace Projeto.Migrations
                     b.ToTable("instrutors");
                 });
 
-            modelBuilder.Entity("Projeto.Models.AlunoCurso", b =>
+            modelBuilder.Entity("Projeto.Models.Matricula", b =>
                 {
-                    b.HasOne("Projeto.Models.Aluno", "Aluno")
-                        .WithMany("AlunoCursos")
+                    b.Property<int>("AlunoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CursoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AlunoId", "CursoId");
+
+                    b.HasIndex("CursoId");
+
+                    b.ToTable("matriculas");
+                });
+
+            modelBuilder.Entity("Projeto.Models.Aulas", b =>
+                {
+                    b.HasOne("Projeto.Models.Cursos", "Curso")
+                        .WithMany()
+                        .HasForeignKey("CursoId_curso");
+
+                    b.Navigation("Curso");
+                });
+
+            modelBuilder.Entity("Projeto.Models.CursoCategoria", b =>
+                {
+                    b.HasOne("Projeto.Models.Categorias", "Categorias")
+                        .WithMany("CursoCategorias")
+                        .HasForeignKey("CategoriaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Projeto.Models.Cursos", "Cursos")
+                        .WithMany("CursoCategorias")
+                        .HasForeignKey("CursoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Categorias");
+
+                    b.Navigation("Cursos");
+                });
+
+            modelBuilder.Entity("Projeto.Models.Cursos", b =>
+                {
+                    b.HasOne("Projeto.Models.Categorias", null)
+                        .WithMany("Cursos")
+                        .HasForeignKey("CategoriasId_categoria");
+                });
+
+            modelBuilder.Entity("Projeto.Models.Matricula", b =>
+                {
+                    b.HasOne("Projeto.Models.AlunoInformacoes", "Aluno")
+                        .WithMany("Matriculas")
                         .HasForeignKey("AlunoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Projeto.Models.Cursos", "Curso")
-                        .WithMany("AlunoCursos")
+                        .WithMany("Matriculas")
                         .HasForeignKey("CursoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -181,43 +229,23 @@ namespace Projeto.Migrations
                     b.Navigation("Curso");
                 });
 
-            modelBuilder.Entity("Projeto.Models.Aulas", b =>
+            modelBuilder.Entity("Projeto.Models.AlunoInformacoes", b =>
                 {
-                    b.HasOne("Projeto.Models.Cursos", "Curso")
-                        .WithMany("Aulas")
-                        .HasForeignKey("Id_curso");
-
-                    b.Navigation("Curso");
-                });
-
-            modelBuilder.Entity("Projeto.Models.Cursos", b =>
-                {
-                    b.HasOne("Projeto.Models.Categorias", null)
-                        .WithMany("Cursos")
-                        .HasForeignKey("CategoriasId_categoria");
-
-                    b.HasOne("Projeto.Models.Categorias", "Categoria")
-                        .WithMany()
-                        .HasForeignKey("Id_categoria");
-
-                    b.Navigation("Categoria");
-                });
-
-            modelBuilder.Entity("Projeto.Models.Aluno", b =>
-                {
-                    b.Navigation("AlunoCursos");
+                    b.Navigation("Matriculas");
                 });
 
             modelBuilder.Entity("Projeto.Models.Categorias", b =>
                 {
+                    b.Navigation("CursoCategorias");
+
                     b.Navigation("Cursos");
                 });
 
             modelBuilder.Entity("Projeto.Models.Cursos", b =>
                 {
-                    b.Navigation("AlunoCursos");
+                    b.Navigation("CursoCategorias");
 
-                    b.Navigation("Aulas");
+                    b.Navigation("Matriculas");
                 });
 #pragma warning restore 612, 618
         }

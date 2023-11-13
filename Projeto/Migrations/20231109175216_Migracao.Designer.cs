@@ -12,8 +12,8 @@ using Projeto.Models;
 namespace Projeto.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20231108191126_AddIdentity")]
-    partial class AddIdentity
+    [Migration("20231109175216_Migracao")]
+    partial class Migracao
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

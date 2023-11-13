@@ -1,43 +1,39 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Projeto.Models;
+// using Microsoft.AspNetCore.Authorization;
+// using Microsoft.AspNetCore.Mvc;
+// using Microsoft.EntityFrameworkCore;
+// using Projeto.Models;
 
-namespace Projeto.Controllers
-{
-  [Authorize]
-  [ApiController]
-  [Route("api/[controller]")]
-  public class AlunoController : ControllerBase
-  {
-    public readonly Context context;
+// namespace Projeto.Controllers
+// {
+//   [Authorize]
+//   [ApiController]
+//   [Route("api/[controller]")]
+//   public class AlunoController : ControllerBase
+//   {
+//     public readonly Context context;
 
-    public AlunoController(Context _context)
-    {
-      context = _context;
-    }
+//     public AlunoController(Context _context)
+//     {
+//       context = _context;
+//     }
 
-    [HttpGet]
-    public async Task<ActionResult<List<Aluno>>> GetAlunos()
-    {
-      var alunos = await context.alunos.ToListAsync();
+//     [HttpGet]
+//     public async Task<ActionResult<List<Aluno>>> GetAlunos()
+//     {
+//       var alunos = await context.alunos.ToListAsync();
 
-      if(alunos == null) return Ok("Não há alunos cadastrados");
+//       if(alunos == null) return Ok("Não há alunos cadastrados");
 
-      return Ok(alunos);
-    }
+//       return Ok(alunos);
+//     }
+// 
+//     [HttpGet("{id}")]
 
-    [HttpGet("{id}")]
+//     public async Task <ActionResult<Aluno>> GetAluno(int id){
+//       var aluno = await context.alunos.FindAsync(id);
+//       if(aluno == null) return BadRequest("Aluno não encontrado");
 
-    public async Task <ActionResult<Aluno>> GetAluno(int id){
-      var aluno = await context.alunos.FindAsync(id);
-      if(aluno == null) return BadRequest("Aluno não encontrado");
-
-      return Ok(aluno);
-    }
-  }
-}
+//       return Ok(aluno);
+//     }
+//   }
+// }
