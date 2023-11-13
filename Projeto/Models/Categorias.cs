@@ -9,7 +9,7 @@ namespace Projeto.Models
         public int Id_categoria {get;set;}
         public string Name {get;set;} = string.Empty;
         public ICollection<Cursos>? Cursos {get;set;}
-
+        public ICollection<CursoCategoria>? CursoCategorias {get;set;}
 
     }
 }

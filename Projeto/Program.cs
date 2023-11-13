@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
@@ -51,9 +47,16 @@ builder.Services.AddDbContext<Context>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Conexao"));
 });
 
-builder.Services.AddIdentity<ApplicationUser, CustomRole>()
+builder.Services.AddIdentity<AlunoLogin, IdentityRole>()
     .AddEntityFrameworkStores<Context>()
-    .AddDefaultTokenProviders();
+    .AddDefaultTokenProviders()
+    .AddSignInManager();
+
+builder.Services.AddIdentity<InstrutorLogin, IdentityRole>()
+    .AddEntityFrameworkStores<Context>()
+    .AddDefaultTokenProviders()
+    .AddSignInManager();
+
 
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

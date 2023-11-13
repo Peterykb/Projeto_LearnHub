@@ -9,13 +9,14 @@ namespace Projeto.Services
 
     public class TokenService
     {
-        public static string GenerateToken(Instrutor usu)
+        public static string GenerateToken(AlunoLogin aluno, InstrutorLogin instrutor)
         {
             var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Key.Secret));
 
             var claims = new[]
             {
-                new Claim("Instrutorid", usu.Id_Instrutor.ToString())
+                new Claim("Instrutorid", instrutor.ID_login.ToString()),
+                new Claim("Alunoid", aluno.ID_login.ToString())
             };
 
             var tokenDescriptor = new SecurityTokenDescriptor
