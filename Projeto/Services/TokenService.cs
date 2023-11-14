@@ -3,7 +3,6 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using Projeto.Models.Authentication;
-using Projeto.Models;
 namespace Projeto.Services
 {
 

@@ -1,10 +1,13 @@
 using Microsoft.EntityFrameworkCore;
+using Projeto.Models.Authentication.Aluno;
+using Projeto.Models.Authentication.Instrutor;
 
 namespace Projeto.Models
 {
   public class Context : DbContext
   {
     public Context(DbContextOptions<Context> options) : base(options) { }
+    //Relação nominal das entidades do projeto.
     public DbSet<CursoCategoria> CursoCategorias { get; set; }
     public DbSet<Categorias> categorias { get; set; }
     public DbSet<Cursos> cursos { get; set; }
@@ -15,6 +18,7 @@ namespace Projeto.Models
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+      //Configurando relacionamentos
       modelBuilder.Entity<Matricula>()
           .HasKey(ac => new { ac.AlunoId, ac.CursoId });
 
@@ -39,6 +43,10 @@ namespace Projeto.Models
           .HasOne(cc => cc.Categorias)
           .WithMany(c => c.CursoCategorias)
           .HasForeignKey(cc => cc.CategoriaId);
+
+      //Aplicando configurações do identity.
+      modelBuilder.ApplyConfiguration(new InstrutorIdentity());
+      modelBuilder.ApplyConfiguration(new AlunoIdentity());
     }
 
   }
