@@ -29,10 +29,46 @@ main {
 }
 
 .relation-courses {
-  width: 70%;
+  width: 80%;
   height: 250px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   margin: auto;
-  border: 1px solid #000;
+  box-shadow:  0 1px 5px rgba(0, 0, 0, 0.315);
+  gap: 1.2rem;
+  border-radius: 10px;
+}
+
+.relation-courses .card {
+  cursor: pointer;
+  height: 200px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+
+.relation-courses .card .bottom button{
+  width: 200px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: .8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 700;
+  background-color: #fff;
+}
+
+.relation-courses .card .top h3 {
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 0;
 }
 
 .relation-payments {
@@ -41,7 +77,7 @@ main {
 }
 
 .goals-payments {
-    margin:10px  auto;
+  margin: 10px auto;
   width: 50%;
   display: flex;
   justify-content: space-between;
@@ -51,6 +87,6 @@ main {
 
 .goals-payments .goals,
 .payments {
-    width: 400px;
-    border: 2px solid #000;
+  width: 400px;
+  border: 2px solid #000;
 }

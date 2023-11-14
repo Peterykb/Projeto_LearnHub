@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of, throwError } from 'rxjs';
+import { AuthService } from './auth.service';
 
 
 @Injectable({
@@ -8,7 +9,7 @@ import { Observable, of, throwError } from 'rxjs';
 })
 export class AuthUserService {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private auth: AuthService) { }
 
   isLoggedIn() {
     const token = this.auth.getToken()
@@ -20,9 +21,6 @@ export class AuthUserService {
     return localStorage.getItem('token');
   }
 
-  isLoggedIn() {
-    return this.getToken() === "UsuarioLogado";
-  }
 
   logout() {
     localStorage.removeItem('token')

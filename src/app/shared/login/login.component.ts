@@ -26,12 +26,6 @@ export class LoginComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-     /* if (this.authUser.isLoggedIn()) {
-      this.router.navigate(['home']);
-    } */
-    if(this.authTeacher.isLoggedIn()){
-      this.router.navigate(['teacher'])
-    }
   }
 
   onSubmit() {
@@ -54,7 +48,7 @@ export class LoginComponent implements OnInit {
       // LOGIN DO PROFESSOR
        this.authTeacher.loginTeacher(this.loginForm.value).subscribe(
         (res) => {
-          this.router.navigate(['teacher']);
+          this.router.navigate(['teacher', 'overview']);
         },
         (err: Error) => {
           alert(err.message);

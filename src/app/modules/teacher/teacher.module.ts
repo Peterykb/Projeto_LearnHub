@@ -5,12 +5,14 @@ import { TeacherRoutingModule } from './teacher-routing.module';
 import { OverviewComponent } from './pages/overview/overview.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { RelationCoursesComponent } from './pages/relation-courses/relation-courses.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     OverviewComponent,
     ProfileComponent,
+    RelationCoursesComponent,
   ],
   imports: [
     CommonModule,
