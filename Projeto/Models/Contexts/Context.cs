@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Projeto.Models.Authentication.Aluno;
-using Projeto.Models.Authentication.Instrutor;
+
 
 namespace Projeto.Models
 {
@@ -44,9 +43,7 @@ namespace Projeto.Models
           .WithMany(c => c.CursoCategorias)
           .HasForeignKey(cc => cc.CategoriaId);
 
-      //Aplicando configurações do identity.
-      modelBuilder.ApplyConfiguration(new InstrutorIdentity());
-      modelBuilder.ApplyConfiguration(new AlunoIdentity());
+ 
     }
 
   }

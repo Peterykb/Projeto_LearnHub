@@ -5,33 +5,32 @@ namespace Projeto.Services
 {
     public class LoginService
     {
-        private readonly UserManager<AlunoLogin> alunomanager;
-        private readonly UserManager<InstrutorLogin> instrutormanager;
+        private readonly UserManager<IdentityUser> userManager;
 
-        public LoginService(UserManager<AlunoLogin> _alunomanager, UserManager<InstrutorLogin> _instrutormanager)
+        public LoginService(UserManager<IdentityUser> _userManager)
         {
-            alunomanager = _alunomanager;
-            instrutormanager = _instrutormanager;
+            userManager = _userManager;
         }
 
-        public async Task<bool> LoginAlunoAsync(string username, string password)
+        public async Task<bool> LoginAsync(string username, string password, string userType)
         {
-            var user = await alunomanager.FindByNameAsync(username);
+            IdentityUser user;
 
-            if (user != null && await alunomanager.CheckPasswordAsync(user, password))
+            if (userType == "Aluno")
             {
-                
-                return true;
+                user = await userManager.FindByNameAsync(username);
+            }
+            else if (userType == "Instrutor")
+            {
+                user = await userManager.FindByNameAsync(username);
+            }
+            else
+            {
+                // Lidar com tipo de usuário inválido, se necessário
+                return false;
             }
 
-            return false;
-        }
-
-        public async Task<bool> LoginInstrutorAsync(string username, string password)
-        {
-            var user = await instrutormanager.FindByNameAsync(username);
-
-            if (user != null && await instrutormanager.CheckPasswordAsync(user, password))
+            if (user != null && await userManager.CheckPasswordAsync(user, password))
             {
                 // Realize ações adicionais, se necessário
                 return true;

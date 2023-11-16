@@ -2,20 +2,21 @@ using System.Text;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Identity;
 using Projeto.Models.Authentication;
+
 namespace Projeto.Services
 {
-
     public class TokenService
     {
-        public static string GenerateToken(AlunoLogin aluno, InstrutorLogin instrutor)
+        public static string GenerateToken(IdentityUser user)
         {
             var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Key.Secret));
 
             var claims = new[]
             {
-                new Claim("Instrutorid", instrutor.ID_login.ToString()),
-                new Claim("Alunoid", aluno.ID_login.ToString())
+                new Claim(ClaimTypes.NameIdentifier, user.Id),
+                new Claim(ClaimTypes.Name, user.UserName)
             };
 
             var tokenDescriptor = new SecurityTokenDescriptor
