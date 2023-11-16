@@ -13,6 +13,7 @@ namespace Projeto.Models
     public DbSet<AlunoInformacoes> alunos { get; set; }
     public DbSet<InstrutorInformacoes> instrutors { get; set; }
     public DbSet<Matricula> matriculas { get; set; }
+    public DbSet<Modulos> modulos { get; set; }
     public DbSet<Aulas> aulas { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -30,6 +31,7 @@ namespace Projeto.Models
           .HasOne(ac => ac.Curso)
           .WithMany(c => c.Matriculas)
           .HasForeignKey(ac => ac.CursoId);
+          
       modelBuilder.Entity<CursoCategoria>().HasKey(cc => new { cc.CursoId, cc.CategoriaId });
 
       // Definir as relações entre as entidades
@@ -43,8 +45,22 @@ namespace Projeto.Models
           .WithMany(c => c.CursoCategorias)
           .HasForeignKey(cc => cc.CategoriaId);
 
- 
-    }
+      modelBuilder.Entity<Cursos>()
+          .HasOne(i => i.Instrutor)
+          .WithMany(c => c.Cursos)
+          .HasForeignKey(f => f.InstrutorId);
 
+      modelBuilder.Entity<Cursos>()
+          .HasMany(c => c.Modulos)
+          .WithOne(m => m.Curso)
+          .HasForeignKey(m => m.CursoId);
+
+      modelBuilder.Entity<Modulos>()
+          .HasMany(m => m.Aulas)
+          .WithOne(a => a.Modulo)
+          .HasForeignKey(a => a.Moduloid);
+    }
   }
+
 }
+

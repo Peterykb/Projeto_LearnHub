@@ -13,7 +13,8 @@ namespace Projeto.Models
         [ForeignKey("Id_curso")]
         public int Id_curso {get;set;}
         public Cursos? Curso {get;set;}
-        
+        public Modulos? Modulo {get;set;}
+        public int Moduloid {get;set;}
 
     }
 }

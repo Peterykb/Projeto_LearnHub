@@ -1,6 +1,5 @@
 using System.ComponentModel.DataAnnotations;
 
-
 namespace Projeto.Models
 {
 
@@ -16,14 +15,5 @@ namespace Projeto.Models
     public Categorias? Categorias { get; set; }
 
   }
-
-
-
-
-
-
-
-
-
 
 }

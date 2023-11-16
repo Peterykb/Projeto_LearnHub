@@ -18,11 +18,11 @@ namespace Projeto.Services
 
             if (userType == "Aluno")
             {
-                user = await userManager.FindByNameAsync(username);
+                user = await userManager.FindByNameAsync(username!);
             }
             else if (userType == "Instrutor")
             {
-                user = await userManager.FindByNameAsync(username);
+                user = await userManager.FindByNameAsync(username!);
             }
             else
             {
