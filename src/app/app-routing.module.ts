@@ -12,6 +12,7 @@ import { TeacherModule } from './modules/teacher/teacher.module';
 import { UserGuard } from './guards/user.guard';
 import { TeacherGuard } from './guards/teacher.guard';
 import { BlockGuard } from './guards/block.guard';
+import { CourseComponent } from './modules/user/course/course.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -23,6 +24,11 @@ const routes: Routes = [
   {
     path: 'my-courses',
     component: MyCoursesComponent,
+    canActivate: [UserGuard],
+  },
+  {
+    path: 'course',
+    component: CourseComponent,
     canActivate: [UserGuard],
   },
   { path: 'profile', component: MyProfileComponent, canActivate: [UserGuard] },

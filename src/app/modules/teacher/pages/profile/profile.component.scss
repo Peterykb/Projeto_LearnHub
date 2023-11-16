@@ -72,11 +72,15 @@
   cursor: pointer;
   transition: .4s ease-in-out;
   border-radius: 8px;
+}
+
+.actions-btns .save-changes{
   border: none;
 }
 
 button.cancel{
   background: transparent;
+  border: 1px solid #292b2c;
 }
 
 button.cancel:hover{

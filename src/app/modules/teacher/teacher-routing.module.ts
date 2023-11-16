@@ -10,7 +10,7 @@ const routes: Routes = [
 
   {
     path: '',
-    redirectTo: 'my-profile',
+    redirectTo: 'relation-courses',
     pathMatch: 'full',
   },
   {

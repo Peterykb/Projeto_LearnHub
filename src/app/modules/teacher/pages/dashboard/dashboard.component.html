@@ -1,6 +1,6 @@
 <div class="container-fluid bg-light">
   <div class="row flex-nowrap">
-    <div class="col-auto col-md-3 col-xl-2 bg-dark container-sidebar" [ngClass]="{'active': sidebarOpen}">
+    <div class=" bg-dark container-sidebar" [ngClass]="{'active': sidebarOpen}">
       <div
       class="d-flex flex-column align-items-center align-items-sm-start text-white sidebar"
       >
@@ -8,14 +8,14 @@
           class="nav nav-pills flex-column mb-sm-auto mb-0 justify-content-between align-items-center align-items-sm-start"
           id="menu"
         >
-          <li class="nav-item">
-            <a routerLink="./overview">
+          <li class="nav-item" routerLink="./overview">
+            <a>
               <i class="fa-solid fa-house"></i>
               <span class="ms-1 d-none d-sm-inline">Home</span>
             </a>
           </li>
-          <li class="nav-item">
-            <a routerLink="./relation-courses">
+          <li class="nav-item" routerLink="./relation-courses">
+            <a>
               <i class="fa-solid fa-book"></i>
               <span class="ms-1 d-none d-sm-inline">Meus Cursos</span></a
             >

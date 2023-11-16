@@ -36,24 +36,24 @@ export class LoginComponent implements OnInit {
     } else {  
       
       // LOGIN ESTUDANTE
-       /* this.authUser.login(this.loginForm.value).subscribe(
+        this.authUser.login(this.loginForm.value).subscribe(
         (res) => {
           this.router.navigate(['home']);
         },
         (err: Error) => {
           alert(err.message);
         }
-      );  */
+      );  
 
       // LOGIN DO PROFESSOR
-       this.authTeacher.loginTeacher(this.loginForm.value).subscribe(
+       /* this.authTeacher.loginTeacher(this.loginForm.value).subscribe(
         (res) => {
           this.router.navigate(['teacher', 'overview']);
         },
         (err: Error) => {
           alert(err.message);
         }
-      ); 
+      ); */ 
     }
   }
 
