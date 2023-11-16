@@ -1,37 +1,29 @@
-<span class="fs-5 d-none d-sm-inline logo"><i class="fa-solid fa-bars"></i></span>
 <div class="container-fluid bg-light">
   <div class="row flex-nowrap">
-    <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+    <div class="col-auto col-md-3 col-xl-2 bg-dark container-sidebar" [ngClass]="{'active': sidebarOpen}">
       <div
-      class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white sidebar"
+      class="d-flex flex-column align-items-center align-items-sm-start text-white sidebar"
       >
-      <a
-      class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none"
-      >
-    </a>
-    <ul
+        <ul
           class="nav nav-pills flex-column mb-sm-auto mb-0 justify-content-between align-items-center align-items-sm-start"
           id="menu"
         >
-        <li class="nav-item">
-          <a routerLink="./overview" class="nav-link align-middle px-0">
-            <i class="fs-4 bi-house"></i>
-            <span class="ms-1 d-none d-sm-inline">Home</span>
-          </a>
+          <li class="nav-item">
+            <a routerLink="./overview">
+              <i class="fa-solid fa-house"></i>
+              <span class="ms-1 d-none d-sm-inline">Home</span>
+            </a>
           </li>
           <li class="nav-item">
-            <a routerLink="./relation-courses" class="nav-link px-0 align-middle">
-              <i class="fs-4 bi-table"></i>
+            <a routerLink="./relation-courses">
+              <i class="fa-solid fa-book"></i>
               <span class="ms-1 d-none d-sm-inline">Meus Cursos</span></a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-              href="#submenu3"
-              data-bs-toggle="collapse"
-              class="nav-link px-0 align-middle"
-              >
-              Alunos
+            >
+          </li>
+          <li class="nav-item">
+            <a>
+              <i class="fa-solid fa-user"></i>
+              <span class="ms-1 d-none d-sm-inline">Alunos</span>
             </a>
           </li>
         </ul>
@@ -39,7 +31,8 @@
       </div>
     </div>
     <div class="navigation-teacher">
-      <nav class="navbar navbar-light bg-dark d-flex justify-content-end">
+      <nav class="navbar navbar-light bg-dark d-flex justify-content-between">
+        <div class="mobile-menu text-white" (click)="toggleSidebar()"><i class="fa-solid fa-bars" [ngClass]="{'fa-xmark': sidebarOpen}"></i></div>
         <div class="bar-teacher">
           <div class="btn-group">
             <button
@@ -60,7 +53,9 @@
             </button>
             <ul class="dropdown-menu">
               <li>
-                <a class="dropdown-item" routerLink="./my-profile">Ver perfil</a>
+                <a class="dropdown-item" routerLink="./my-profile"
+                  >Ver perfil</a
+                >
               </li>
               <li><hr class="dropdown-divider" /></li>
               <li (click)="logout()"><a class="dropdown-item">Logout</a></li>

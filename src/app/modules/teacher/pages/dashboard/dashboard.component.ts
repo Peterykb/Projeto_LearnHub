@@ -9,6 +9,8 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
+  sidebarOpen: boolean = false;
+
   constructor(
     private authTeacher: AuthTeacherService,
     private router: Router,
@@ -16,9 +18,13 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if(this.authTeacher.isLoggedIn()){
-      this.router.navigate(['./teacher'])
+    if (this.authTeacher.isLoggedIn()) {
+      this.router.navigate(['./teacher']);
     }
+  }
+
+  toggleSidebar() {
+    this.sidebarOpen = !this.sidebarOpen;
   }
 
   logout() {

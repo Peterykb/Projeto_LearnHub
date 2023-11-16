@@ -10,13 +10,13 @@ const routes: Routes = [
 
   {
     path: '',
-    redirectTo: 'overview',
+    redirectTo: 'my-profile',
     pathMatch: 'full',
   },
   {
     path: '',
     component: DashboardComponent,
-    children: [ 
+    children: [
       { path: 'overview', component: OverviewComponent },
       { path: 'my-profile', component: ProfileComponent },
       { path: 'relation-courses', component: RelationCoursesComponent },
