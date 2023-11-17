@@ -2,6 +2,7 @@
   width: 100%;
   height: 100%;
   padding: 50px 0;
+  animation: enterAnimation .5s;
 }
 
 .cards-actions {
@@ -17,6 +18,7 @@
   width: 100%;
   height: auto;
   padding: 10px;
+  cursor: pointer;
 }
 
 .card h1 {
@@ -47,8 +49,7 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
-  
+  align-items: center;  
 }
 
 .relation-courses .card .bottom button{
@@ -89,4 +90,10 @@ main {
 .payments {
   width: 400px;
   border: 2px solid #000;
+}
+
+/* TRANSITION ENTER */
+
+@keyframes enterAnimation {
+    
 }

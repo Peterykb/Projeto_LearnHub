@@ -13,10 +13,8 @@ a {
 }
 
 .container-sidebar{
-  display: none;
-  opacity: 0;
   width: 0;
-  visibility: hidden;
+  transition: width .5s ease-in-out;
 }
 
 .navbar{
@@ -24,14 +22,47 @@ a {
 }
 
 .container-sidebar.active{
-  display: flex;
   opacity: 1;
-  width: 100%;
-  visibility: visible;
+  width: 350px;
 }
 
-.container-sidebar:not(.active) + .navigation-teacher {
-  width: 100%;
+.container-sidebar.active .sidebar{
+  animation: sidebar 1s;
+}
+
+.container-sidebar:not(.active) .sidebar{
+  animation: outSidebar 1s;
+}
+
+@keyframes outSidebar {
+  0%{
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100%{
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes sidebar {
+  0%{
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  100%{
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes sidebarAnimation {
+  0%{
+    transform: translateX(-100%);
+  }
+  100%{
+    transform: translateX(0);
+  }
 }
 
 .logo {
@@ -58,6 +89,7 @@ a {
 
 .navigation-teacher {
   width: 100%;
+  transition: .3s;
 }
 
 .container-sidebar {
@@ -76,9 +108,9 @@ a {
 .nav-item {
   height: 50px;
   display: flex;
-  justify-content: flex-start;
   align-items: center;
   transition: 0.3s ease-in-out;
+  font-size: 1.2rem;
 }
 
 .nav-item:hover {

@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
     } else {
 
       // LOGIN ESTUDANTE
+<<<<<<< HEAD
       //  this.authUser.login(this.loginForm.value).subscribe(
       //   (res) => {
       //     this.router.navigate(['home']);
@@ -46,7 +47,7 @@ export class LoginComponent implements OnInit {
       // );
 
       // LOGIN DO PROFESSOR
-       this.authTeacher.loginTeacher(this.loginForm.value).subscribe(
+       /* this.authTeacher.loginTeacher(this.loginForm.value).subscribe(
         (res) => {
           this.router.navigate(['teacher', 'overview']);
         },
@@ -54,6 +55,7 @@ export class LoginComponent implements OnInit {
           alert(err.message);
         }
       );
+      ); */
     }
   }
 

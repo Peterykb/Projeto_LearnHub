@@ -10,12 +10,14 @@ export class MyCoursesComponent {
     {
       title: 'Curso de Dotnet 7',
       description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus reiciendis numquam doloribus reprehenderit in sed culpa facere iste natus eos? Ratione delectus vel aliquam sed culpa nostrum explicabo, recusandae minima!',
-      image: 'https://static.vecteezy.com/ti/fotos-gratis/t2/1349210-paisagem-com-uma-arvore-solitaria-no-lago-foto.jpg'
+      image: 'https://static.vecteezy.com/ti/fotos-gratis/t2/1349210-paisagem-com-uma-arvore-solitaria-no-lago-foto.jpg',
+      route: '/course'
     },
     {
       title: 'Curso de Java Avançado',
       description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus reiciendis numquam doloribus reprehenderit in sed culpa facere iste natus eos? Ratione delectus vel aliquam sed culpa nostrum explicabo, recusandae minima!',
-      image: 'https://static.vecteezy.com/ti/fotos-gratis/t2/1349210-paisagem-com-uma-arvore-solitaria-no-lago-foto.jpg'
+      image: 'https://static.vecteezy.com/ti/fotos-gratis/t2/1349210-paisagem-com-uma-arvore-solitaria-no-lago-foto.jpg',
+      route: '/home'
     },
     {
       title: 'Angular com .Net 7',

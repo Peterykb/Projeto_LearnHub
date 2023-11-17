@@ -28,6 +28,11 @@ export class DashboardComponent implements OnInit {
   }
 
   logout() {
-    this.auth.logout();
+    const confirmLogout = confirm('Deseja mesmo sair?');
+    if (confirmLogout === true) {
+      this.auth.logout();
+    } else {
+      return;
+    }
   }
 }
