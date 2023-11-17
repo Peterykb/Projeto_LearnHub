@@ -6,5 +6,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./course.component.scss']
 })
 export class CourseComponent {
+  dropdown = false
 
+  clickDescription(){
+    this.dropdown = !this.dropdown
+  }
+
+  autoSize(event: Event) {
+    const target = event.target as HTMLTextAreaElement;
+    if (target) {
+      target.style.height = 'auto';
+      target.style.height = (target.scrollHeight) + 'px';
+    }
+  }
+  
 }

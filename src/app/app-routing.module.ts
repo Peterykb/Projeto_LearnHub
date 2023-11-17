@@ -13,6 +13,7 @@ import { UserGuard } from './guards/user.guard';
 import { TeacherGuard } from './guards/teacher.guard';
 import { BlockGuard } from './guards/block.guard';
 import { CourseComponent } from './modules/user/course/course.component';
+import { BuyComponent } from './components/buy/buy.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent, canActivate: [BlockGuard] },
   { path: 'course-preview', component: CoursePreviewComponent },
   { path: 'my-cart', component: MyCartComponent, canActivate: [UserGuard] },
+  { path: 'buy', component: BuyComponent, canActivate: [UserGuard] },
   {
     path: 'my-courses',
     component: MyCoursesComponent,
