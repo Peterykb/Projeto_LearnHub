@@ -33,17 +33,17 @@ export class LoginComponent implements OnInit {
 
     if (!this.loginForm.valid) {
       this.popupService.addMessage('Preencha os campos obrigatórios!');
-    } else {  
-      
+    } else {
+
       // LOGIN ESTUDANTE
-       /* this.authUser.login(this.loginForm.value).subscribe(
-        (res) => {
-          this.router.navigate(['home']);
-        },
-        (err: Error) => {
-          alert(err.message);
-        }
-      );  */
+      //  this.authUser.login(this.loginForm.value).subscribe(
+      //   (res) => {
+      //     this.router.navigate(['home']);
+      //   },
+      //   (err: Error) => {
+      //     alert(err.message);
+      //   }
+      // );
 
       // LOGIN DO PROFESSOR
        this.authTeacher.loginTeacher(this.loginForm.value).subscribe(
@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
         (err: Error) => {
           alert(err.message);
         }
-      ); 
+      );
     }
   }
 

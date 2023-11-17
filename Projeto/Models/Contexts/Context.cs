@@ -5,7 +5,7 @@ namespace Projeto.Models
 {
   public class Context : DbContext
   {
-    public Context(DbContextOptions<Context> options) : base(options) { }
+    public Context(DbContextOptions<Context> options) : base(options) {}
     //Relação nominal das entidades do projeto.
     public DbSet<CursoCategoria> CursoCategorias { get; set; }
     public DbSet<Categorias> categorias { get; set; }
@@ -31,7 +31,7 @@ namespace Projeto.Models
           .HasOne(ac => ac.Curso)
           .WithMany(c => c.Matriculas)
           .HasForeignKey(ac => ac.CursoId);
-          
+
       modelBuilder.Entity<CursoCategoria>().HasKey(cc => new { cc.CursoId, cc.CategoriaId });
 
       // Definir as relações entre as entidades
@@ -59,6 +59,19 @@ namespace Projeto.Models
           .HasMany(m => m.Aulas)
           .WithOne(a => a.Modulo)
           .HasForeignKey(a => a.Moduloid);
+
+      modelBuilder.Entity<Cursos>()
+          .HasMany(comentarios => comentarios.Comentarios)
+          .WithOne(cursos => cursos.Curso)
+          .HasForeignKey(comentarios => comentarios.CursoId);
+
+      modelBuilder.Entity<AlunoInformacoes>()
+          .HasMany(comentarios => comentarios.comentarios)
+          .WithOne(aluno => aluno.aluno)
+          .HasForeignKey(comentarios => comentarios.AlunoId);
+
+
+
     }
   }
 
