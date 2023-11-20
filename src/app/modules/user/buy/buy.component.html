@@ -1,0 +1,89 @@
+<div class="container">
+    <div class="left">
+      <form>
+        <div class="title">
+          <h3>Compre agora</h3>
+        </div>
+        <div class="accordion">
+          <div class="accordion-item">
+            <input
+              type="radio"
+              name="radio-item"
+              id="accordion1"
+              class="accordion-input"
+            />
+            <label for="accordion1" class="accordion-header" (click)="clickDescription()">Cartão de Crédito</label>
+            <div class="accordion-content">
+              <h1>Detalhes do pagamento</h1>
+              <form class="form-pay">
+                <div class="field-input">
+                  <label>Número do cartão</label>
+                  <input type="text">
+                </div>
+                <div class="field-input">
+                  <label>Nome do Titular</label>
+                  <input type="text">
+                </div>
+                <div class="bottom-field">
+                  <div class="field-input">
+                    <label>Vencimento</label>
+                    <input type="date">
+                  </div>
+                  <div class="field-input">
+                    <label>Código de Segurança (CVV)</label>
+                    <input type="text">
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <input
+              type="radio"
+              name="radio-item"
+              id="accordion2"
+              class="accordion-input"
+            />
+            <label for="accordion2" class="accordion-header" (click)="confirmPix()">Pix</label>
+          </div>
+          <div class="accordion-item">
+            <input
+              type="radio"
+              name="radio-item"
+              id="accordion3"
+              class="accordion-input"
+            />
+            <label for="accordion3" class="accordion-header" (click)="clickDescription()">Boleto</label>
+            <div class="accordion-content">
+              <p>desc</p>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="right">
+      <div class="list-buy">
+        <div class="course">
+          <div class="banner-course">
+            <img src="https://via.placeholder.com/30x30" alt="">
+          </div>
+          <div class="details-course">
+            <div class="top">
+              <span>Nome do curso</span>
+              <div class="price">
+                <span>R$ 100,00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="total">
+        <span>Total:</span>
+        <span>R$100,00</span>
+      </div>
+      <hr>
+      <div class="btn-field">
+        <button class="btn-buy">Comprar</button>
+      </div>
+    </div>
+  </div>
