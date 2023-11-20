@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { LoginComponent } from './shared/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MyCoursesComponent } from './modules/user/my-courses/my-courses.component';
-import { PopupErrorComponent } from './components/popup-error/popup-error.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -23,13 +23,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CourseComponent } from './modules/user/course/course.component';
 import { BuyComponent } from './modules/user/buy/buy.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     CoursePreviewComponent,
     MyCoursesComponent,
-    PopupErrorComponent,
     NotFoundComponent,
     FooterDefaultComponent,
     HeaderDefaultComponent,
