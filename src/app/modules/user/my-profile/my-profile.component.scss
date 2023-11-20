@@ -63,6 +63,13 @@
   right: -5px;
 }
 
+.img-profile{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
 .info-user,.field{
   display: flex;
   flex-direction: column;
@@ -80,18 +87,20 @@
 
 .field input{
   width: 90%;
-  height: 20px;
+  height: 30px;
   font-size: 1rem;
   outline: none;
   padding: 10px 15px;
 }
 
- a{
-  color: dodgerblue;
-  cursor: pointer;
+.btn-edit,.btn-logout{
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 1rem;
 }
 
- a:hover{
+.btn-edit:hover,.btn-logout:hover{
   text-decoration: underline;
 }
 

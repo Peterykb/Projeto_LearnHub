@@ -61,9 +61,13 @@
   background-color: #cccc;
 }
 
-.accordion-item input[type="radio"]:checked ~ .accordion-content {
-  height: auto;
+.accordion-content h1{
+  font-size: 1.2em;
+}
+
+.accordion-item input[type="radio"]:checked ~ .accordion-content.card-pay{
   padding: 20px;
+  height: 280px;
 }
 
 .accordion-item {
@@ -177,7 +181,7 @@ label{
 }
 
 .field-input input{
-  height: 40px;
+  height: 2rem;
   outline: none;
   padding: 0 1rem;
   font-size: 1rem;

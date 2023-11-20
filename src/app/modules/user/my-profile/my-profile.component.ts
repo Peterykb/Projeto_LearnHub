@@ -10,6 +10,7 @@ export class MyProfileComponent {
   constructor( private auth: AuthService) {}
 
   canEdit: boolean = false;
+  imageUrl: string | ArrayBuffer | null = null;
 
   @ViewChildren('inputContainer') inputContainers!: QueryList<ElementRef>;
 
@@ -29,5 +30,12 @@ export class MyProfileComponent {
 
   cancelEdit() {
     this.canEdit = !this.canEdit;
+  }
+
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.imageUrl = URL.createObjectURL(file); 
+    }
   }
 }

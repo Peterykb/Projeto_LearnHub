@@ -23,8 +23,12 @@ export class BuyComponent {
     if (data === null || data.length == 0) {
       alert('Digite o pix para efetuar a compra!');
     } else {
-      alert('Compra efetuada com sucesso!');
-      this.router.navigate(['my-courses'])
+      alert('Verificado!');
     }
+  }
+  
+  compraEfetuada(){
+    alert('Compra efetuada com sucesso!')
+    this.router.navigate(['my-courses'])
   }
 }

@@ -13,8 +13,8 @@
               class="accordion-input"
             />
             <label for="accordion1" class="accordion-header" (click)="clickDescription()">Cartão de Crédito</label>
-            <div class="accordion-content">
-              <h1>Detalhes do pagamento</h1>
+            <div class="accordion-content card-pay">
+              <h1>* Detalhes do pagamento</h1>
               <form class="form-pay">
                 <div class="field-input">
                   <label>Número do cartão</label>
@@ -83,7 +83,7 @@
       </div>
       <hr>
       <div class="btn-field">
-        <button class="btn-buy">Comprar</button>
+        <button class="btn-buy" (click)="compraEfetuada()">Comprar</button>
       </div>
     </div>
   </div>
