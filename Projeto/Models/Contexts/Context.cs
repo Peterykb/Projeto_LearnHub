@@ -25,12 +25,12 @@ namespace Projeto.Models
       modelBuilder.Entity<Matricula>()
           .HasOne(ac => ac.Aluno)
           .WithMany(a => a.Matriculas)
-          .HasForeignKey(ac => ac.AlunoId);
+          .HasForeignKey(ac => ac.AlunoId).IsRequired(false);
 
       modelBuilder.Entity<Matricula>()
           .HasOne(ac => ac.Curso)
           .WithMany(c => c.Matriculas)
-          .HasForeignKey(ac => ac.CursoId);
+          .HasForeignKey(ac => ac.CursoId).IsRequired(false);
 
       modelBuilder.Entity<CursoCategoria>().HasKey(cc => new { cc.CursoId, cc.CategoriaId });
 
@@ -38,37 +38,37 @@ namespace Projeto.Models
       modelBuilder.Entity<CursoCategoria>()
           .HasOne(cc => cc.Cursos)
           .WithMany(c => c.CursoCategorias)
-          .HasForeignKey(cc => cc.CursoId);
+          .HasForeignKey(cc => cc.CursoId).IsRequired(false);
 
       modelBuilder.Entity<CursoCategoria>()
           .HasOne(cc => cc.Categorias)
           .WithMany(c => c.CursoCategorias)
-          .HasForeignKey(cc => cc.CategoriaId);
+          .HasForeignKey(cc => cc.CategoriaId).IsRequired(false);
 
       modelBuilder.Entity<Cursos>()
           .HasOne(i => i.Instrutor)
           .WithMany(c => c.Cursos)
-          .HasForeignKey(f => f.InstrutorId);
+          .HasForeignKey(f => f.InstrutorId).IsRequired(false);
 
       modelBuilder.Entity<Cursos>()
           .HasMany(c => c.Modulos)
           .WithOne(m => m.Curso)
-          .HasForeignKey(m => m.CursoId);
+          .HasForeignKey(m => m.CursoId).IsRequired(false);
 
       modelBuilder.Entity<Modulos>()
           .HasMany(m => m.Aulas)
           .WithOne(a => a.Modulo)
-          .HasForeignKey(a => a.Moduloid);
+          .HasForeignKey(a => a.Moduloid).IsRequired(false);
 
       modelBuilder.Entity<Cursos>()
           .HasMany(comentarios => comentarios.Comentarios)
           .WithOne(cursos => cursos.Curso)
-          .HasForeignKey(comentarios => comentarios.CursoId);
+          .HasForeignKey(comentarios => comentarios.CursoId).IsRequired(false);
 
       modelBuilder.Entity<AlunoInformacoes>()
           .HasMany(comentarios => comentarios.comentarios)
           .WithOne(aluno => aluno.aluno)
-          .HasForeignKey(comentarios => comentarios.AlunoId);
+          .HasForeignKey(comentarios => comentarios.AlunoId).IsRequired(false);
 
 
 

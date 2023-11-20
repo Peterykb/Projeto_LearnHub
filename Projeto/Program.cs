@@ -20,48 +20,31 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<Context>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("Conexao"));
+  options.UseSqlServer(builder.Configuration.GetConnectionString("Conexao"));
 });
-// builder.Services.AddDbContext<IdentityContext>(options => {
-//     options.UseSqlServer(builder.Configuration.GetConnectionString("Conexao"));
-// });
 
-// builder.Services.AddIdentity<UserIdentity, IdentityRole>()
-//     .AddEntityFrameworkStores<Context>()
-//     .AddDefaultTokenProviders()
-//     .AddSignInManager();
+ builder.Services.AddAuthorization();
 
-// builder.Services.AddAuthorization();
+
+builder.Services.AddCors(options =>
+{
+  options.AddPolicy("AllowAngular", builder =>
+  {
+    builder.WithOrigins("http://localhost:4200") // Substitua pelo seu URL Angular
+             .AllowAnyMethod()
+             .AllowAnyHeader();
+  });
+});
 
 var app = builder.Build();
 
-// Configuração do escopo de serviço movida para o contexto do aplicativo
-// using (var scope = app.Services.CreateScope())
-// {
-//     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-
-//     // Certifique-se de criar as roles se não existirem
-//     var roles = new List<string> { "Aluno", "Instrutor" };
-
-//     foreach (var role in roles)
-//     {
-//         if (!await roleManager.RoleExistsAsync(role))
-//         {
-//             await roleManager.CreateAsync(new IdentityRole(role));
-//         }
-//     }
-// }
-app.UseCors(options => options
-    .AllowAnyOrigin()
-    .AllowAnyMethod()
-    .AllowAnyHeader());
-
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+  app.UseSwagger();
+  app.UseSwaggerUI();
 }
 
+app.UseCors("AllowAngular");
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();

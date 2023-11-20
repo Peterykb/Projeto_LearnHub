@@ -10,7 +10,7 @@ namespace Projeto.Models
         public int Id_curso { get; set; }
         public string Name { get; set; } = string.Empty;
         public int Data_criacao { get; set; }
-        public bool Disponível { get; set; } = true;
+        public bool Disponivel { get; set; } = true;
         public double Preco { get; set; }
         public int InstrutorId { get; set; }
 

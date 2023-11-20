@@ -14,11 +14,35 @@ namespace Projeto.Controllers
     {
       context = _context;
     }
-    [HttpGet]
-    public async Task<ActionResult<List<Cursos>>> GetAllCursos()
+    [HttpGet("{id}")]
+    public async Task<ActionResult<IEnumerable<Cursos>>> GetCurso(int id)
     {
-      return Ok(await context.cursos.ToListAsync());
+      var cursosDoInstrutor = context.cursos
+     .Where(c => c.InstrutorId == id)
+     .Select(c => new
+     {
+       c.Id_curso,
+       c.Name,
+       c.Data_criacao,
+       c.Disponivel,
+       c.Preco
+       // Adicione mais propriedades do curso conforme necessário
+     })
+     .ToList();
+      if (cursosDoInstrutor.Count == null) return NotFound("Não foi encontrado");
+      return Ok(cursosDoInstrutor);
     }
+   [HttpPost]
+   public async Task <ActionResult<Cursos>> CreateCurso( Cursos novocurso){
+    if(novocurso == null) return BadRequest("Dados vazios");
+
+     context.cursos.Add(novocurso);
+
+     await context.SaveChangesAsync();
+
+     return Ok(novocurso);
+   }
+   
 
   }
 }
