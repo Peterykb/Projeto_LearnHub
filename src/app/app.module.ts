@@ -21,7 +21,7 @@ import { MyCartComponent } from './modules/user/my-cart/my-cart.component';
 import { RegisterComponent } from './shared/register/register.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CourseComponent } from './modules/user/course/course.component';
-import { BuyComponent } from './components/buy/buy.component';
+import { BuyComponent } from './modules/user/buy/buy.component';
 
 @NgModule({
   declarations: [
