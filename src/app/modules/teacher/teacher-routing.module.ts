@@ -5,12 +5,13 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { TeacherGuard } from 'src/app/guards/teacher.guard';
 import { RelationCoursesComponent } from './pages/relation-courses/relation-courses.component';
+import { EditCourseComponent } from './pages/edit-course/edit-course.component';
 
 const routes: Routes = [
 
   {
     path: '',
-    redirectTo: 'relation-courses',
+    redirectTo: 'edit-course',
     pathMatch: 'full',
   },
   {
@@ -20,6 +21,7 @@ const routes: Routes = [
       { path: 'overview', component: OverviewComponent },
       { path: 'my-profile', component: ProfileComponent },
       { path: 'relation-courses', component: RelationCoursesComponent },
+      { path: 'edit-course', component: EditCourseComponent },
     ],
     canActivate: [TeacherGuard],
   },

@@ -33,30 +33,48 @@ export class LoginComponent implements OnInit {
       alert('form invalido')
     } else {
 
-      // LOGIN ESTUDANTE
-<<<<<<< HEAD
+      const loginData = this.loginForm.value
 
-        this.authUser.login(this.loginForm.value).subscribe(
-=======
-        /* this.authUser.login(this.loginForm.value).subscribe(
->>>>>>> baefb6d5c19dfcd61cbb53ffff1901a1b28d1d7b
+      if(this.isTeacherEmail(loginData.email)){
+        this.authTeacher.loginTeacher(loginData).subscribe(
+          (res) => {
+            this.router.navigate(['teacher', 'overview']);
+          },
+          (err: Error) => {
+            alert(err.message);
+          }
+        );
+      } else{
+        this.authUser.login(loginData).subscribe(
+          (res) => {
+            this.router.navigate(['home']);
+          },
+          (err: Error) => {
+            alert(err.message);
+          }
+        );
+      }
+
+      // LOGIN ESTUDANTE
+
+        /*  this.authUser.login(this.loginForm.value).subscribe(
         (res) => {
            this.router.navigate(['home']);
          },
          (err: Error) => {
            alert(err.message);
          }
-       ); */
+       );  */
 
       // LOGIN DO PROFESSOR
-        this.authTeacher.loginTeacher(this.loginForm.value).subscribe(
+        /* this.authTeacher.loginTeacher(this.loginForm.value).subscribe(
         (res) => {
           this.router.navigate(['teacher', 'overview']);
         },
         (err: Error) => {
           alert(err.message);
         }
-      );
+      ); */
     }
   }
 
@@ -66,5 +84,11 @@ export class LoginComponent implements OnInit {
 
   get password() {
     return this.loginForm.get('password')!;
+  }
+
+  isTeacherEmail(email: string): boolean{
+    const teacherEmailRegex = /@professor\.com$/i;
+
+    return teacherEmailRegex.test(email)
   }
 }
