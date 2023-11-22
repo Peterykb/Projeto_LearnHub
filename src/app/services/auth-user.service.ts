@@ -28,7 +28,7 @@ export class AuthUserService {
   }
 
   login({email, password}: any): Observable<any>{
-    if(email === 'email@email.com' && password === '12345678'){
+    if(email === 'aluno@aluno.com' && password === '12345678'){
       this.auth.setToken('usuariologado')
 
       return of({name: 'João Guilherme', email: 'email@email.com'})
