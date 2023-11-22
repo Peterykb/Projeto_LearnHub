@@ -1,4 +1,3 @@
-using System.Linq.Expressions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Projeto.Models;
@@ -30,7 +29,7 @@ namespace Projeto.Controllers
       return Ok(curso);
     }
 
-    [HttpGet("intrutor/{id}")]
+    [HttpGet("instrutor/{id}")]
     public async Task<ActionResult<IEnumerable<Cursos>>> GetCursoInstrutor(int id)
     {
       var cursosDoInstrutor = context.cursos
@@ -77,7 +76,7 @@ namespace Projeto.Controllers
       return Ok(novocurso);
     }
 
-    [HttpPut("{id}")]
+    [HttpPut("instrutor{id}")]
     public async Task<ActionResult<Cursos>> PutCurso(Cursos modifycurso, int id)
     {
       if (modifycurso == null) return BadRequest("O curso está nulo");
@@ -100,8 +99,20 @@ namespace Projeto.Controllers
       {
         return StatusCode(500, $"Erro no servidor: {ex.Message}");
       }
-
     }
 
+    [HttpDelete("{id}")]
+    public async Task<ActionResult<Cursos>> DeleteCurso(int id)
+    {
+      var curso = await context.cursos.FindAsync(id);
+      if (curso == null) return BadRequest("Curso não encontrado ou não existe.");
+
+      var matriculasDoCurso = context.matriculas.Where(m => m.CursoId == id);
+      if (matriculasDoCurso != null) context.matriculas.RemoveRange(matriculasDoCurso);
+
+      context.cursos.Remove(curso);
+      await context.SaveChangesAsync();
+      return Ok(await context.cursos.ToListAsync());
+    }
   }
 }

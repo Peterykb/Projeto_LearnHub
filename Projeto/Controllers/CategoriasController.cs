@@ -1,8 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Projeto.Models;
 
 namespace Projeto.Controllers
 {
@@ -10,6 +8,15 @@ namespace Projeto.Controllers
     [Route("api/[controller]")]
     public class CategoriasController : ControllerBase
     {
-        
+        public Context context;
+
+        public CategoriasController(Context _context){
+          context = _context;
+        }
+
+        [HttpGet("Categorias")]
+        public async Task <ActionResult<List<Categorias>>> GetCategorias(){
+          return await context.categorias.ToListAsync();
+        }
     }
 }

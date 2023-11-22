@@ -38,7 +38,8 @@ namespace Projeto.Models
       modelBuilder.Entity<CursoCategoria>()
           .HasOne(cc => cc.Cursos)
           .WithMany(c => c.CursoCategorias)
-          .HasForeignKey(cc => cc.CursoId).IsRequired(false);
+          .HasForeignKey(cc => cc.CursoId).IsRequired(false)
+          .OnDelete(DeleteBehavior.Cascade);
 
       modelBuilder.Entity<CursoCategoria>()
           .HasOne(cc => cc.Categorias)
@@ -69,9 +70,6 @@ namespace Projeto.Models
           .HasMany(comentarios => comentarios.comentarios)
           .WithOne(aluno => aluno.aluno)
           .HasForeignKey(comentarios => comentarios.AlunoId).IsRequired(false);
-
-
-
     }
   }
 
