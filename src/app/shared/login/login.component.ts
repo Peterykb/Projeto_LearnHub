@@ -34,12 +34,8 @@ export class LoginComponent implements OnInit {
     } else {
 
       // LOGIN ESTUDANTE
-<<<<<<< HEAD
 
-        this.authUser.login(this.loginForm.value).subscribe(
-=======
         /* this.authUser.login(this.loginForm.value).subscribe(
->>>>>>> baefb6d5c19dfcd61cbb53ffff1901a1b28d1d7b
         (res) => {
            this.router.navigate(['home']);
          },
