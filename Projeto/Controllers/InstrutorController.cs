@@ -19,6 +19,10 @@ namespace Projeto.Controllers
     {
       return Ok(await context.cursos.ToListAsync());
     }
+    [HttpGet("{id}")]
+    public async Task<ActionResult<Cursos>> GetCursoById(int id){
+      return Ok();
+    }
 
   }
 }
