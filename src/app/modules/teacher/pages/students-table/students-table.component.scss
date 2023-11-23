@@ -1,0 +1,41 @@
+.box{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    margin: 200px auto;
+    width: 100%;
+}
+
+.btns{
+    max-width: 80%;
+    width: 100%;
+    margin: auto;
+}
+
+.table{
+    max-width: 80%;
+    width: 100%;
+    margin: auto;
+}
+
+.table :where(td > button){
+    background: none;
+    border-radius: 25%;
+}
+
+.table :where(td > button):hover{
+    background-color: rgba(255, 159, 159, 0.24);
+}
+
+button{
+    border: none;
+    outline: none;
+    padding: 5px 15px;
+    transition: .3s;
+}
+
+.btns button{
+    width: 120px;
+    border-radius: 8px;
+}

@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-relation-courses',
-  templateUrl: './relation-courses.component.html',
-  styleUrls: ['./relation-courses.component.scss'],
+  selector: 'app-students',
+  templateUrl: './students.component.html',
+  styleUrls: ['./students.component.scss']
 })
-export class RelationCoursesComponent {
+export class StudentsComponent {
   courses = [
     {
       title: 'Curso de Dotnet 7',
       image:
         'https://static.vecteezy.com/ti/fotos-gratis/t2/1349210-paisagem-com-uma-arvore-solitaria-no-lago-foto.jpg',
       cat: 1,
-      link: './edit-course'
+      link: './students'
     },
     {
       title: 'Curso de Java Avançado',

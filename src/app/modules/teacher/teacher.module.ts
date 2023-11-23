@@ -7,6 +7,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { RelationCoursesComponent } from './pages/relation-courses/relation-courses.component';
 import { EditCourseComponent } from './pages/edit-course/edit-course.component';
+import { StudentsComponent } from './pages/students/students.component';
+import { StudentsTableComponent } from './pages/students-table/students-table.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { EditCourseComponent } from './pages/edit-course/edit-course.component';
     ProfileComponent,
     RelationCoursesComponent,
     EditCourseComponent,
+    StudentsComponent,
+    StudentsTableComponent,
   ],
   imports: [
     CommonModule,

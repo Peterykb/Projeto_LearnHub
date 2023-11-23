@@ -33,6 +33,7 @@ main {
 .relation-courses {
   width: 80%;
   height: 250px;
+  padding: 0 2rem;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -48,22 +49,14 @@ main {
   padding: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 2rem;
   align-items: center;  
+  transition: .3s ease-in-out;
 }
 
-.relation-courses .card .bottom button{
-  width: 200px;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 10px;
-  border-radius: 4px;
-  font-size: .8rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  font-weight: 700;
-  background-color: #fff;
+.relation-courses .card:hover{
+  transform: scale(1.05);
 }
 
 .relation-courses .card .top h3 {
@@ -72,24 +65,9 @@ main {
   margin: 0;
 }
 
-.relation-payments {
-  width: 50%;
-  margin: auto;
-}
-
-.goals-payments {
-  margin: 10px auto;
-  width: 50%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-}
-
-.goals-payments .goals,
-.payments {
-  width: 400px;
-  border: 2px solid #000;
+.icon-course i{
+  font-size: 2rem;
+  color: #fff;
 }
 
 /* TRANSITION ENTER */
