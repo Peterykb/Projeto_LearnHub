@@ -4,28 +4,37 @@ using Projeto.Models;
 
 namespace Projeto.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class ModulosController : ControllerBase
+  [ApiController]
+  [Route("api/[controller]")]
+  public class ModulosController : ControllerBase
+  {
+    public Context context;
+    public ModulosController(Context _context)
     {
-      public Context context;
-      public ModulosController(Context _context){
-        context = _context;
-      }
-      [HttpGet("modulos")]
-      public async Task <ActionResult<List<Modulos>>> GetModulos(){
-        return Ok(await context.modulos.ToListAsync());
-      }
-      [HttpPost("modulos/{id}")]
-      public async Task <ActionResult<Modulos>> PostModulo(int id){
-      var modulo = await context.modulos.FindAsync(id);
-      if(modulo == null) return BadRequest("Modulo não encontrado.");
+      context = _context;
+    }
+    [HttpGet("curso/modulos")]
+    public async Task<ActionResult<List<Modulos>>> GetModulos()
+    {
+      return Ok(await context.modulos.ToListAsync());
+    }
+    [HttpPost("curso/modulos/{cursoid}/adicionar-modulo")]
+    public async Task<ActionResult<Modulos>> PostModulo(Modulos newmodulo, int cursoid)
+    {
+      var curso = context.cursos.Find(cursoid);
+      if (curso == null) return NotFound("Curso não encontrado");
 
-      context.modulos.Remove(modulo);
-      await context.SaveChangesAsync();
+      var modulo = context.modulos.SingleOrDefault(m => m.Id_Modulo == newmodulo.Id_Modulo);
+      if (modulo != null) return BadRequest("Modulo já existe.");
+
+       newmodulo.Curso = curso;
+       curso.Modulos ??= new List<Modulos>();
+       curso.Modulos.Add(newmodulo);
+
+      context.SaveChanges();
 
       return Ok(await context.modulos.ToListAsync());
-      }
-
     }
+
+  }
 }
