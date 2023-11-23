@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace Projeto.Models
 {
@@ -12,9 +13,11 @@ namespace Projeto.Models
     public int DataNascimento { get; set; }
 
     //Configuração do relacionamento da entidade AlunoInformacoes com as matriculas
+    [JsonIgnore]
     public ICollection<Matricula>? Matriculas { get; set; } = new List<Matricula>();
     //Configuração do relacionamento da entidade AlunoInformacoes com os comentarios
-    public ICollection<Comentarios>? comentarios {get;set;} = new List<Comentarios>();
+    [JsonIgnore]
+    public ICollection<Comentarios>? comentarios { get; set; } = new List<Comentarios>();
 
   }
 

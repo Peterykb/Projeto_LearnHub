@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace Projeto.Models
 {
@@ -10,6 +11,7 @@ namespace Projeto.Models
     public Cursos? Cursos { get; set; }
 
     public int CategoriaId { get; set; }
+     [JsonIgnore]
     public Categorias? Categorias { get; set; }
 
   }

@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 
 namespace Projeto.Models
@@ -10,6 +11,7 @@ namespace Projeto.Models
     public string Nome { get; set; } = string.Empty;
     public string CPF { get; set; } = string.Empty;
     public int DataNascimento { get; set; }
+     [JsonIgnore]
     public ICollection<Cursos> Cursos {get;set;} = new List<Cursos>();
 
 
