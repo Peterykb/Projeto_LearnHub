@@ -11,25 +11,26 @@ export class RelationCoursesComponent {
       title: 'Curso de Dotnet 7',
       image:
         'https://static.vecteezy.com/ti/fotos-gratis/t2/1349210-paisagem-com-uma-arvore-solitaria-no-lago-foto.jpg',
-        cat: 1
+      cat: 1,
+      link: '/teacher/edit-course'
     },
     {
       title: 'Curso de Java Avançado',
       image:
         'https://static.vecteezy.com/ti/fotos-gratis/t2/1349210-paisagem-com-uma-arvore-solitaria-no-lago-foto.jpg',
-        cat: 1
+      cat: 1,
     },
     {
       title: 'Angular com .Net 7',
       image:
         'https://static.vecteezy.com/ti/fotos-gratis/t2/1349210-paisagem-com-uma-arvore-solitaria-no-lago-foto.jpg',
-        cat: 2
+      cat: 2,
     },
     {
       title: 'Banco de dados - Do Zero ao Avançado',
       image:
         'https://static.vecteezy.com/ti/fotos-gratis/t2/1349210-paisagem-com-uma-arvore-solitaria-no-lago-foto.jpg',
-        cat: 2
+      cat: 2,
     },
   ];
 

@@ -9,7 +9,7 @@ namespace Projeto.Models
     public string Titulo { get; set; } = String.Empty;
     public string Texto { get; set; } = String.Empty;
     [DataType(DataType.Date)]
-    public DateTime data_public { get; set; }
+    public int data_public { get; set; }
 
     //Configuração do relacionamento da entidade curso com os comentários
     public Cursos? Curso {get;set;}

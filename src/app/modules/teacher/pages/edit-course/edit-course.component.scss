@@ -65,8 +65,13 @@
   display: none;
 }
 
+.description-video .accordion-item input.accordion-input:checked ~ .accordion-content {
+  height: auto;
+}
+
 .accordion-item input.accordion-input:checked ~ .accordion-content {
-  height: 100px;
+  height: 200px;
+  overflow-y: auto;
 }
 
 .info-video {
@@ -77,7 +82,7 @@
   width: 70%;
 }
 
-.info-video .title{
+.info-video .title {
   padding-top: 20px;
 }
 
@@ -95,26 +100,26 @@
   gap: 1em;
 }
 
-.actions-user .btns button{
-    width: 30px;
-    height: 30px;
-    border: none;
-    border-radius: 50%;
-    background: transparent;
-    transition: .3s ease-in-out;
+.actions-user .btns button {
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  transition: 0.3s ease-in-out;
 }
 
-.actions-user .btns button:hover{
-    background-color: #ddd;
+.actions-user .btns button:hover {
+  background-color: #ddd;
 }
 
-.bottom{
+.bottom {
   width: 70%;
   background-color: #ddd;
   padding: 10px 0;
 }
 
-.send{
+.send {
   background: none;
   border: none;
   width: 40px;
@@ -126,16 +131,15 @@
   outline: none;
 }
 
-
-.send:hover{
+.send:hover {
   background-color: #ccc;
-  transition: .3s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
-.send:active{
+.send:active {
   background-color: #a0a0a0;
 }
 
-.top-comments{
+.top-comments {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -145,12 +149,12 @@
   margin: 1rem 0;
 }
 
-.top-comments .qtd h1{
+.top-comments .qtd h1 {
   font-size: 1.2rem;
   margin: 0;
 }
 
-.add-comments{
+.add-comments {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -160,14 +164,14 @@
   margin-bottom: 2rem;
 }
 
-.comments{
+.comments {
   padding: 10px 30px;
 }
-.input-comment{
+.input-comment {
   width: 50%;
 }
 
-.input-comment textarea{
+.input-comment textarea {
   width: 100%;
   background: none;
   border: none;
@@ -178,38 +182,36 @@
   overflow: hidden;
 }
 
-.box-comment-text .top{
+.box-comment-text .top {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 1rem;
 }
 
-.comment{
+.comment {
   display: flex;
   flex-direction: row;
   gap: 30px;
 }
 
-
 /* MODULES CONTENT */
 
-
-.content-class{
+.content-class {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 1rem;
   padding: 10px 0;
-  transition: .3s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
 
-.content-class:hover{
+.content-class:hover {
   background-color: #3d3d3d49;
   cursor: pointer;
 }
 
-.content-class .checkbox-field{
+.content-class .checkbox-field {
   width: 40px;
   height: 100%;
   display: flex;
@@ -217,10 +219,94 @@
   align-items: center;
 }
 
-.checkbox-field .check{
+.checkbox-field .check {
   accent-color: #6610f2;
 }
 
-.icon-play i{
+.icon-play i {
   margin-right: 5px;
+}
+
+.btn-edit > button{
+  border: none;
+  outline: none;
+  cursor: pointer;
+  width: 150px;
+  padding: 5px 10px;
+}
+
+.text-desc{
+  border: none;
+  height: 100%;
+  text-align: justify;
+  padding: 1rem 2rem;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+.modal.open {
+  display: block;
+  width: 700px;
+  height: auto;
+}
+
+.modal-content {
+  text-align: center;
+  padding: 2rem;
+}
+
+.modal.open .save-btn{
+  width: 200px;
+  margin: 1rem auto;
+  padding: 8px 20px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: #6610f2;
+  color: #fff;
+  border-radius: 10px;
+  transition: .3s ease-in-out;
+}
+
+.modal.open .save-btn:hover{
+  background-color: #4104a3;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+textarea{
+  width: 100%;
+  background: none;
+  border: none;
+  border: 1px solid #3d3d3d;
+  outline: none;
+  resize: none;
+  min-height: 30px;
+  overflow: hidden;
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -19,7 +18,7 @@ namespace Projeto.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CPF = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DataNascimento = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    DataNascimento = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -47,7 +46,7 @@ namespace Projeto.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CPF = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DataNascimento = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    DataNascimento = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -62,6 +61,8 @@ namespace Projeto.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Data_criacao = table.Column<int>(type: "int", nullable: false),
+                    Disponivel = table.Column<bool>(type: "bit", nullable: false),
+                    Preco = table.Column<double>(type: "float", nullable: false),
                     InstrutorId = table.Column<int>(type: "int", nullable: false),
                     CategoriasId_categoria = table.Column<int>(type: "int", nullable: true)
                 },
@@ -82,6 +83,33 @@ namespace Projeto.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Carrinho",
+                columns: table => new
+                {
+                    Id_carrinho = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Quantidade = table.Column<int>(type: "int", nullable: false),
+                    CursoId = table.Column<int>(type: "int", nullable: false),
+                    AlunoId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Carrinho", x => x.Id_carrinho);
+                    table.ForeignKey(
+                        name: "FK_Carrinho_alunos_AlunoId",
+                        column: x => x.AlunoId,
+                        principalTable: "alunos",
+                        principalColumn: "Id_aluno",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Carrinho_cursos_CursoId",
+                        column: x => x.CursoId,
+                        principalTable: "cursos",
+                        principalColumn: "Id_curso",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Comentarios",
                 columns: table => new
                 {
@@ -89,7 +117,7 @@ namespace Projeto.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Titulo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Texto = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    data_public = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    data_public = table.Column<int>(type: "int", nullable: false),
                     CursoId = table.Column<int>(type: "int", nullable: false),
                     AlunoId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -206,6 +234,16 @@ namespace Projeto.Migrations
                 column: "Moduloid");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Carrinho_AlunoId",
+                table: "Carrinho",
+                column: "AlunoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Carrinho_CursoId",
+                table: "Carrinho",
+                column: "CursoId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Comentarios_AlunoId",
                 table: "Comentarios",
                 column: "AlunoId");
@@ -246,6 +284,9 @@ namespace Projeto.Migrations
         {
             migrationBuilder.DropTable(
                 name: "aulas");
+
+            migrationBuilder.DropTable(
+                name: "Carrinho");
 
             migrationBuilder.DropTable(
                 name: "Comentarios");

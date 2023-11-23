@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Projeto.Models;
 
@@ -11,9 +12,11 @@ using Projeto.Models;
 namespace Projeto.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20231120163032_Modelagem")]
+    partial class Modelagem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -157,6 +160,9 @@ namespace Projeto.Migrations
                     b.Property<int>("CategoriaId")
                         .HasColumnType("int");
 
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
                     b.HasKey("CursoId", "CategoriaId");
 
                     b.HasIndex("CategoriaId");
@@ -265,7 +271,9 @@ namespace Projeto.Migrations
                 {
                     b.HasOne("Projeto.Models.Modulos", "Modulo")
                         .WithMany("Aulas")
-                        .HasForeignKey("Moduloid");
+                        .HasForeignKey("Moduloid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Modulo");
                 });
@@ -293,11 +301,15 @@ namespace Projeto.Migrations
                 {
                     b.HasOne("Projeto.Models.AlunoInformacoes", "aluno")
                         .WithMany("comentarios")
-                        .HasForeignKey("AlunoId");
+                        .HasForeignKey("AlunoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Projeto.Models.Cursos", "Curso")
                         .WithMany("Comentarios")
-                        .HasForeignKey("CursoId");
+                        .HasForeignKey("CursoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Curso");
 
@@ -308,12 +320,15 @@ namespace Projeto.Migrations
                 {
                     b.HasOne("Projeto.Models.Categorias", "Categorias")
                         .WithMany("CursoCategorias")
-                        .HasForeignKey("CategoriaId");
+                        .HasForeignKey("CategoriaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Projeto.Models.Cursos", "Cursos")
                         .WithMany("CursoCategorias")
                         .HasForeignKey("CursoId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Categorias");
 
@@ -328,7 +343,9 @@ namespace Projeto.Migrations
 
                     b.HasOne("Projeto.Models.InstrutorInformacoes", "Instrutor")
                         .WithMany("Cursos")
-                        .HasForeignKey("InstrutorId");
+                        .HasForeignKey("InstrutorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Instrutor");
                 });
@@ -337,11 +354,15 @@ namespace Projeto.Migrations
                 {
                     b.HasOne("Projeto.Models.AlunoInformacoes", "Aluno")
                         .WithMany("Matriculas")
-                        .HasForeignKey("AlunoId");
+                        .HasForeignKey("AlunoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Projeto.Models.Cursos", "Curso")
                         .WithMany("Matriculas")
-                        .HasForeignKey("CursoId");
+                        .HasForeignKey("CursoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Aluno");
 
@@ -352,7 +373,9 @@ namespace Projeto.Migrations
                 {
                     b.HasOne("Projeto.Models.Cursos", "Curso")
                         .WithMany("Modulos")
-                        .HasForeignKey("CursoId");
+                        .HasForeignKey("CursoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Curso");
                 });

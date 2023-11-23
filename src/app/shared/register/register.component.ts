@@ -21,6 +21,7 @@ export class RegisterComponent {
     this.formRegister = registerBuilder.group({
       nome_completo: ['', Validators.required],
       data_nascimento: ['', Validators.required],
+      cpf: ['', Validators.required],
       email: [
         '',
         Validators.compose([
@@ -62,8 +63,8 @@ export class RegisterComponent {
     }
   }
 
-  registTeacher(){
-    this.regTeacher = !this.regTeacher
+  registTeacher() {
+    this.regTeacher = !this.regTeacher;
   }
 
   borda() {
@@ -82,6 +83,10 @@ export class RegisterComponent {
     return this.formRegister.get('data_nascimento')!;
   }
 
+  get cpf() {
+    return this.formRegister.get('cpf')!;
+  }
+
   get email() {
     return this.formRegister.get('email')!;
   }
@@ -92,5 +97,25 @@ export class RegisterComponent {
 
   get confirmSenha() {
     return this.formRegister.get('confirmar_senha')!;
+  }
+
+  formatCPF(cpfInput: string): string {
+    const cpf = cpfInput.replace(/\D/g, ''); // Remove caracteres não numéricos
+    const cpfFormatted = cpf
+      .replace(/(\d{3})(\d)/, '$1.$2')
+      .replace(/(\d{3})(\d)/, '$1.$2')
+      .replace(/(\d{3})(\d{1,2})/, '$1-$2')
+      .replace(/(-\d{2})\d+?$/, '$1');
+
+    return cpfFormatted;
+  }
+
+  updateCPFValue(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    const cpfControl = this.formRegister.get('cpf');
+    
+    if (cpfControl) {
+      cpfControl.setValue(this.formatCPF(inputElement.value));
+    }
   }
 }
