@@ -16,8 +16,9 @@ namespace Projeto.Controllers
     [HttpGet("{cursoid}/modulos")]
     public async Task<ActionResult<List<Modulos>>> GetModulos(int cursoid)
     {
+      var modulosdocurso = await context.modulos.Where(m => m.CursoId == cursoid).ToListAsync();
       
-      return Ok();
+      return Ok(modulosdocurso);
     }
     [HttpPost("curso/modulos/{cursoid}/adicionar-modulo")]
     public async Task<ActionResult<Modulos>> PostModulo(Modulos newmodulo, int cursoid)
@@ -28,7 +29,7 @@ namespace Projeto.Controllers
       var modulo = context.modulos.SingleOrDefault(m => m.Id_Modulo == newmodulo.Id_Modulo);
       if (modulo != null) return BadRequest("Modulo já existe.");
 
-      newmodulo.Curso = curso;
+      newmodulo.CursoId = cursoid;
       curso.Modulos ??= new List<Modulos>();
       curso.Modulos.Add(newmodulo);
 
@@ -36,6 +37,7 @@ namespace Projeto.Controllers
 
       return Ok(await context.modulos.ToListAsync());
     }
+    
 
   }
 }
