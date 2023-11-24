@@ -9,6 +9,9 @@ import { RelationCoursesComponent } from './pages/relation-courses/relation-cour
 import { EditCourseComponent } from './pages/edit-course/edit-course.component';
 import { StudentsComponent } from './pages/students/students.component';
 import { StudentsTableComponent } from './pages/students-table/students-table.component';
+import { CreateCourseComponent } from './pages/create-course/create-course.component';
+import { FormsModule } from '@angular/forms';
+  
 
 @NgModule({
   declarations: [
@@ -19,10 +22,12 @@ import { StudentsTableComponent } from './pages/students-table/students-table.co
     EditCourseComponent,
     StudentsComponent,
     StudentsTableComponent,
+    CreateCourseComponent,
   ],
   imports: [
     CommonModule,
-    TeacherRoutingModule
+    TeacherRoutingModule,
+    FormsModule,
   ]
 })
 export class TeacherModule { }

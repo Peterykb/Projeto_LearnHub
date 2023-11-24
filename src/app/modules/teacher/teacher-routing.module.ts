@@ -8,12 +8,13 @@ import { RelationCoursesComponent } from './pages/relation-courses/relation-cour
 import { EditCourseComponent } from './pages/edit-course/edit-course.component';
 import { StudentsComponent } from './pages/students/students.component';
 import { StudentsTableComponent } from './pages/students-table/students-table.component';
+import { CreateCourseComponent } from './pages/create-course/create-course.component';
 
 const routes: Routes = [
 
   {
     path: '',
-    redirectTo: 'overview',
+    redirectTo: 'relation-courses/create-course',
     pathMatch: 'full',
   },
   {
@@ -23,6 +24,7 @@ const routes: Routes = [
       { path: 'overview', component: OverviewComponent },
       { path: 'my-profile', component: ProfileComponent },
       { path: 'relation-courses', component: RelationCoursesComponent },
+      { path: 'relation-courses/create-course', component: CreateCourseComponent },
       { path: 'relation-courses/edit-course', component: EditCourseComponent },
       { path: 'relation-students', component: StudentsComponent },
       { path: 'relation-students/students', component: StudentsTableComponent },

@@ -50,15 +50,22 @@
   background-color: rgb(204, 204, 204);
   flex-direction: row;
   align-items: center;
-  padding: 0 0;
+  padding-right: 1rem;
   border-radius: 10px;
   width: 300px;
   gap: 10px;
 }
 
-.category-filter span:nth-child(1){
-  order: 2;
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background-image: url('https://www.svgrepo.com/download/379010/disc-xmark.svg');
+  background-size: cover;
+  cursor: pointer;
 }
+
 
 .category-filter select{
     width: 300px;

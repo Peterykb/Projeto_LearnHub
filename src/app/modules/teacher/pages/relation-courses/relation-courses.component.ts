@@ -6,13 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./relation-courses.component.scss'],
 })
 export class RelationCoursesComponent {
+  searchQuery = '';
   courses = [
     {
       title: 'Curso de Dotnet 7',
       image:
         'https://static.vecteezy.com/ti/fotos-gratis/t2/1349210-paisagem-com-uma-arvore-solitaria-no-lago-foto.jpg',
       cat: 1,
-      link: './edit-course'
+      link: './edit-course',
     },
     {
       title: 'Curso de Java Avançado',
@@ -37,6 +38,7 @@ export class RelationCoursesComponent {
   itemsPerPage = 6;
   currentPage = 1;
 
+  
   get totalPages() {
     return Math.ceil(this.courses.length / this.itemsPerPage);
   }
@@ -44,7 +46,7 @@ export class RelationCoursesComponent {
   get pages() {
     return new Array(this.totalPages).fill(0).map((_, index) => index + 1);
   }
-
+  
   nextPage() {
     this.currentPage++;
   }
@@ -53,5 +55,12 @@ export class RelationCoursesComponent {
     if (this.currentPage > 1) {
       this.currentPage--;
     }
+  }
+  onInputChange(value: string) {
+    this.searchQuery = value.trim();
+  }
+
+  clearSearch() {
+    this.searchQuery = '';
   }
 }
