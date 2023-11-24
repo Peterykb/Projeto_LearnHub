@@ -9,14 +9,12 @@ namespace Projeto.Controllers
 {
   [ApiController]
   [Route("api/[controller]")]
-  public class ComentariosController : ControllerBase
+  public class CarrinhoController : ControllerBase
   {
     public readonly Context context;
-    public ComentariosController(Context _context)
+    public CarrinhoController(Context _context)
     {
       context = _context;
     }
-    
-
   }
 }

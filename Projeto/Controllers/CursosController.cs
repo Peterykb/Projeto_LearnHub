@@ -86,20 +86,22 @@ namespace Projeto.Controllers
     public async Task<ActionResult<Cursos>> PutCurso(Cursos modifycurso, int id)
     {
       if (modifycurso == null) return BadRequest("O curso está nulo");
-      var existingCurso = await context.cursos.FindAsync(modifycurso.Id_curso);
+      var cursoexiste = await context.cursos.FirstOrDefaultAsync(c => c.Id_curso == modifycurso.Id_curso && c.InstrutorId == id);
 
-      if (existingCurso == null) return NotFound("Não encontrado");
+      if (cursoexiste == null) return NotFound("Não encontrado");
+
       try
       {
-        existingCurso.Name = modifycurso.Name;
-        existingCurso.Preco = modifycurso.Preco;
-        existingCurso.Data_criacao = modifycurso.Data_criacao;
-        existingCurso.Disponivel = modifycurso.Disponivel;
 
-        context.Update(existingCurso);
+        cursoexiste.Name = modifycurso.Name;
+        cursoexiste.Preco = modifycurso.Preco;
+        cursoexiste.Data_criacao = modifycurso.Data_criacao;
+        cursoexiste.Disponivel = modifycurso.Disponivel;
+
+        context.Update(cursoexiste);
         await context.SaveChangesAsync();
 
-        return Ok(existingCurso);
+        return Ok(cursoexiste);
       }
       catch (Exception ex)
       {
@@ -107,17 +109,29 @@ namespace Projeto.Controllers
       }
     }
 
-    [HttpDelete("instrutor/{id}/deletar")]
-    public async Task<ActionResult<Cursos>> DeleteCurso(int id)
+    [HttpDelete("{idinstrutor}/{idcurso}/deletar")]
+    public async Task<ActionResult<Cursos>> DeleteCurso(int idcurso, int idinstrutor)
     {
-      var curso = await context.cursos.FindAsync(id);
-      if (curso == null) return BadRequest("Curso não encontrado ou não existe.");
+      var curso = await context.cursos.FirstOrDefaultAsync(c => c.Id_curso == idcurso && c.InstrutorId == idinstrutor);
+      if (curso == null) return BadRequest("Curso não encontrado.");
 
-      var matriculasDoCurso = context.matriculas.Where(m => m.CursoId == id);
+      var matriculasDoCurso = context.matriculas.Where(m => m.CursoId == idcurso);
       if (matriculasDoCurso != null) context.matriculas.RemoveRange(matriculasDoCurso);
 
+      var modulosdocurso = await context.modulos.Where(m => m.CursoId == idcurso).ToListAsync();
+      if (modulosdocurso != null)
+      {
+        foreach (var modulo in modulosdocurso)
+        {
+          var aulasDoModulo = context.aulas.Where(a => a.Moduloid == modulo.Id_Modulo);
+          if (aulasDoModulo != null)
+            context.aulas.RemoveRange(aulasDoModulo);
+        }
+        context.modulos.RemoveRange(modulosdocurso);
+      }
       context.cursos.Remove(curso);
       await context.SaveChangesAsync();
+
       return Ok(await context.cursos.ToListAsync());
     }
   }
