@@ -15,7 +15,7 @@ export class CreateCourseComponent {
     this.isActive = !this.isActive;
   }
 
-  
+
   curso = {
     nome: '',
     modulos: [
@@ -52,7 +52,7 @@ export class CreateCourseComponent {
     modulo.aulas.push({ nome: '', titulo: '', descricao: '', linkVideo: '' });
   }
 }
-  
+
   removerAula(moduloIndex: number, aulaIndex: number) {
     const modulo = this.curso.modulos[moduloIndex];
     if (modulo) {
@@ -63,6 +63,7 @@ export class CreateCourseComponent {
     this.cursoService.criarCurso(this.curso).subscribe(
       (resposta) => {
         console.log('Curso criado com sucesso!', resposta);
+        alert('curso criado')
       },
       (erro) => {
         console.error('Erro ao criar curso', erro);

@@ -32,6 +32,34 @@ form{
   margin: 2rem 0;
 }
 
+.pass-field{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 3px solid rgb(91,0,218);
+  border-radius: 4px;
+
+}
+
+.field .pass-field input{
+  width: calc(100% - 40px);
+  border: 3px solid transparent;
+}
+
+.field .pass-field input:focus{
+  outline: none;
+}
+
+.pass-field .showIcon{
+  cursor: pointer;
+  width: 40px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .field label{
   font-weight: bold;
   color: #232323;

@@ -61,12 +61,17 @@
   background-color: #cccc;
 }
 
+.description-video .accordion-content p {
+  padding: 10px;
+  font-size: .9rem;
+}
+
 .accordion-item input.accordion-input {
   display: none;
 }
 
 .accordion-item input.accordion-input:checked ~ .accordion-content {
-  height: 100px;
+  height: 200px;
 }
 
 .info-video {

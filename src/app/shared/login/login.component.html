@@ -21,12 +21,17 @@
       </div>
       <div class="field">
         <label>Senha</label>
-        <input
-          type="password"
-          formControlName="password"
-          required
-          [ngClass]="{ error: formSubmitted && password.invalid }"
-        />
+        <div class="pass-field">
+          <input
+            type="{{showPass ? 'text' : 'password'}}"
+            formControlName="password"
+            required
+            [ngClass]="{ error: formSubmitted && password.invalid }"
+          />
+          <div class="showIcon" (click)="passShow()">
+            <i class="fa-solid" ngClass="{{!showPass ? 'fa-eye' : 'fa-eye-slash'}}"></i>
+          </div>
+        </div>
         <ng-container *ngIf="password.invalid && formSubmitted">
           <div class="error-message">
             <span *ngIf="password.errors?.['required']">Senha inválida</span>

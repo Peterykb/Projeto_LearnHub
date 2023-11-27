@@ -1,123 +1,102 @@
 <div class="box">
-  <div class="btn">
-    <button class=" btn btn-secondary" routerLink="/teacher/relation-courses">Voltar</button>
-  </div>
-  <div class="top">
-    <div class="video-container">
-      <iframe
-        src="https://www.youtube.com/embed/vJt_K1bFUeA?si=3wHKv4BFJqdiA69-"
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen
-      ></iframe>
+  <form>
+    <div class="title">
+      <h2>Escolha o módulo para editar</h2>
     </div>
-    <div class="info-video">
-      <div class="title">
-        <h1>Como fazer um CRUD em Angular!</h1>
-        <div class="btn-edit">
-          <button (click)="abrirDialog()">Editar Aula</button>
-        </div>
-      </div>
-      <div class="bottom-top">
-        <div class="date-video">
-          <small>21 de Fev de 2023</small>
-        </div>
-        <div class="actions-user">
-          <div class="btns">
-            <button class="like">
-              <i class="fa-regular fa-thumbs-up"></i>
-            </button>
-            <button class="deslike">
-              <i class="fa-regular fa-thumbs-down"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="description-video">
-        <div class="accordion">
-          <div class="accordion-item">
-            <input type="checkbox" id="accordion1" class="accordion-input" />
-            <label
-              for="accordion1"
-              class="accordion-header"
-              (click)="clickDescription()"
-              >Descrição
-              <i
-                class="fa-solid fa-caret-down"
-                [ngClass]="{
-                  'fa-caret-down': !dropdown,
-                  'fa-caret-up': dropdown
-                }"
-              ></i
-            ></label>
-            <div class="accordion-content">
-              <textarea rows="1" (input)="autoSize($event)" class="text-desc">Aqui jás a descrição desse video</textarea>
+
+    <div class="accordion">
+      <div class="accordion-item">
+        <input type="checkbox" id="accordion4" class="accordion-input" />
+        <label for="accordion4" class="accordion-header" (click)="clickDescription()">Módulo 1 - Primeiros passos em Angular
+          <i
+              class="fa-solid fa-caret-down"
+              [ngClass]="{'fa-caret-down': !dropdown, 'fa-caret-up': dropdown}"
+            ></i
+          >
+        </label>
+        <div class="accordion-content">
+          <div class="content-class">
+            <div class="info-class">
+              1. Instalando o Angular
+              <div class="icon-play">
+                <i class="fa-solid fa-circle-play"></i>
+                <small>10 min</small>
+              </div>
             </div>
           </div>
+          <div class="btn-edit">
+            <button class="btn btn-primary">Editar Módulo</button>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- MODAL -->
-
-    <div class="modal" [ngClass]="{ open: isOpen }">
-      <div class="modal-content">
-        <span class="close" (click)="fecharDialog()">X</span>
-        <h2>Editar Curso</h2>
-
-        <div class="field-date">
-            <label>Titulo da Aula</label>
-            <textarea rows="1" (input)="autoSize($event)" #textareaRef></textarea>
-        </div>
-
-        <div class="field-date">
-            <label>Link da aula</label>
-            <textarea rows="1" (input)="autoSize($event)" #textareaRef></textarea>
-        </div>
-
-        <div class="field-date">
-            <label>Descrição da Aula</label>
-            <textarea rows="1" (input)="autoSize($event)" #textareaRef></textarea>
-        </div>
-        <button class="save-btn">Salvar</button>
-      </div>
-    </div>
-    <div class="overlay" *ngIf="isOpen" (click)="fecharDialog()"></div>
-    <div class="sidebarModules">
-        <div class="accordion">
-          <div class="accordion-item" *ngFor="let item of accordionItems">
-            <input type="checkbox" [id]="'accordion' + item.id" class="accordion-input" />
-            <label
-              [for]="'accordion' + item.id"
-              class="accordion-header"
-              (click)="clickDescription()"
-            >
-              {{ item.header }}
-              <i
-                class="fa-solid"
-                [ngClass]="{
-                  'fa-caret-down': !item.dropdown,
-                  'fa-caret-up': item.dropdown
-                }"
-              ></i>
-            </label>
-            <div class="accordion-content">
-              <div class="content-class" *ngFor="let aula of item.aulas">
-                <div class="checkbox-field">
-                  <input type="checkbox" class="check" />
-                </div>
-                <div class="info-class">
-                  {{ aula.title }}
-                  <div class="icon-play">
-                    <i class="fa-solid fa-circle-play"></i>
-                    <small>{{ aula.duration }}</small>
-                  </div>
-                </div>
+      <div class="accordion-item">
+        <input type="checkbox" id="accordion2" class="accordion-input" />
+        <label for="accordion2" class="accordion-header" (click)="clickDescription()">Módulo 2 - Trabalhando com Componentes
+          <i
+              class="fa-solid fa-caret-down"
+              [ngClass]="{'fa-caret-down': !dropdown, 'fa-caret-up': dropdown}"
+            ></i
+          >
+        </label>
+        <div class="accordion-content">
+          <div class="content-class">
+            <div class="info-class">
+              10. Gerando Componente
+              <div class="icon-play">
+                <i class="fa-solid fa-circle-play"></i>
+                <small>10 min</small>
               </div>
             </div>
           </div>
         </div>
-      </div>      
+      </div>
+
+      <div class="accordion-item">
+        <input type="checkbox" id="accordion3" class="accordion-input" />
+        <label for="accordion3" class="accordion-header" (click)="clickDescription()">Módulo 3 - Revisão de Typescript
+          <i
+              class="fa-solid fa-caret-down"
+              [ngClass]="{'fa-caret-down': !dropdown, 'fa-caret-up': dropdown}"
+            ></i
+          >
+        </label>
+        <div class="accordion-content">
+          <div class="content-class">
+            <div class="info-class">
+              25. Funções assíncronas
+              <div class="icon-play">
+                <i class="fa-solid fa-circle-play"></i>
+                <small>10 min</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div class="modal" [ngClass]="{ open: isOpen }">
+    <div class="modal-content">
+      <span class="close" (click)="fecharDialog()">X</span>
+      <h2>Editar Curso</h2>
+
+      <div class="field-date">
+          <label>Titulo da Aula</label>
+          <textarea rows="1" (input)="autoSize($event)" #textareaRef></textarea>
+      </div>
+
+      <div class="field-date">
+          <label>Link da aula</label>
+          <textarea rows="1" (input)="autoSize($event)" #textareaRef></textarea>
+      </div>
+
+      <div class="field-date">
+          <label>Descrição da Aula</label>
+          <textarea rows="1" (input)="autoSize($event)" #textareaRef></textarea>
+      </div>
+      <button class="save-btn">Salvar</button>
+    </div>
   </div>
+  <div class="overlay" *ngIf="isOpen" (click)="fecharDialog()"></div>
 </div>

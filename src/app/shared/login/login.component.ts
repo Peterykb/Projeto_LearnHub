@@ -12,6 +12,7 @@ import { AuthUserService } from 'src/app/services/auth-user.service';
 export class LoginComponent implements OnInit {
   loginForm: any;
   formSubmitted: boolean = false;
+  showPass: boolean = false;
   constructor(
     private loginBuilder: FormBuilder,
     private router: Router,
@@ -54,28 +55,11 @@ export class LoginComponent implements OnInit {
           }
         );
       }
-
-      // LOGIN ESTUDANTE
-      //  this.authUser.login(this.loginForm.value).subscribe(
-      //   (res) => {
-      //     this.router.navigate(['home']);
-      //   },
-      //   (err: Error) => {
-      //     alert(err.message);
-      //   }
-      // );
-
-
-      // LOGIN DO PROFESSOR
-        /* this.authTeacher.loginTeacher(this.loginForm.value).subscribe(
-        (res) => {
-          this.router.navigate(['teacher', 'overview']);
-        },
-        (err: Error) => {
-          alert(err.message);
-        }
-      ); */
     }
+  }
+
+  passShow(){
+    this.showPass = !this.showPass;
   }
 
   get email() {
