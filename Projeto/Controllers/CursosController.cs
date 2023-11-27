@@ -34,7 +34,7 @@ namespace Projeto.Controllers
     [HttpGet("instrutor/{id}")]
     public async Task<ActionResult<IEnumerable<Cursos>>> GetCursoInstrutor(int id)
     {
-      var cursosDoInstrutor = context.cursos
+      var cursosDoInstrutor = await context.cursos
      .Where(c => c.InstrutorId == id)
      .Select(c => new
      {
@@ -43,65 +43,69 @@ namespace Projeto.Controllers
        c.Data_criacao,
        c.Disponivel,
        c.Preco
-     }).ToList();
-      if (cursosDoInstrutor == null) return NotFound("Não foi encontrado");
+     }).ToListAsync();
+      if (!cursosDoInstrutor.Any()) return NotFound("Não foi encontrado");
       return Ok(cursosDoInstrutor);
     }
 
-    [HttpGet("aluno/{id}")]
-    public async Task<ActionResult<List<Cursos>>> GetAlunoCursos(int id)
-    {
-
-      var matriculas = await context.matriculas.Where(m => m.AlunoId == id).ToListAsync();
-
-      if (matriculas == null || !matriculas.Any())
-      {
-        return NotFound("Não foram encontradas matrículas para o aluno.");
-      }
-
-      var iddoscursos = matriculas.Select(m => m.CursoId).ToList();
-      var cursosdoaluno = await context.cursos.Where(c => iddoscursos.Contains(c.Id_curso)).ToListAsync();
-
-      if (cursosdoaluno == null || cursosdoaluno.Count == 0)
-      {
-        return NotFound("Não foram encontrados cursos para o aluno.");
-      }
-      return Ok(cursosdoaluno);
-    }
-
     [HttpPost("instrutor/criar")]
-    public async Task<ActionResult<Cursos>> CreateCurso(Cursos novocurso, int instrutorid)
+    public async Task<ActionResult<Cursos>> CreateCurso([FromBody] Cursos novocurso, int instrutorid, int categoriaId)
     {
-      if (novocurso == null) return BadRequest("Dados vazios");
-      var cursoexiste = await context.cursos.FirstOrDefaultAsync(c => c.Name == novocurso.Name && c.InstrutorId == instrutorid);
-      if (cursoexiste != null) return BadRequest("O curso já existe");
+      if (novocurso == null)
+      {
+        return BadRequest("Dados vazios");
+      }
+
+      var cursoExistente = await context.cursos
+          .FirstOrDefaultAsync(c => c.Name == novocurso.Name && c.InstrutorId == instrutorid);
+
+      if (cursoExistente != null)
+      {
+        return BadRequest("O curso já existe");
+      }
+
       context.cursos.Add(novocurso);
       novocurso.InstrutorId = instrutorid;
+
+      context.CursoCategorias.Add(new CursoCategoria
+      {
+        CursoId = novocurso.Id_curso,
+        CategoriaId = categoriaId
+      });
+
       await context.SaveChangesAsync();
 
       return Ok(novocurso);
     }
 
-    [HttpPut("instrutor/{id}/atualizar")]
-    public async Task<ActionResult<Cursos>> PutCurso(Cursos modifycurso, int id)
-    {
-      if (modifycurso == null) return BadRequest("O curso está nulo");
-      var cursoexiste = await context.cursos.FirstOrDefaultAsync(c => c.Id_curso == modifycurso.Id_curso && c.InstrutorId == id);
 
-      if (cursoexiste == null) return NotFound("Não encontrado");
+    [HttpPut("instrutor/{id}/atualizar")]
+    public async Task<ActionResult<Cursos>> PutCurso(int id, [FromBody] Cursos modifycurso)
+    {
+      if (modifycurso == null)
+      {
+        return BadRequest("O curso está nulo");
+      }
+
+      var cursoExistente = await context.cursos
+          .FirstOrDefaultAsync(c => c.Id_curso == modifycurso.Id_curso && c.InstrutorId == id);
+
+      if (cursoExistente == null)
+      {
+        return NotFound("Não encontrado");
+      }
 
       try
       {
+        cursoExistente.Name = modifycurso.Name;
+        cursoExistente.Preco = modifycurso.Preco;
+        cursoExistente.Data_criacao = modifycurso.Data_criacao;
+        cursoExistente.Disponivel = modifycurso.Disponivel;
 
-        cursoexiste.Name = modifycurso.Name;
-        cursoexiste.Preco = modifycurso.Preco;
-        cursoexiste.Data_criacao = modifycurso.Data_criacao;
-        cursoexiste.Disponivel = modifycurso.Disponivel;
-
-        context.Update(cursoexiste);
+        context.Update(cursoExistente);
         await context.SaveChangesAsync();
 
-        return Ok(cursoexiste);
+        return Ok(cursoExistente);
       }
       catch (Exception ex)
       {
@@ -109,16 +113,18 @@ namespace Projeto.Controllers
       }
     }
 
-    [HttpDelete("{idinstrutor}/{idcurso}/deletar")]
-    public async Task<ActionResult<Cursos>> DeleteCurso(int idcurso, int idinstrutor)
+
+
+    [HttpDelete("{intrutorid}/{cursoid}/deletar")]
+    public async Task<ActionResult<Cursos>> DeleteCurso(int cursoid, int instrutorid)
     {
-      var curso = await context.cursos.FirstOrDefaultAsync(c => c.Id_curso == idcurso && c.InstrutorId == idinstrutor);
+      var curso = await context.cursos.FirstOrDefaultAsync(c => c.Id_curso == cursoid && c.InstrutorId == instrutorid);
       if (curso == null) return BadRequest("Curso não encontrado.");
 
-      var matriculasDoCurso = context.matriculas.Where(m => m.CursoId == idcurso);
+      var matriculasDoCurso = context.matriculas.Where(m => m.CursoId == cursoid);
       if (matriculasDoCurso != null) context.matriculas.RemoveRange(matriculasDoCurso);
 
-      var modulosdocurso = await context.modulos.Where(m => m.CursoId == idcurso).ToListAsync();
+      var modulosdocurso = await context.modulos.Where(m => m.CursoId == cursoid).ToListAsync();
       if (modulosdocurso != null)
       {
         foreach (var modulo in modulosdocurso)
