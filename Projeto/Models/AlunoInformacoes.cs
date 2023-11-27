@@ -16,8 +16,6 @@ namespace Projeto.Models
     [JsonIgnore]
     public ICollection<Matricula>? Matriculas { get; set; } = new List<Matricula>();
     //Configuração do relacionamento da entidade AlunoInformacoes com os comentarios
-    [JsonIgnore]
-    public ICollection<Comentarios>? comentarios { get; set; } = new List<Comentarios>();
 
   }
 

@@ -24,8 +24,6 @@ namespace Projeto.Models
          [JsonIgnore]
         public ICollection<Modulos> Modulos { get; set; } = new List<Modulos>();
          [JsonIgnore]
-        public ICollection<Comentarios> Comentarios { get; set; } = new List<Comentarios>();
-         [JsonIgnore]
         public ICollection<Carrinho>? carrinho { get; set; }
     }
 }
