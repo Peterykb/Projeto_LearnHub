@@ -9,6 +9,7 @@ import { EditCourseComponent } from './pages/edit-course/edit-course.component';
 import { StudentsComponent } from './pages/students/students.component';
 import { StudentsTableComponent } from './pages/students-table/students-table.component';
 import { CreateCourseComponent } from './pages/create-course/create-course.component';
+import { EditModuleComponent } from './pages/edit-module/edit-module.component';
 
 const routes: Routes = [
 
@@ -26,6 +27,7 @@ const routes: Routes = [
       { path: 'relation-courses', component: RelationCoursesComponent },
       { path: 'relation-courses/create-course', component: CreateCourseComponent },
       { path: 'relation-courses/edit-course', component: EditCourseComponent },
+      { path: 'relation-courses/edit-course/edit-module', component: EditModuleComponent },
       { path: 'relation-students', component: StudentsComponent },
       { path: 'relation-students/students', component: StudentsTableComponent },
     ],

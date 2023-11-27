@@ -11,6 +11,7 @@ import { StudentsComponent } from './pages/students/students.component';
 import { StudentsTableComponent } from './pages/students-table/students-table.component';
 import { CreateCourseComponent } from './pages/create-course/create-course.component';
 import { FormsModule } from '@angular/forms';
+import { EditModuleComponent } from './pages/edit-module/edit-module.component';
   
 
 @NgModule({
@@ -23,6 +24,7 @@ import { FormsModule } from '@angular/forms';
     StudentsComponent,
     StudentsTableComponent,
     CreateCourseComponent,
+    EditModuleComponent,
   ],
   imports: [
     CommonModule,

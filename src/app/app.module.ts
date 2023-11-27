@@ -22,6 +22,7 @@ import { RegisterComponent } from './shared/register/register.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CourseComponent } from './modules/user/course/course.component';
 import { BuyComponent } from './modules/user/buy/buy.component';
+import { RegisterService } from './services/register.service';
 
 
 @NgModule({
@@ -48,7 +49,7 @@ import { BuyComponent } from './modules/user/buy/buy.component';
     NgxPaginationModule,
     FontAwesomeModule,
   ],
-  providers: [],
+  providers: [RegisterService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

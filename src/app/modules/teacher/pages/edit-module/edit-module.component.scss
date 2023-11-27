@@ -1,87 +1,51 @@
-label{
-  margin: 0;
-}
-
 .box {
-  max-width: 900px;
-  width: 100%;
-  padding: 30px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  gap: 1rem;
+  margin: 200px auto;
+  width: 80%;
+  padding: 30px 10px;
+  border: 0.5px solid #00000052;
+}
+
+.table {
+  width: 100%;
   margin: auto;
-  position: relative;
 }
 
-.title{
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  margin: 1rem;
+.table :where(td > button) {
+  background: none;
+  border-radius: 25%;
 }
 
-.title button{
-  width: 250px;
+.table :where(td > button):hover {
+  background-color: rgba(255, 159, 159, 0.24);
 }
 
-.accordion {
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  overflow: hidden;
-  width: 100%;
+button {
+  border: none;
+  outline: none;
+  padding: 5px 15px;
+  transition: 0.3s;
 }
 
-.accordion-item {
-  border-top: 1px solid #ddd;
+th,
+td {
+  max-width: 150px;
 }
 
-.accordion-header {
-  background-color: #f5f5f5;
+.btns button {
+  width: 200px;
+  border-radius: 8px;
   padding: 10px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  margin: 0;
-  position: relative;
-  padding: 1.5rem .8rem;
+  margin: 0 .5rem;
 }
 
-.accordion-header i{
-  margin-left: 10px;
-}
-
-.accordion-content {
-  height: 0;
+.desc {
+  white-space: nowrap;
   overflow: hidden;
-  transition: height 0.3s ease-out;
-  background-color: #e6e6e6cc;
-}
-
-.accordion-item input.accordion-input {
-  display: none;
-}
-
-.accordion-item input.accordion-input:checked ~ .accordion-content {
-  height: 200px;
-  overflow-y: auto;
-}
-
-.content-class {
-  display: flex;
-  flex-direction: column;
-}
-
-.content-class .info-class{
-  width: 100%;
-  cursor: pointer;
-  padding: 10px;
-}
-
-
-.btn-primary:nth-child(1){
-  position: absolute;
-  right: 30px;
+  text-overflow: ellipsis;
 }
 
 .modal {
