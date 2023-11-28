@@ -1,0 +1,31 @@
+<section class="courses-acessed">
+    <div class="title">
+      <h3>Resultados de "Front-End"</h3>
+      <hr />
+    </div>
+    <div class="cards-container">
+      <div class="card-course" *ngFor="let course of coursesAcessed">
+        <div class="card-banner">
+          <p>Banner</p>
+        </div>
+        <div class="card-content">
+          <div class="top">
+            <h1>{{ course.title }}</h1>
+            <i class="fa-solid fa-heart"></i>
+          </div>
+          <div class="text-description">
+            <p>{{ course.desc }}</p>
+          </div>
+        </div>
+        <div class="card-footer">
+          <small
+            >Valor:
+            <strong>{{ course.price | currency : "BRL" }}</strong></small
+          >
+          <div class="btn-field">
+            <button routerLink="/course-preview">Visualizar Curso</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

@@ -14,6 +14,10 @@ export class RegisterComponent implements OnInit{
   formRegister: any;
   errorMessage: string = '';
   regTeacher: boolean = false;
+  isShowPass = false;
+  isShowConfirmPass = false;
+  isShowPassTeacher = false;
+  isShowConfirmPassTeacher = false;
 
   submitted: boolean = false;
 
@@ -49,6 +53,22 @@ export class RegisterComponent implements OnInit{
       }
       this.router.navigate(['login'])
     }
+  }
+
+  showPass(){
+    this.isShowPass = !this.isShowPass;
+  }
+
+  showConfirmPass(){
+    this.isShowConfirmPass = !this.isShowConfirmPass;
+  }
+
+  showPassTeacher(){
+    this.isShowPassTeacher = !this.isShowPassTeacher;
+  }
+
+  showConfirmPassTeacher(){
+    this.isShowConfirmPassTeacher = !this.isShowConfirmPassTeacher;
   }
 
   registTeacher() {

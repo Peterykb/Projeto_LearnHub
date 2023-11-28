@@ -112,16 +112,23 @@
             </div>
           </ng-container>
         </label>
-        <input
-          type="password"
-          class="form-control"
-          placeholder="Insira sua Senha"
-          formControlName="senha"
-          required
-          (focus)="borda()"
-          (blur)="noBorda()"
-          [ngClass]="{ active: isActivated, valid: senha.valid }"
-        />
+        <div class="pass-field">
+          <input
+            type="{{ isShowPass ? 'text' : 'password' }}"
+            class="form-control"
+            placeholder="Insira sua Senha"
+            formControlName="senha"
+            required
+            (focus)="borda()"
+            (blur)="noBorda()"
+            [ngClass]="{ active: isActivated, valid: senha.valid }"
+          />
+          <i
+            class="fa-solid"
+            ngClass="{{ !isShowPass ? 'fa-eye' : 'fa-eye-slash' }}"
+            (click)="showPass()"
+          ></i>
+        </div>
 
         <ng-container *ngIf="submitted && senha.invalid">
           <div
@@ -147,28 +154,41 @@
             </div>
           </ng-container>
         </label>
-        <input
-          type="password"
-          class="form-control"
-          placeholder="Confirmar Senha"
-          formControlName="confirmar_senha"
-          required
-          (focus)="borda()"
-          (blur)="noBorda()"
-          [ngClass]="{ active: isActivated, 'valid': confirmSenha.valid }"
-        />
+        <div class="pass-field">
+          <input
+            type="{{ isShowConfirmPass ? 'text' : 'password' }}"
+            class="form-control"
+            placeholder="Confirmar Senha"
+            formControlName="confirmar_senha"
+            required
+            (focus)="borda()"
+            (blur)="noBorda()"
+            [ngClass]="{ active: isActivated, valid: confirmSenha.valid }"
+          />
+          <i
+            class="fa-solid"
+            ngClass="{{ !isShowConfirmPass ? 'fa-eye' : 'fa-eye-slash' }}"
+            (click)="showConfirmPass()"
+          ></i>
+        </div>
         <ng-container *ngIf="submitted && senha.value !== confirmSenha.value">
-          <div
-            class="text-danger error-message"
-            role="alert"
-          >
+          <div class="text-danger error-message" role="alert">
             * As senhas não coincidem!
           </div>
         </ng-container>
       </div>
       <div class="return-login">
-        <small>Já possui uma conta? <a routerLink="/login" class="text-primary link-primary">Faça o login</a></small>
-        <small><a class="text-primary link-primary" (click)="registTeacher()">Torne-se um instrutor</a></small>
+        <small
+          >Já possui uma conta?
+          <a routerLink="/login" class="text-primary link-primary"
+            >Faça o login</a
+          ></small
+        >
+        <small
+          ><a class="text-primary link-primary" (click)="registTeacher()"
+            >Torne-se um instrutor</a
+          ></small
+        >
       </div>
       <button type="submit" class="w-100 btn">Cadastrar</button>
     </form>
@@ -179,12 +199,16 @@
 
 <ng-container *ngIf="regTeacher">
   <div class="box">
-    <form (ngSubmit)="onRegistTeacher()" [formGroup]="formRegister" #formDir="ngForm">
+    <form
+      (ngSubmit)="onRegistTeacher()"
+      [formGroup]="formRegister"
+      #formDir="ngForm"
+    >
       <div class="title">
         <h3>Torne-se um instrutor</h3>
         <p class="text-secondary">
-          Torne-se um instrutor e faça parte da maior plataforma de cursos online do
-          Brasil.
+          Torne-se um instrutor e faça parte da maior plataforma de cursos
+          online do Brasil.
         </p>
       </div>
       <div class="form-group">
@@ -291,16 +315,23 @@
             </div>
           </ng-container>
         </label>
-        <input
-          type="password"
-          class="form-control"
-          placeholder="Insira sua Senha"
-          formControlName="senha"
-          required
-          (focus)="borda()"
-          (blur)="noBorda()"
-          [ngClass]="{ active: isActivated, valid: senha.valid }"
-        />
+        <div class="pass-field">
+          <input
+            type="{{ isShowPassTeacher ? 'text' : 'password' }}"
+            class="form-control"
+            placeholder="Senha"
+            formControlName="senha"
+            required
+            (focus)="borda()"
+            (blur)="noBorda()"
+            [ngClass]="{ active: isActivated, valid: confirmSenha.valid }"
+          />
+          <i
+            class="fa-solid"
+            ngClass="{{ !isShowPassTeacher ? 'fa-eye' : 'fa-eye-slash' }}"
+            (click)="showPassTeacher()"
+          ></i>
+        </div>
 
         <ng-container *ngIf="submitted && senha.invalid">
           <div
@@ -326,28 +357,41 @@
             </div>
           </ng-container>
         </label>
-        <input
-          type="password"
-          class="form-control"
-          placeholder="Confirmar Senha"
-          formControlName="confirmar_senha"
-          required
-          (focus)="borda()"
-          (blur)="noBorda()"
-          [ngClass]="{ active: isActivated, 'valid': confirmSenha.valid }"
-        />
+        <div class="pass-field">
+          <input
+            type="{{ isShowConfirmPassTeacher ? 'text' : 'password' }}"
+            class="form-control"
+            placeholder="Confirmar Senha"
+            formControlName="confirmar_senha"
+            required
+            (focus)="borda()"
+            (blur)="noBorda()"
+            [ngClass]="{ active: isActivated, valid: confirmSenha.valid }"
+          />
+          <i
+            class="fa-solid"
+            ngClass="{{ !isShowConfirmPassTeacher ? 'fa-eye' : 'fa-eye-slash' }}"
+            (click)="showConfirmPassTeacher()"
+          ></i>
+        </div>
         <ng-container *ngIf="submitted && senha.value !== confirmSenha.value">
-          <div
-            class="text-danger error-message"
-            role="alert"
-          >
+          <div class="text-danger error-message" role="alert">
             * As senhas não coincidem!
           </div>
         </ng-container>
       </div>
       <div class="return-login">
-        <small>Já possui uma conta? <a routerLink="/login" class="text-primary link-primary">Faça o login</a></small>
-        <small><a class="text-primary link-primary" (click)="registTeacher()">Torne-se um aluno</a></small>
+        <small
+          >Já possui uma conta?
+          <a routerLink="/login" class="text-primary link-primary"
+            >Faça o login</a
+          ></small
+        >
+        <small
+          ><a class="text-primary link-primary" (click)="registTeacher()"
+            >Voltar</a
+          ></small
+        >
       </div>
       <button type="submit" class="w-100 btn">Cadastrar</button>
     </form>

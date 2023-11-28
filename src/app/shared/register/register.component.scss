@@ -17,6 +17,18 @@ form {
   font-size: 0.9em;
 }
 
+.pass-field{
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.pass-field i{
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+}
+
 .title {
   display: flex;
   flex-direction: column;
