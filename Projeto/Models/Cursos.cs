@@ -16,7 +16,6 @@ namespace Projeto.Models
 
         public InstrutorInformacoes? Instrutor { get; set; }
 
-        // Definição da chave estrangeira
          [JsonIgnore]
         public ICollection<Matricula>? Matriculas { get; set; } = new List<Matricula>();
          [JsonIgnore]

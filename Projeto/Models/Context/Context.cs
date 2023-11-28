@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 
 namespace Projeto.Models
 {
-  public class Context : DbContext
+  public class Context : IdentityDbContext<IdentityUser, IdentityRole, string>
   {
     public Context(DbContextOptions<Context> options) : base(options) {}
     //Relação nominal das entidades do projeto.
@@ -15,6 +17,7 @@ namespace Projeto.Models
     public DbSet<Matricula> matriculas { get; set; }
     public DbSet<Modulos> modulos { get; set; }
     public DbSet<Aulas> aulas { get; set; }
+    
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -61,7 +64,7 @@ namespace Projeto.Models
           .WithOne(a => a.Modulo)
           .HasForeignKey(a => a.Moduloid).IsRequired(false);
 
-   
+
     }
   }
 
