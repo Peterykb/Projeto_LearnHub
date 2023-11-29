@@ -81,7 +81,7 @@
       <hr />
     </div>
     <div class="cards-categories">
-      <div class="card" *ngFor="let category of categories">
+      <div class="card" *ngFor="let category of categories" routerLink="/search-result">
         <div class="icon-category bg-dark">
           <i class="{{ category.class }}"></i>
         </div>

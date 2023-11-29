@@ -24,6 +24,7 @@ import { CourseComponent } from './modules/user/course/course.component';
 import { BuyComponent } from './modules/user/buy/buy.component';
 import { RegisterService } from './services/register.service';
 import { SearchComponent } from './components/search/search.component';
+import { ChangePassComponent } from './components/change-pass/change-pass.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { SearchComponent } from './components/search/search.component';
     CourseComponent,
     BuyComponent,
     SearchComponent,
+    ChangePassComponent,
   ],
   imports: [
     BrowserModule,
