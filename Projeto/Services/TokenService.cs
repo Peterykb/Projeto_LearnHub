@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -9,14 +10,16 @@ namespace Projeto.Services
 {
     public class TokenService
     {
-        public static string GenerateToken(IdentityUser user)
+        public static string GenerateToken(IdentityUser user, string userType)
         {
             var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Key.Secret));
 
             var claims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id),
-                new Claim(ClaimTypes.Name, user.UserName!)
+                new Claim(ClaimTypes.Name, user.UserName),
+                // Adicionar uma claim personalizada com base no tipo de usuário
+                new Claim("UserType", userType)
             };
 
             var tokenDescriptor = new SecurityTokenDescriptor

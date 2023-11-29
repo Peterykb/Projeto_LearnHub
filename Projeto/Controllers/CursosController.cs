@@ -16,13 +16,13 @@ namespace Projeto.Controllers
       context = _context;
     }
 
-    [HttpGet]
+    [HttpGet] // pra todo mundo
     public async Task<ActionResult<List<Cursos>>> GetAllCursos()
     {
       return Ok(await context.cursos.ToListAsync());
     }
 
-    [HttpGet("{nomeCurso}")]
+    [HttpGet("{nomeCurso}")] //pra pesquisa
     public async Task<ActionResult<Cursos>> GetCurso(string nomeCurso)
     {
       var cursos = await context.cursos.Where(c => c.Name.Contains(nomeCurso)).ToListAsync();
@@ -31,7 +31,7 @@ namespace Projeto.Controllers
       return Ok(cursos);
     }
 
-    [HttpGet("instrutor/{id}")]
+    [HttpGet("instrutor/{id}")] // cursos do instrutor
     public async Task<ActionResult<IEnumerable<Cursos>>> GetCursoInstrutor(int id)
     {
       var cursosDoInstrutor = await context.cursos
@@ -48,7 +48,7 @@ namespace Projeto.Controllers
       return Ok(cursosDoInstrutor);
     }
 
-    [HttpPost("instrutor/criar")]
+    [HttpPost("criar")] // pro instrutor criar um curso
     public async Task<ActionResult<Cursos>> CreateCurso([FromBody] Cursos novocurso, int instrutorid, int categoriaId)
     {
       if (novocurso == null)
@@ -79,7 +79,7 @@ namespace Projeto.Controllers
     }
 
 
-    [HttpPut("instrutor/{id}/atualizar")]
+    [HttpPut("instrutor/{id}/atualizar")] //pro instrutor atualizar um curso
     public async Task<ActionResult<Cursos>> PutCurso(int id, [FromBody] Cursos modifycurso)
     {
       if (modifycurso == null)
@@ -112,10 +112,7 @@ namespace Projeto.Controllers
         return StatusCode(500, $"Erro no servidor: {ex.Message}");
       }
     }
-
-
-
-    [HttpDelete("{intrutorid}/{cursoid}/deletar")]
+    [HttpDelete("{intrutorid}/{cursoid}/deletar")] //pro instrutor deletar um curso
     public async Task<ActionResult<Cursos>> DeleteCurso(int cursoid, int instrutorid)
     {
       var curso = await context.cursos.FirstOrDefaultAsync(c => c.Id_curso == cursoid && c.InstrutorId == instrutorid);

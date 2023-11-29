@@ -1,13 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
-using System.Security.Claims;
 using Projeto.Models;
-using Projeto.Models.Authentication;
-
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,8 +19,19 @@ builder.Services.AddDbContext<Context>(options =>
   options.UseSqlServer(builder.Configuration.GetConnectionString("Conexao"));
 });
 
- builder.Services.AddAuthorization();
-
+builder.Services.AddAuthorization();
+builder.Services.AddIdentity<AlunoInformacoes, InstrutorInformacoes>(options =>
+{
+  options.Password.RequireDigit = true;
+  options.Password.RequiredLength = 8;
+  options.Password.RequireUppercase = true;
+  options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromHours(1);
+  options.Lockout.MaxFailedAccessAttempts = 3;
+  options.SignIn.RequireConfirmedEmail = true;
+  options.User.RequireUniqueEmail = true;
+})
+.AddEntityFrameworkStores<Context>()
+.AddDefaultTokenProviders();
 
 builder.Services.AddCors(options =>
 {
