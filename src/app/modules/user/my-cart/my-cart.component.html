@@ -20,9 +20,6 @@
     <div class="your-courses" *ngIf="number === 1">
       <div class="left">
         <div class="course" *ngFor="let course of courses">
-          <div class="img">
-            <h5 style="font-size: .8em; color: #fff;">Banner</h5>
-          </div>
           <div class="info-course">
             <div class="top">
               <div class="title-course">
@@ -32,24 +29,6 @@
               <div class="end-top">
                 <a href="#">Remover</a>
                 <span><i class="fa-solid fa-tag"></i> R$ {{course.preco}},00</span>
-              </div>
-            </div>
-            <div class="footer-info">
-              <div class="feedback">
-                <span>Avaliação
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                </span>
-                <span class="qtd-feedback">
-                  ({{course.avaliacao}} avaliações)
-                </span>
-              </div>
-              <div class="more-info">
-                <div class="field"><p>{{course.carga}}</p></div>
-                <div class="field"><p> <i class="fa-solid fa-heart"></i> {{course.curtidas}} curtidas</p></div>
               </div>
             </div>
           </div>
