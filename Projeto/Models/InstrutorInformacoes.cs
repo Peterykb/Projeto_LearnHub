@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Projeto.Models
 {
-  public class InstrutorInformacoes : IdentityUser
+  public class InstrutorInformacoes 
   {
     [Key]
     public int Id_Instrutor { get; set; }

@@ -12,7 +12,7 @@ namespace Projeto.Services
             userManager = _userManager;
         }
 
-        public async Task<string> LoginAsync(string username, string password, string userType)
+        public async Task<string?> LoginAsync(string username, string password, string userType)
         {
             IdentityUser user;
 
