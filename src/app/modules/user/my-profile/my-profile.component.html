@@ -6,8 +6,8 @@
   <div class="content-box">
     <div class="profile-edit">
       <div class="profile-img">
-        <img *ngIf="imageUrl" [src]="imageUrl" alt="Foto de perfil" class="img-profile">
         <div class="edit-photo" *ngIf="canEdit">
+          <img *ngIf="imageUrl" [src]="imageUrl" alt="Foto de perfil" class="img-profile">
           <input type="file" (change)="onFileSelected($event)">
         </div>
       </div>

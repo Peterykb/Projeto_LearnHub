@@ -25,7 +25,8 @@ import { BuyComponent } from './modules/user/buy/buy.component';
 import { RegisterService } from './services/register.service';
 import { SearchComponent } from './components/search/search.component';
 import { ChangePassComponent } from './components/change-pass/change-pass.component';
-
+import {HttpClientModule} from '@angular/common/http';
+ 
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { ChangePassComponent } from './components/change-pass/change-pass.compon
     ReactiveFormsModule,
     NgxPaginationModule,
     FontAwesomeModule,
+    HttpClientModule
   ],
   providers: [RegisterService],
   bootstrap: [AppComponent],

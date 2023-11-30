@@ -1,5 +1,5 @@
 <div class="box">
-    <div class="header bg-primary text-white">
+    <div class="header text-white">
         <h3>Alterar a sua Senha</h3>
     </div>
     <form (ngSubmit)="submitForm()" [formGroup]="formPass" #formDir="ngForm">
@@ -25,8 +25,8 @@
             </div>
         </div>
         <div class="bottom">
-            <button type="button" routerLink="../" class="btn btn-secondary">Cancelar</button>
-            <button type="submit" class="btn btn-primary">Alterar Senha</button>
+            <button type="button" routerLink="../" class="btn btn-cancel text-white">Cancelar</button>
+            <button type="submit" class="btn btn-change text-white">Alterar Senha</button>
         </div>
     </form>
 </div>
