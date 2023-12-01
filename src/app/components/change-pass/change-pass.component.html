@@ -1,0 +1,32 @@
+<div class="box">
+    <div class="header text-white">
+        <h3>Alterar a sua Senha</h3>
+    </div>
+    <form (ngSubmit)="submitForm()" [formGroup]="formPass" #formDir="ngForm">
+        <div class="form-group">
+            <label>Senha atual <ng-container *ngIf="formSubmitted && senhaAtual.invalid">*Este campo é obrigatório</ng-container></label>
+            <div class="pass-field">
+                <input type="{{oldPass ? 'text' : 'password'}}" formControlName="senha">
+                <i class="fa-solid" ngClass="{{!oldPass ? 'fa-eye' : 'fa-eye-slash'}}" (click)="showOldPass()"></i>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Nova senha <ng-container *ngIf="formSubmitted && novaSenha.invalid">*Este campo é obrigatório</ng-container></label>
+            <div class="pass-field">
+                <input type="{{newPass ? 'text' : 'password'}}" formControlName="nova_senha">
+                <i class="fa-solid" ngClass="{{!newPass ? 'fa-eye' : 'fa-eye-slash'}}" (click)="showNewPass()"></i>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Confirmar senha <ng-container *ngIf="formSubmitted && confirmNovaSenha.invalid">*Este campo é obrigatório</ng-container></label>
+            <div class="pass-field">
+                <input type="{{confirmNewPass ? 'text' : 'password'}}" formControlName="confirmar_senha">
+                <i class="fa-solid" ngClass="{{!confirmNewPass ? 'fa-eye' : 'fa-eye-slash'}}" (click)="showConfirmNewPass()"></i>
+            </div>
+        </div>
+        <div class="bottom">
+            <button type="button" routerLink="../" class="btn btn-cancel text-white">Cancelar</button>
+            <button type="submit" class="btn btn-change text-white">Alterar Senha</button>
+        </div>
+    </form>
+</div>

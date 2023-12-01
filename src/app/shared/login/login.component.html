@@ -21,35 +21,34 @@
       </div>
       <div class="field">
         <label>Senha</label>
-        <input
-          type="password"
-          formControlName="password"
-          required
-          [ngClass]="{ error: formSubmitted && password.invalid }"
-        />
+        <div class="pass-field">
+          <input
+            type="{{showPass ? 'text' : 'password'}}"
+            formControlName="password"
+            required
+            [ngClass]="{ error: formSubmitted && password.invalid }"
+          />
+          <div class="showIcon" (click)="passShow()">
+            <i class="fa-solid" ngClass="{{!showPass ? 'fa-eye' : 'fa-eye-slash'}}"></i>
+          </div>
+        </div>
         <ng-container *ngIf="password.invalid && formSubmitted">
           <div class="error-message">
             <span *ngIf="password.errors?.['required']">Senha inválida</span>
           </div>
         </ng-container>
       </div>
-      <div class="bottom-content">
-        <div class="checkbox">
-          <input type="checkbox" />
-          <label>Lembrar-me</label>
-        </div>
-        <div class="forgot-password">
-          <a href="#">Esqueceu a Senha?</a>
-        </div>
-      </div>
       <div class="btn">
         <button type="submit" class="btn-submit">Login</button>
       </div>
     </form>
-    <div class="help">
-      <small
-        >Não tem uma conta? <a routerLink="/register">Cadastre-se</a></small
-      >
+  </div>
+  <div class="help">
+    <div class="header-help">
+      <div class="line"></div>
+      <span>Novo no LearnHub?</span>
+      <div class="line"></div>
     </div>
+    <button type="button" routerLink="/register">Crie sua conta da LearnHub</button>
   </div>
 </main>

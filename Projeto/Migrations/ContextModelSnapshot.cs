@@ -114,40 +114,6 @@ namespace Projeto.Migrations
                     b.ToTable("categorias");
                 });
 
-            modelBuilder.Entity("Projeto.Models.Comentarios", b =>
-                {
-                    b.Property<int>("Id_comentarios")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_comentarios"));
-
-                    b.Property<int>("AlunoId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CursoId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Texto")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Titulo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("data_public")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id_comentarios");
-
-                    b.HasIndex("AlunoId");
-
-                    b.HasIndex("CursoId");
-
-                    b.ToTable("Comentarios");
-                });
-
             modelBuilder.Entity("Projeto.Models.CursoCategoria", b =>
                 {
                     b.Property<int>("CursoId")
@@ -287,21 +253,6 @@ namespace Projeto.Migrations
                     b.Navigation("Curso");
                 });
 
-            modelBuilder.Entity("Projeto.Models.Comentarios", b =>
-                {
-                    b.HasOne("Projeto.Models.AlunoInformacoes", "aluno")
-                        .WithMany("comentarios")
-                        .HasForeignKey("AlunoId");
-
-                    b.HasOne("Projeto.Models.Cursos", "Curso")
-                        .WithMany("Comentarios")
-                        .HasForeignKey("CursoId");
-
-                    b.Navigation("Curso");
-
-                    b.Navigation("aluno");
-                });
-
             modelBuilder.Entity("Projeto.Models.CursoCategoria", b =>
                 {
                     b.HasOne("Projeto.Models.Categorias", "Categorias")
@@ -354,8 +305,6 @@ namespace Projeto.Migrations
             modelBuilder.Entity("Projeto.Models.AlunoInformacoes", b =>
                 {
                     b.Navigation("Matriculas");
-
-                    b.Navigation("comentarios");
                 });
 
             modelBuilder.Entity("Projeto.Models.Categorias", b =>
@@ -365,8 +314,6 @@ namespace Projeto.Migrations
 
             modelBuilder.Entity("Projeto.Models.Cursos", b =>
                 {
-                    b.Navigation("Comentarios");
-
                     b.Navigation("CursoCategorias");
 
                     b.Navigation("Matriculas");

@@ -5,82 +5,110 @@ using Projeto.Models;
 namespace Projeto.Controllers
 {
   [ApiController]
-[Route("api/[controller]")]
-public class ModulosController : ControllerBase
-{
-    private readonly Context _context;
+  [Route("api/[controller]")]
+  public class ModulosController : ControllerBase
+  {
+    private readonly Context context;
 
-    public ModulosController(Context context)
+    public ModulosController(Context _context)
     {
-        _context = context;
+      context = _context;
     }
 
-    [HttpGet("{cursoid}/modulos")]
+    [HttpGet("{cursoid}/modulos")] //pegar os módulos de um curso
     public async Task<ActionResult<List<Modulos>>> GetAllModulos(int cursoid)
     {
-        var modulosDoCurso = await _context.modulos.Where(m => m.CursoId == cursoid).ToListAsync();
-        return Ok(modulosDoCurso);
+      var modulosDoCurso = await context.modulos
+          .Where(m => m.CursoId == cursoid)
+          .ToListAsync();
+
+      return Ok(modulosDoCurso);
     }
 
-    [HttpPost("curso/modulos/{cursoid}/adicionar-modulo")]
-    public async Task<ActionResult<Modulos>> PostModulo(Modulos newmodulo, int cursoid)
+    [HttpPost("curso/modulos/{cursoid}/adicionar-modulo")] //criar um módulo de um curso
+    public async Task<ActionResult<Modulos>> PostModulo(Modulos newModulo, int cursoid)
     {
-        var curso = _context.cursos.Find(cursoid);
-        if (curso == null)
-            return NotFound("Curso não encontrado");
+      var curso = await context.cursos.FindAsync(cursoid);
+      if (curso == null)
+      {
+        return NotFound("Curso não encontrado");
+      }
 
-        var moduloExistente = _context.modulos.SingleOrDefault(m => m.Id_Modulo == newmodulo.Id_Modulo);
-        if (moduloExistente != null)
-            return BadRequest("Módulo já existe.");
+      var moduloExistente = await context.modulos
+          .FirstOrDefaultAsync(m => m.Id_Modulo == newModulo.Id_Modulo && m.CursoId == cursoid);
 
-        newmodulo.CursoId = cursoid;
-        curso.Modulos ??= new List<Modulos>();
-        curso.Modulos.Add(newmodulo);
+      if (moduloExistente != null)
+      {
+        return BadRequest("Módulo já existe.");
+      }
 
-        await _context.SaveChangesAsync();
+      newModulo.CursoId = cursoid;
+      curso.Modulos ??= new List<Modulos>();
+      curso.Modulos.Add(newModulo);
 
-        return Ok(await _context.modulos.ToListAsync());
+      await context.SaveChangesAsync();
+
+      return Ok(await context.modulos.ToListAsync());
     }
 
-    [HttpPut("curso/modulos/{cursoid}/modificar-modulo/{moduloid}")]
-    public async Task<ActionResult<Modulos>> PutModulos(int cursoid, int moduloid, Modulos modifymodulo)
+    [HttpPut("curso/modulos/{cursoid}/modificar-modulo/{moduloid}")] //atualizar o módulo de um curso
+    public async Task<ActionResult<Modulos>> PutModulos(int cursoid, int moduloid, Modulos modifyModulo)
     {
-        var cursoExistente = await _context.cursos.FindAsync(cursoid);
-        if (cursoExistente == null)
-            return NotFound("Curso não encontrado");
+      var cursoExistente = await context.cursos.FindAsync(cursoid);
+      if (cursoExistente == null)
+      {
+        return NotFound("Curso não encontrado");
+      }
 
-        var moduloExistente = _context.modulos.FirstOrDefault(m => m.Id_Modulo == moduloid && m.CursoId == cursoid);
-        if (moduloExistente == null)
-            return NotFound("Módulo não encontrado");
+      var moduloExistente = await context.modulos
+          .FirstOrDefaultAsync(m => m.Id_Modulo == moduloid && m.CursoId == cursoid);
 
-        moduloExistente.Titulo = modifymodulo.Titulo;
-        moduloExistente.Descricao = modifymodulo.Descricao;
+      if (moduloExistente == null)
+      {
+        return NotFound("Módulo não encontrado");
+      }
 
-        await _context.SaveChangesAsync();
+      moduloExistente.Titulo = modifyModulo.Titulo;
+      moduloExistente.Descricao = modifyModulo.Descricao;
 
-        return Ok(moduloExistente);
+      await context.SaveChangesAsync();
+
+      return Ok(moduloExistente);
     }
 
-    [HttpDelete("curso/modulos/{cursoid}/deletar-modulo/{moduloid}")]
-    public async Task<ActionResult<List<Modulos>>> DeleteModulos(int cursoid, int moduloid)
+    [HttpDelete("instrutor/{nomecurso}/{moduloid}/deletar-modulo")] //deletar o módulo de um curso
+    public async Task<ActionResult<List<Modulos>>> DeleteModulos(string nomecurso, int moduloid, int instrutorid)
     {
-        var cursoExistente = await _context.cursos.FindAsync(cursoid);
-        if (cursoExistente == null)
-            return NotFound("Curso não encontrado");
+      var cursoExistenteId = await context.cursos
+          .Where(curso => curso.Name == nomecurso && curso.InstrutorId == instrutorid)
+          .Select(curso => curso.Id_curso)
+          .ToListAsync();
 
-        var moduloExistente = _context.modulos.FirstOrDefault(m => m.Id_Modulo == moduloid && m.CursoId == cursoid);
-        if (moduloExistente == null)
-            return NotFound("Módulo não encontrado");
+      if (!cursoExistenteId.Any())
+      {
+        return NotFound("Curso não encontrado");
+      }
 
-        var aulas = _context.aulas.Where(a => a.Moduloid == moduloid);
-        if (aulas != null)
-            _context.RemoveRange(aulas);
+      var moduloExistente = await context.modulos
+          .FirstOrDefaultAsync(m => m.Id_Modulo == moduloid && cursoExistenteId.Contains(m.CursoId));
 
-        _context.Remove(moduloExistente);
-        await _context.SaveChangesAsync();
+      if (moduloExistente == null)
+      {
+        return NotFound("Módulo não encontrado");
+      }
 
-        return Ok(await _context.modulos.Where(m => m.CursoId == cursoid).ToListAsync());
+      var aulas = context.aulas.Where(a => a.Moduloid == moduloid);
+      if (aulas.Any())
+      {
+        context.RemoveRange(aulas);
+      }
+
+      context.Remove(moduloExistente);
+      await context.SaveChangesAsync();
+
+      return Ok(await context.modulos.Where(m => cursoExistenteId.Contains(m.CursoId)).ToListAsync());
     }
-}
+
+  }
 
 }

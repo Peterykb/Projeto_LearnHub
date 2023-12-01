@@ -1,0 +1,70 @@
+<div class="box">
+  <div class="btns">
+      <button class="btn-secondary" routerLink="../">Voltar</button>
+      <button class="btn-secondary">Adicionar Aula</button>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Título da aula</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Link</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <td>Mark</td>
+            <td class="desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati exercitationem perspiciatis deleniti fuga provident eligendi quae quasi aliquid necessitatibus soluta officiis, blanditiis et fugit totam laborum non nobis reiciendis explicabo molestias cupiditate nostrum nemo. Numquam omnis consequuntur, amet quis reprehenderit velit excepturi quas explicabo enim minima dolor dolorum impedit expedita voluptas odio aut cum assumenda sapiente in quasi officiis neque, aspernatur ex. Quis asperiores sequi voluptates? Provident, rem non praesentium, cupiditate consequatur dicta velit beatae unde quo, vero eaque ducimus fuga similique rerum fugiat quaerat error odio asperiores earum esse. Laudantium aliquid quasi sunt molestiae doloribus, nostrum doloremque voluptatum eligendi.</td>
+            <td>Otto</td>
+            <td>
+                <button class="text-primary" (click)="abrirLessonDialog()"><i class="fa-solid fa-edit"></i></button>
+                <button class="text-danger"><i class="fa-solid fa-trash"></i></button>
+            </td>
+
+        </tr>
+        <tr>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>Thornton</td>
+            <td>
+                <button class="text-primary" (click)="abrirLessonDialog()"><i class="fa-solid fa-edit"></i></button>
+                <button class="text-danger"><i class="fa-solid fa-trash"></i></button>
+            </td>
+
+        </tr>
+        <tr>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>the Bird</td>
+            <td>
+                <button class="text-primary" (click)="abrirLessonDialog()"><i class="fa-solid fa-edit"></i></button>
+                <button class="text-danger"><i class="fa-solid fa-trash"></i></button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="modal" [ngClass]="{ open: isLessonOpen }">
+    <div class="modal-content">
+      <span class="close" (click)="fecharLessonDialog()">X</span>
+      <h2>Editar Aula</h2>
+      
+      <div class="field-date">
+        <label>Nome da Aula</label>
+        <input type="text" />
+      </div>
+      <div class="field-date">
+        <label>Descrição</label>
+        <textarea name="" ></textarea>
+      </div>
+      <div class="field-date">
+        <label>Link</label>
+        <input type="text"  />
+      </div>
+
+      <button class="save-btn">Salvar</button>
+    </div>
+  </div>
+  <div class="overlay" *ngIf="isLessonOpen" (click)="fecharLessonDialog()"></div>
+</div>

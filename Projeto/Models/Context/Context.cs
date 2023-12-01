@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -15,6 +17,7 @@ namespace Projeto.Models
     public DbSet<Matricula> matriculas { get; set; }
     public DbSet<Modulos> modulos { get; set; }
     public DbSet<Aulas> aulas { get; set; }
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -61,15 +64,7 @@ namespace Projeto.Models
           .WithOne(a => a.Modulo)
           .HasForeignKey(a => a.Moduloid).IsRequired(false);
 
-      modelBuilder.Entity<Cursos>()
-          .HasMany(comentarios => comentarios.Comentarios)
-          .WithOne(cursos => cursos.Curso)
-          .HasForeignKey(comentarios => comentarios.CursoId).IsRequired(false);
 
-      modelBuilder.Entity<AlunoInformacoes>()
-          .HasMany(comentarios => comentarios.comentarios)
-          .WithOne(aluno => aluno.aluno)
-          .HasForeignKey(comentarios => comentarios.AlunoId).IsRequired(false);
     }
   }
 

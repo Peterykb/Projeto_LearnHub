@@ -1,12 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-relation-courses',
   templateUrl: './relation-courses.component.html',
   styleUrls: ['./relation-courses.component.scss'],
 })
-export class RelationCoursesComponent {
+export class RelationCoursesComponent implements OnInit{
   searchQuery = '';
+
+  constructor(){}
+
+  ngOnInit(): void {
+
+  }
+
   courses = [
     {
       title: 'Curso de Dotnet 7',
@@ -38,7 +45,7 @@ export class RelationCoursesComponent {
   itemsPerPage = 6;
   currentPage = 1;
 
-  
+
   get totalPages() {
     return Math.ceil(this.courses.length / this.itemsPerPage);
   }
@@ -46,7 +53,7 @@ export class RelationCoursesComponent {
   get pages() {
     return new Array(this.totalPages).fill(0).map((_, index) => index + 1);
   }
-  
+
   nextPage() {
     this.currentPage++;
   }

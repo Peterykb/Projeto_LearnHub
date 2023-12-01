@@ -6,7 +6,10 @@
   justify-content: space-between;
   align-items: center;
   border: 2px solid gray;
-  margin: auto;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
 }
 
 .header-box{
@@ -24,7 +27,7 @@
   align-items: center;
   padding: 20px 30px;
 }
-
+/* 
 .profile-edit{
   display: flex;
   flex-direction: column;
@@ -68,6 +71,51 @@
   height: 100%;
   object-fit: cover;
   border-radius: 50%;
+} */
+
+/* Estilos para o input file */
+.profile-img input[type="file"] {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+/* Estilos para a imagem da câmera */
+.profile-img {
+  position: relative;
+  width: 150px; /* Ajuste o tamanho conforme necessário */
+  height: 150px; /* Ajuste o tamanho conforme necessário */
+  overflow: hidden;
+}
+
+.profile-img::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  /* Estilo da imagem da câmera */
+  background-image: url('https://cdn-icons-png.flaticon.com/512/3178/3178179.png');
+  width: 50px; /* Ajuste o tamanho conforme necessário */
+  height: 50px; /* Ajuste o tamanho conforme necessário */
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/* Ao passar o mouse sobre a imagem, muda o estilo */
+.profile-img:hover::after {
+  /* Estilo para destacar a imagem quando o mouse passa sobre ela */
+  filter: brightness(120%);
+}
+
+/* Ao clicar na imagem, ativa o input file */
+.profile-img input[type="file"]:focus + label::after {
+  content: '';
 }
 
 .info-user,.field{
@@ -87,10 +135,22 @@
 
 .field input{
   width: 90%;
-  height: 30px;
+  height: 35px;
   font-size: 1rem;
   outline: none;
   padding: 10px 15px;
+  border-radius: 4px;
+  border: 1.5px solid #dfdfdf;
+  transition: border .3s ease-in;
+}
+
+.field input:focus{
+  border: 1.5px solid rgb(91, 0, 238);
+  transition: .4s ease-in-out;
+}
+
+.field input:disabled{
+  background-color: rgb(230, 230, 230);
 }
 
 .btn-edit,.btn-logout{

@@ -14,10 +14,13 @@ import { TeacherGuard } from './guards/teacher.guard';
 import { BlockGuard } from './guards/block.guard';
 import { CourseComponent } from './modules/user/course/course.component';
 import { BuyComponent } from './modules/user/buy/buy.component';
+import { SearchComponent } from './components/search/search.component';
+import { ChangePassComponent } from './components/change-pass/change-pass.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent, canActivate:[BlockGuard]},
+  { path: 'search-result', component: SearchComponent, canActivate:[BlockGuard]},
   { path: 'login', component: LoginComponent, canActivate: [BlockGuard]},
   { path: 'register', component: RegisterComponent, canActivate: [BlockGuard] },
   { path: 'course-preview', component: CoursePreviewComponent },
@@ -34,6 +37,7 @@ const routes: Routes = [
     canActivate: [UserGuard],
   },
   { path: 'profile', component: MyProfileComponent, canActivate: [UserGuard] },
+  { path: 'profile/change-pass', component: ChangePassComponent, canActivate: [UserGuard] },
   {
     path: 'teacher',
     canActivate: [TeacherGuard],

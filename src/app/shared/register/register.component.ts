@@ -1,55 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
+import { RegisterService } from 'src/app/services/register.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit{
   faLock = faLock;
   formRegister: any;
   errorMessage: string = '';
   regTeacher: boolean = false;
+  isShowPass = false;
+  isShowConfirmPass = false;
+  isShowPassTeacher = false;
+  isShowConfirmPassTeacher = false;
 
   submitted: boolean = false;
 
   isActivated: boolean = false;
 
-  constructor(private registerBuilder: FormBuilder) {
-    this.formRegister = registerBuilder.group({
-      nome_completo: ['', Validators.required],
-      data_nascimento: ['', Validators.required],
-      cpf: ['', Validators.required],
-      email: [
-        '',
-        Validators.compose([
-          Validators.required,
-          Validators.pattern(/^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i),
-        ]),
-      ],
-      senha: [
-        '',
-        Validators.compose([
-          Validators.required,
-          Validators.minLength(8),
-          Validators.pattern(
-            /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/
-          ),
-        ]),
-      ],
-      confirmar_senha: [
-        '',
-        Validators.compose([
-          Validators.required,
-          Validators.minLength(8),
-          Validators.pattern(
-            /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/
-          ),
-        ]),
-      ],
-    });
+  constructor(private router: Router, private registerService: RegisterService) {
+  }
+
+  ngOnInit() {
+    this.formRegister = this.registerService.createRegisterForm();
   }
 
   onRegist() {
@@ -61,6 +39,36 @@ export class RegisterComponent {
         this.errorMessage = 'As senhas não coincidem';
       }
     }
+    this.router.navigate(['login'])
+  }
+
+  onRegistTeacher(){
+    this.submitted = true
+    if(this.formRegister.invalid){
+      return;
+    }
+    else{
+      if(this.senha.value !== this.confirmSenha.value){
+        this.errorMessage = "As senhas não coincidem"
+      }
+      this.router.navigate(['login'])
+    }
+  }
+
+  showPass(){
+    this.isShowPass = !this.isShowPass;
+  }
+
+  showConfirmPass(){
+    this.isShowConfirmPass = !this.isShowConfirmPass;
+  }
+
+  showPassTeacher(){
+    this.isShowPassTeacher = !this.isShowPassTeacher;
+  }
+
+  showConfirmPassTeacher(){
+    this.isShowConfirmPassTeacher = !this.isShowConfirmPassTeacher;
   }
 
   registTeacher() {
@@ -99,23 +107,12 @@ export class RegisterComponent {
     return this.formRegister.get('confirmar_senha')!;
   }
 
-  formatCPF(cpfInput: string): string {
-    const cpf = cpfInput.replace(/\D/g, ''); // Remove caracteres não numéricos
-    const cpfFormatted = cpf
-      .replace(/(\d{3})(\d)/, '$1.$2')
-      .replace(/(\d{3})(\d)/, '$1.$2')
-      .replace(/(\d{3})(\d{1,2})/, '$1-$2')
-      .replace(/(-\d{2})\d+?$/, '$1');
-
-    return cpfFormatted;
-  }
-
   updateCPFValue(event: Event): void {
     const inputElement = event.target as HTMLInputElement;
     const cpfControl = this.formRegister.get('cpf');
     
     if (cpfControl) {
-      cpfControl.setValue(this.formatCPF(inputElement.value));
+      cpfControl.setValue(this.registerService.formatCPF(inputElement.value));
     }
   }
 }

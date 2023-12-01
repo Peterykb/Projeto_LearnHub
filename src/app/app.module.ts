@@ -22,7 +22,11 @@ import { RegisterComponent } from './shared/register/register.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CourseComponent } from './modules/user/course/course.component';
 import { BuyComponent } from './modules/user/buy/buy.component';
-
+import { RegisterService } from './services/register.service';
+import { SearchComponent } from './components/search/search.component';
+import { ChangePassComponent } from './components/change-pass/change-pass.component';
+import {HttpClientModule} from '@angular/common/http';
+ 
 
 @NgModule({
   declarations: [
@@ -39,6 +43,8 @@ import { BuyComponent } from './modules/user/buy/buy.component';
     RegisterComponent,
     CourseComponent,
     BuyComponent,
+    SearchComponent,
+    ChangePassComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,8 +53,9 @@ import { BuyComponent } from './modules/user/buy/buy.component';
     ReactiveFormsModule,
     NgxPaginationModule,
     FontAwesomeModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [RegisterService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

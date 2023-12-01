@@ -11,8 +11,7 @@
 //         {
 //             userManager = _userManager;
 //         }
-
-//         public async Task<bool> LoginAsync(string username, string password, string userType)
+//         public async Task<string?> LoginAsync(string username, string password, string userType)
 //         {
 //             IdentityUser user;
 
@@ -27,16 +26,15 @@
 //             else
 //             {
 //                 // Lidar com tipo de usuário inválido, se necessário
-//                 return false;
+//                 return null;
 //             }
 
 //             if (user != null && await userManager.CheckPasswordAsync(user, password))
 //             {
-//                 // Realize ações adicionais, se necessário
-//                 return true;
+//                 return TokenService.GenerateToken(user, userType);
 //             }
 
-//             return false;
+//             return null;
 //         }
 //     }
 // }

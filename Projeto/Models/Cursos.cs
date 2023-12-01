@@ -16,15 +16,12 @@ namespace Projeto.Models
 
         public InstrutorInformacoes? Instrutor { get; set; }
 
-        // Definição da chave estrangeira
          [JsonIgnore]
         public ICollection<Matricula>? Matriculas { get; set; } = new List<Matricula>();
          [JsonIgnore]
         public ICollection<CursoCategoria> CursoCategorias { get; set; } = new List<CursoCategoria>();
          [JsonIgnore]
         public ICollection<Modulos> Modulos { get; set; } = new List<Modulos>();
-         [JsonIgnore]
-        public ICollection<Comentarios> Comentarios { get; set; } = new List<Comentarios>();
          [JsonIgnore]
         public ICollection<Carrinho>? carrinho { get; set; }
     }

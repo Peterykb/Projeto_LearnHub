@@ -1,34 +1,42 @@
-<div class="container">
-  <div class="content">
-    <div class="profile-image">
-      <img src="https://via.placeholder.com/100x100" alt="Imagem-Perfil">
-      <i class="fa-solid fa-pen"></i>
-    </div>
-    <div class="info-fields">
-      <!-- INFORMAÇÕES GERAIS -->
-      <div class="input-field">
-        <label for="name">Nome Completo</label>
-        <input type="text" placeholder="Nome Completo" disabled>
-      </div>
-      <div class="input-field">
-        <label for="name">Data de Nascimento</label>
-        <input type="text" placeholder="Data de Nascimento" disabled>
-      </div>
-      <!-- INFORMAÇÕES DE LOGIN -->
-      <div class="login-info">
-        <div class="input-field">
-          <label for="name">Email</label>
-          <input type="text" placeholder="Email" disabled>
-        </div>
-        <div class="input-field">
-          <label for="name">Senha</label>
-          <input type="text" placeholder="********" disabled>
+<div class="box">
+  <div class="header-box">
+    <h5>Perfil público</h5>
+    <h5>Veja aqui as suas informações</h5>
+  </div>
+  <div class="content-box">
+    <div class="profile-edit">
+      <div class="profile-img">
+        <img *ngIf="imageUrl" [src]="imageUrl" alt="Foto de perfil" class="img-profile">
+        <div class="edit-photo" *ngIf="canEdit">
+          <input type="file" (change)="onFileSelected($event)">
         </div>
       </div>
+      <button (click)="habilitEdit()" class="btn-edit text-primary" *ngIf="!canEdit">Editar perfil</button>
     </div>
-    <div class="actions-btns">
-      <button class="cancel" routerLink="/teacher/overview">Voltar para Home</button>
-      <button class="save-changes bg-primary text-white">Salvar Alterações</button>
+    <div class="info-user">
+      <div class="field" #inputContainer>
+        <label>Nome Completo</label>
+        <input type="text" [disabled]="!canEdit">
+      </div>
+      <div class="field" #inputContainer>
+        <label>Data de Nascimento</label>
+        <input type="date" [disabled]="!canEdit">
+      </div>
+      <div class="field" #inputContainer>
+        <label>Email</label>
+        <input type="text" [disabled]="!canEdit">
+      </div>
+      <div class="field">
+        <label>Senha</label>
+        <input type="password" disabled>
+        <a href="#" *ngIf="canEdit">Alterar Senha</a>
+      </div>
+    </div>
+    <div class="buttons-field">
+      <button *ngIf="!canEdit" class="btn-delete">Excluir Conta</button>
+      <button *ngIf="canEdit" class="btn-save">Salvar</button>
+      <button *ngIf="canEdit" class="btn-cancel" (click)="cancelEdit()">Cancelar</button>
     </div>
   </div>
+
 </div>

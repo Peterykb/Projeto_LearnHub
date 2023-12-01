@@ -3,22 +3,22 @@
         <h1>Crie o seu curso agora!</h1>
     </div>
     <form (ngSubmit)="criarCurso()" #cursoForm="ngForm">
-  
+
       <!-- Campos do Curso -->
       <label for="nomeCurso">Nome do Curso:</label>
       <input type="text" id="nomeCurso" name="nomeCurso" [(ngModel)]="curso.nome" required>
 
-      <button (click)="toggleButton()" [class.active]="isActive" class="toggle-button">
+      <button type="button" (click)="toggleButton()" [class.active]="isActive" class="toggle-button">
         <i [class]="isActive ? 'fas fa-toggle-on' : 'fas fa-toggle-off'"></i>
         Disponibilidade
       </button>
 
-  
+
       <!-- Campos dos Módulos -->
       <div *ngFor="let modulo of curso.modulos; let i = index" class="modulo">
         <label for="nomeModulo{{i}}">Nome do Módulo:</label>
         <input type="text" id="nomeModulo{{i}}" name="nomeModulo{{i}}" [(ngModel)]="modulo.nome" required>
-  
+
         <!-- Campos das Aulas -->
         <div *ngFor="let aula of modulo.aulas; let j = index" class="aula">
           <label for="nomeAula{{i}}-{{j}}">Nome da Aula:</label>
@@ -31,15 +31,14 @@
         <input type="text" id="linkVideo{{i}}-{{j}}" name="linkVideo{{i}}-{{j}}" [(ngModel)]="aula.linkVideo" required>
           <button (click)="removerAula(i, j)" class="btn btn-danger">Remover Aula</button>
         </div>
-  
+
         <div class="actions-btns">
             <button (click)="removerModulo(i)" class="btn btn-danger">Remover Módulo</button> <br>
             <button type="button" (click)="adicionarAulaEmModulo(i)" class="btn add-class">Adicionar Aula</button>
         </div>
       </div>
-  
+
       <button type="button" (click)="adicionarModulo()">Adicionar Módulo</button>
       <button type="submit">Criar Curso</button>
     </form>
   </div>
-  

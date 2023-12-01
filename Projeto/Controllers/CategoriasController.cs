@@ -15,13 +15,13 @@ namespace Projeto.Controllers
       context = _context;
     }
 
-    [HttpGet("Categorias")]
+    [HttpGet("Categorias")]//pegar todas as categorias
     public async Task<ActionResult<List<Categorias>>> GetCategorias()
     {
       return await context.categorias.ToListAsync();
     }
 
-    [HttpGet("Categorias/{categoriaid}/Cursos")]
+    [HttpGet("Categorias/{categoriaid}/Cursos")]//pra pegar os cursos de uma categoria
     public async Task<ActionResult<List<CursoCategoria>>> GetCursosdaCategoria(int categoriaid)
     {
      var categoria = await context.categorias.FindAsync(categoriaid);
