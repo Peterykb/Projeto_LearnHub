@@ -34,7 +34,7 @@ namespace Projeto.Controllers
     [HttpGet("instrutor/{id}")]
     public async Task<ActionResult<IEnumerable<Cursos>>> GetCursoInstrutor(int id)
     {
-      var cursosDoInstrutor = context.cursos
+      var cursosDoInstrutor = await context.cursos
      .Where(c => c.InstrutorId == id)
      .Select(c => new
      {
@@ -43,7 +43,7 @@ namespace Projeto.Controllers
        c.Data_criacao,
        c.Disponivel,
        c.Preco
-     }).ToList();
+     }).ToListAsync();
       if (cursosDoInstrutor == null) return NotFound("Não foi encontrado");
       return Ok(cursosDoInstrutor);
     }
@@ -51,7 +51,9 @@ namespace Projeto.Controllers
     [HttpGet("aluno/{id}")]
     public async Task<ActionResult<List<Cursos>>> GetAlunoCursos(int id)
     {
-
+      var alunoexiste = await context.alunos.FindAsync(id);
+      if(alunoexiste == null) return NotFound("O aluno não existe");
+      
       var matriculas = await context.matriculas.Where(m => m.AlunoId == id).ToListAsync();
 
       if (matriculas == null || !matriculas.Any())

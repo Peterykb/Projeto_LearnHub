@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
       alert('form invalido')
     } else {
 
-      const loginData = this.loginForm.value
+      const   loginData = this.loginForm.value
 
       if(this.isTeacherEmail(loginData.email)){
         this.authTeacher.loginTeacher(loginData).subscribe(
