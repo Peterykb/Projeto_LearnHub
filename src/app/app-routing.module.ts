@@ -20,7 +20,7 @@ import { ChangePassComponent } from './components/change-pass/change-pass.compon
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent, canActivate:[BlockGuard]},
-  { path: 'search-result', component: SearchComponent, canActivate:[BlockGuard]},
+  { path: 'search-result/:id', component: SearchComponent, canActivate:[BlockGuard]},
   { path: 'login', component: LoginComponent, canActivate: [BlockGuard]},
   { path: 'register', component: RegisterComponent, canActivate: [BlockGuard] },
   { path: 'course-preview', component: CoursePreviewComponent },

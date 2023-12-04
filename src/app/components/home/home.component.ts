@@ -1,11 +1,32 @@
-import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Categoria } from 'src/app/models/Categoria';
+import { Course } from 'src/app/models/Course';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit{
+
+  categories: Categoria[] = [];
+  courses: Course[] = [];
+
+  constructor(private userService: UserService, private router: Router){}
+
+  navigateToCategoriaCursos(categoryId: number): void {
+    this.router.navigate(['/search-result', categoryId]);
+  }
+
+  ngOnInit(): void {
+    /* Trazendo todas as categorias */
+    this.userService.getCategorias().subscribe(data => {
+      this.categories = data;
+      console.log(this.categories)
+    })
+  }
   /* CURSOS MAIS ACESSADOS DA PLATAFORMA*/
   coursesAcessed = [
     {
@@ -35,31 +56,4 @@ export class HomeComponent {
     },
   ];
 
-  /* CATEGORIAS DE CURSOS */
-  categories = [
-    {
-      titleCat: 'Front-End',
-      class: 'fa-solid fa-desktop text-white',
-      descCat:
-        'Some quick example text to build on the card title and make up the bulk of the cards content.',
-    },
-    {
-      titleCat: 'Back-End',
-      class: 'fa-solid fa-server text-white',
-      descCat:
-        'Some quick example text to build on the card title and make up the bulk of the cards content.',
-    },
-    {
-      titleCat: 'Banco de Dados',
-      class: 'fa-solid fa-database text-white',
-      descCat:
-        'Some quick example text to build on the card title and make up the bulk of the cards content.',
-    },
-    {
-      titleCat: 'Web Design',
-      class: 'fa-solid fa-palette text-white',
-      descCat:
-        'Some quick example text to build on the card title and make up the bulk of the cards content.',
-    },
-  ];
 }

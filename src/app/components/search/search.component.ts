@@ -1,36 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Categoria } from 'src/app/models/Categoria';
+import { Course } from 'src/app/models/Course';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent {
-  coursesAcessed = [
-    {
-      title: 'Banco de Dados - SQL',
-      desc: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde aspernatur odit quasi maxime labore, rerum earum est magnam commodi doloribus impedit soluta fugiat dolorem consequuntur.',
-      price: 300,
-    },
-    {
-      title: 'Angular 15+',
-      desc: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde aspernatur odit quasi maxime labore, rerum earum est magnam commodi doloribus impedit soluta fugiat dolorem consequuntur.',
-      price: 125.55,
-    },
-    {
-      title: 'Chat GPT para Devs',
-      desc: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde aspernatur odit quasi maxime labore, rerum earum est magnam commodi doloribus impedit soluta fugiat dolorem consequuntur.',
-      price: 150,
-    },
-    {
-      title: 'Robótica Educacional',
-      desc: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde aspernatur odit quasi maxime labore, rerum earum est magnam commodi doloribus impedit soluta fugiat dolorem consequuntur.',
-      price: 700,
-    },
-    {
-      title: 'AWS - Cloud Fundations',
-      desc: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde aspernatur odit quasi maxime labore, rerum earum est magnam commodi doloribus impedit soluta fugiat dolorem consequuntur.',
-      price: 450.99,
-    },
-  ];
+export class SearchComponent implements OnInit{
+  categoriaId: any;
+  category!: Categoria[];
+  cursos!: Course[];
+
+  constructor(private route: ActivatedRoute, private userService: UserService){}
+
+  ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+      const categoryIdString = params.get('id');
+
+    if (categoryIdString !== null) {
+      this.categoriaId = +categoryIdString;
+      this.loadCursos();
+    }
+    })
+  }
+
+  loadCursos(): void{
+    this.userService.GetCursosdaCategoria(this.categoriaId).subscribe(cursos => {
+      this.cursos = cursos;
+    });
+  }
 }

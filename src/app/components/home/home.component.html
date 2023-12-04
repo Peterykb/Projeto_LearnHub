@@ -81,15 +81,12 @@
       <hr />
     </div>
     <div class="cards-categories">
-      <div class="card" *ngFor="let category of categories" routerLink="/search-result">
-        <div class="icon-category bg-dark">
-          <i class="{{ category.class }}"></i>
-        </div>
+      <div class="card" *ngFor="let category of categories" (click)="navigateToCategoriaCursos(category.id_categoria)">
         <div class="card-body">
-          <h5 class="card-title">{{ category.titleCat }}</h5>
-          <p class="card-text">{{ category.descCat }}</p>
+          <h1>{{category.name}}</h1>
         </div>
       </div>
     </div>
   </section>
+
 </main>
