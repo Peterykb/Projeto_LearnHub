@@ -81,7 +81,7 @@
       <hr />
     </div>
     <div class="cards-categories">
-      <div class="card" *ngFor="let category of categories" (click)="navigateToCategoriaCursos(category.id_categoria)">
+      <div class="card" *ngFor="let category of categories" (click)="navigateToCategoriaCursos(category.id_categoria, category.name)">
         <div class="card-body">
           <h1>{{category.name}}</h1>
         </div>

@@ -13,6 +13,7 @@ export class SearchComponent implements OnInit{
   categoriaId: any;
   category!: Categoria[];
   cursos!: Course[];
+  
 
   constructor(private route: ActivatedRoute, private userService: UserService){}
 

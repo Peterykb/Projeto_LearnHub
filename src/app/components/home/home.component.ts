@@ -13,11 +13,13 @@ export class HomeComponent implements OnInit{
 
   categories: Categoria[] = [];
   courses: Course[] = [];
+  selectedCategoryName: string = '';
 
   constructor(private userService: UserService, private router: Router){}
 
-  navigateToCategoriaCursos(categoryId: number): void {
+  navigateToCategoriaCursos(categoryId: number, categoryName: string): void {
     this.router.navigate(['/search-result', categoryId]);
+    this.selectedCategoryName = categoryName;
   }
 
   ngOnInit(): void {
