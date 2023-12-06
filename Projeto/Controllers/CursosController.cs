@@ -48,35 +48,41 @@ namespace Projeto.Controllers
       return Ok(cursosDoInstrutor);
     }
 
-    [HttpPost("criar")] // pro instrutor criar um curso
-    public async Task<ActionResult<Cursos>> CreateCurso([FromBody] Cursos novocurso, int instrutorid, int categoriaId)
-    {
-      if (novocurso == null)
-      {
-        return BadRequest("Dados vazios");
-      }
+  [HttpPost("criar")] // pro instrutor criar um curso
+public async Task<ActionResult<Cursos>> CreateCurso([FromBody] Cursos novocurso, int instrutorid, int categoriaId)
+{
+   if (novocurso == null)
+   {
+      return BadRequest("Dados vazios");
+   }
 
-      var cursoExistente = await context.cursos
-          .FirstOrDefaultAsync(c => c.Name == novocurso.Name && c.InstrutorId == instrutorid);
+   var cursoExistente = await context.cursos
+       .FirstOrDefaultAsync(c => c.Name == novocurso.Name && c.InstrutorId == instrutorid);
 
-      if (cursoExistente != null)
-      {
-        return BadRequest("O curso já existe");
-      }
+   if (cursoExistente != null)
+   {
+      return BadRequest("O curso já existe");
+   }
 
-      context.cursos.Add(novocurso);
-      novocurso.InstrutorId = instrutorid;
+   novocurso.InstrutorId = instrutorid; // Atribuir InstrutorId antes de adicionar ao contexto
 
-      context.CursoCategorias.Add(new CursoCategoria
-      {
-        CursoId = novocurso.Id_curso,
-        CategoriaId = categoriaId
-      });
+   context.cursos.Add(novocurso);
 
-      await context.SaveChangesAsync();
+   // Adicione uma nova instância de CursoCategoria e defina a propriedade CursoId
+   var cursoCategoria = new CursoCategoria
+   {
+      CursoId = novocurso.Id_curso,
+      CategoriaId = categoriaId
+   };
 
-      return Ok(novocurso);
-    }
+   context.CursoCategorias.Add(cursoCategoria);
+
+   await context.SaveChangesAsync();
+
+   return Ok(novocurso);
+}
+
+
 
 
     [HttpPut("instrutor/{id}/atualizar")] //pro instrutor atualizar um curso

@@ -13,5 +13,6 @@ namespace Projeto.Models
     public int DataNascimento { get; set; }
     [JsonIgnore]
     public ICollection<Matricula>? Matriculas { get; set; } = new List<Matricula>();
+     public List<Carrinho>? Carrinhos { get; set; }
   }
 }

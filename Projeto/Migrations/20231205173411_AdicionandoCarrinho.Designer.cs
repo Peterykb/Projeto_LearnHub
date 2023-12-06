@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Projeto.Models;
 
@@ -10,9 +11,11 @@ using Projeto.Models;
 namespace Projeto.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20231205173411_AdicionandoCarrinho")]
+    partial class AdicionandoCarrinho
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -77,6 +80,9 @@ namespace Projeto.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("CursoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CarrinhoId")
                         .HasColumnType("int");
 
                     b.HasKey("AlunoId", "CursoId");
