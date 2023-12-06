@@ -86,6 +86,7 @@ section .title {
   min-width: calc(50% - 50px);
   min-width: calc(50% - 50px);
   padding: 0;
+  border-radius: 10px;
 }
 
 .card-course.full-width-card {
@@ -102,6 +103,8 @@ section .title {
   font-size: 1.5rem;
   background-color: #434343;
   color: #fff;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
 }
 
 .card-content {

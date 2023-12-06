@@ -1,4 +1,4 @@
- <div class="box">
+<div class="box">
   <div class="left">
     <div class="preview-video">
       <i class="fa-solid fa-play"></i>
@@ -6,12 +6,13 @@
     </div>
     <div class="content-course">
       <div class="top">
-          <h5>Banco de Dados - SQL</h5>
+        <h5>Banco de Dados - SQL</h5>
+        <div class="price">
+          <span class="oficial-price">R$ <strong>220,00</strong></span>
+          <span class="price-dashed">R$ 650,50</span>
+        </div>
       </div>
       <div class="bottom">
-        <div class="price">
-          <span>R$ <strong>220,00</strong></span>
-        </div>
         <div class="buttons">
           <button class="add-cart">Adicionar ao Carrinho</button>
           <button class="buy" (click)="verifyBuy()">Comprar</button>
@@ -50,4 +51,22 @@
   </div>
 </div>
 
+<div class="courses-recommend">
+  <div class="title">
+    <h1>Cursos que talvez você goste</h1>
+  </div>
+<div class="container">
+  <div class="carousel-wrapper">
+    <div class="carousel" #carousel>
+      <div class="cards" #cards>
+        <!-- Coloque aqui vários cards (divs) com a classe 'card' -->
+        <div class="card" *ngFor="let card of cardsData">{{card}}</div>
+        <!-- Adicione mais cards conforme necessário -->
+      </div>
+    </div>
+    <button class="carousel-control prev" (click)="moveCarousel('prev')">←</button>
+    <button class="carousel-control next" (click)="moveCarousel('next')">→</button>
+  </div>
+</div>
 
+</div>
