@@ -5,7 +5,7 @@
 namespace Projeto.Migrations
 {
     /// <inheritdoc />
-    public partial class Modelagem : Migration
+    public partial class Primeira_Migracao : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -63,75 +63,36 @@ namespace Projeto.Migrations
                     Data_criacao = table.Column<int>(type: "int", nullable: false),
                     Disponivel = table.Column<bool>(type: "bit", nullable: false),
                     Preco = table.Column<double>(type: "float", nullable: false),
-                    InstrutorId = table.Column<int>(type: "int", nullable: false),
-                    CategoriasId_categoria = table.Column<int>(type: "int", nullable: true)
+                    InstrutorId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_cursos", x => x.Id_curso);
                     table.ForeignKey(
-                        name: "FK_cursos_categorias_CategoriasId_categoria",
-                        column: x => x.CategoriasId_categoria,
-                        principalTable: "categorias",
-                        principalColumn: "Id_categoria");
-                    table.ForeignKey(
                         name: "FK_cursos_instrutors_InstrutorId",
                         column: x => x.InstrutorId,
                         principalTable: "instrutors",
-                        principalColumn: "Id_Instrutor",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id_Instrutor");
                 });
 
             migrationBuilder.CreateTable(
-                name: "Carrinho",
+                name: "carrinhos",
                 columns: table => new
                 {
-                    Id_carrinho = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Quantidade = table.Column<int>(type: "int", nullable: false),
-                    CursoId = table.Column<int>(type: "int", nullable: false),
-                    AlunoId = table.Column<int>(type: "int", nullable: false)
+                    AlunoId = table.Column<int>(type: "int", nullable: false),
+                    CursoId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Carrinho", x => x.Id_carrinho);
+                    table.PrimaryKey("PK_carrinhos", x => new { x.AlunoId, x.CursoId });
                     table.ForeignKey(
-                        name: "FK_Carrinho_alunos_AlunoId",
+                        name: "FK_carrinhos_alunos_AlunoId",
                         column: x => x.AlunoId,
                         principalTable: "alunos",
                         principalColumn: "Id_aluno",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Carrinho_cursos_CursoId",
-                        column: x => x.CursoId,
-                        principalTable: "cursos",
-                        principalColumn: "Id_curso",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Comentarios",
-                columns: table => new
-                {
-                    Id_comentarios = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Titulo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Texto = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    data_public = table.Column<int>(type: "int", nullable: false),
-                    CursoId = table.Column<int>(type: "int", nullable: false),
-                    AlunoId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Comentarios", x => x.Id_comentarios);
-                    table.ForeignKey(
-                        name: "FK_Comentarios_alunos_AlunoId",
-                        column: x => x.AlunoId,
-                        principalTable: "alunos",
-                        principalColumn: "Id_aluno",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Comentarios_cursos_CursoId",
+                        name: "FK_carrinhos_cursos_CursoId",
                         column: x => x.CursoId,
                         principalTable: "cursos",
                         principalColumn: "Id_curso",
@@ -143,8 +104,7 @@ namespace Projeto.Migrations
                 columns: table => new
                 {
                     CursoId = table.Column<int>(type: "int", nullable: false),
-                    CategoriaId = table.Column<int>(type: "int", nullable: false),
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    CategoriaId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -153,8 +113,7 @@ namespace Projeto.Migrations
                         name: "FK_CursoCategorias_categorias_CategoriaId",
                         column: x => x.CategoriaId,
                         principalTable: "categorias",
-                        principalColumn: "Id_categoria",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id_categoria");
                     table.ForeignKey(
                         name: "FK_CursoCategorias_cursos_CursoId",
                         column: x => x.CursoId,
@@ -177,14 +136,12 @@ namespace Projeto.Migrations
                         name: "FK_matriculas_alunos_AlunoId",
                         column: x => x.AlunoId,
                         principalTable: "alunos",
-                        principalColumn: "Id_aluno",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id_aluno");
                     table.ForeignKey(
                         name: "FK_matriculas_cursos_CursoId",
                         column: x => x.CursoId,
                         principalTable: "cursos",
-                        principalColumn: "Id_curso",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id_curso");
                 });
 
             migrationBuilder.CreateTable(
@@ -194,6 +151,7 @@ namespace Projeto.Migrations
                     Id_Modulo = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Titulo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Descricao = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CursoId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -203,8 +161,7 @@ namespace Projeto.Migrations
                         name: "FK_modulos_cursos_CursoId",
                         column: x => x.CursoId,
                         principalTable: "cursos",
-                        principalColumn: "Id_curso",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id_curso");
                 });
 
             migrationBuilder.CreateTable(
@@ -224,8 +181,7 @@ namespace Projeto.Migrations
                         name: "FK_aulas_modulos_Moduloid",
                         column: x => x.Moduloid,
                         principalTable: "modulos",
-                        principalColumn: "Id_Modulo",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id_Modulo");
                 });
 
             migrationBuilder.CreateIndex(
@@ -234,34 +190,14 @@ namespace Projeto.Migrations
                 column: "Moduloid");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Carrinho_AlunoId",
-                table: "Carrinho",
-                column: "AlunoId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Carrinho_CursoId",
-                table: "Carrinho",
-                column: "CursoId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Comentarios_AlunoId",
-                table: "Comentarios",
-                column: "AlunoId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Comentarios_CursoId",
-                table: "Comentarios",
+                name: "IX_carrinhos_CursoId",
+                table: "carrinhos",
                 column: "CursoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CursoCategorias_CategoriaId",
                 table: "CursoCategorias",
                 column: "CategoriaId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_cursos_CategoriasId_categoria",
-                table: "cursos",
-                column: "CategoriasId_categoria");
 
             migrationBuilder.CreateIndex(
                 name: "IX_cursos_InstrutorId",
@@ -286,10 +222,7 @@ namespace Projeto.Migrations
                 name: "aulas");
 
             migrationBuilder.DropTable(
-                name: "Carrinho");
-
-            migrationBuilder.DropTable(
-                name: "Comentarios");
+                name: "carrinhos");
 
             migrationBuilder.DropTable(
                 name: "CursoCategorias");
@@ -301,13 +234,13 @@ namespace Projeto.Migrations
                 name: "modulos");
 
             migrationBuilder.DropTable(
+                name: "categorias");
+
+            migrationBuilder.DropTable(
                 name: "alunos");
 
             migrationBuilder.DropTable(
                 name: "cursos");
-
-            migrationBuilder.DropTable(
-                name: "categorias");
 
             migrationBuilder.DropTable(
                 name: "instrutors");

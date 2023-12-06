@@ -48,41 +48,47 @@ namespace Projeto.Controllers
       return Ok(cursosDoInstrutor);
     }
 
-  [HttpPost("criar")] // pro instrutor criar um curso
-public async Task<ActionResult<Cursos>> CreateCurso([FromBody] Cursos novocurso, int instrutorid, int categoriaId)
-{
-   if (novocurso == null)
-   {
-      return BadRequest("Dados vazios");
-   }
+    [HttpPost("criar")] // pro instrutor criar um curso
+    public async Task<ActionResult<Cursos>> CreateCurso([FromBody] Cursos novocurso, int instrutorid, int categoriaId)
+    {
+      if (novocurso == null)
+      {
+        return BadRequest("Dados vazios");
+      }
 
-   var cursoExistente = await context.cursos
-       .FirstOrDefaultAsync(c => c.Name == novocurso.Name && c.InstrutorId == instrutorid);
+      var cursoExistente = await context.cursos
+          .FirstOrDefaultAsync(c => c.Name == novocurso.Name && c.InstrutorId == instrutorid);
 
-   if (cursoExistente != null)
-   {
-      return BadRequest("O curso já existe");
-   }
+      if (cursoExistente != null)
+      {
+        return BadRequest("O curso já existe");
+      }
+      novocurso.InstrutorId = instrutorid;
+      context.cursos.Add(novocurso);
 
-   novocurso.InstrutorId = instrutorid; // Atribuir InstrutorId antes de adicionar ao contexto
+      await context.SaveChangesAsync();
 
-   context.cursos.Add(novocurso);
+      var pegaridcategoria = await context.categorias
+          .Where(c => c.Id_categoria == categoriaId)
+          .Select(c => c.Id_categoria)
+          .FirstOrDefaultAsync();
 
-   // Adicione uma nova instância de CursoCategoria e defina a propriedade CursoId
-   var cursoCategoria = new CursoCategoria
-   {
-      CursoId = novocurso.Id_curso,
-      CategoriaId = categoriaId
-   };
+      if (pegaridcategoria == default)
+      {
+        return BadRequest("Categoria não encontrada");
+      }
+      var cursoCategoria = new CursoCategoria
+      {
+        CursoId = novocurso.Id_curso,
+        CategoriaId = pegaridcategoria
+      };
 
-   context.CursoCategorias.Add(cursoCategoria);
+      context.CursoCategorias.Add(cursoCategoria);
 
-   await context.SaveChangesAsync();
+      await context.SaveChangesAsync();
 
-   return Ok(novocurso);
-}
-
-
+      return Ok(novocurso);
+    }
 
 
     [HttpPut("instrutor/{id}/atualizar")] //pro instrutor atualizar um curso
@@ -118,7 +124,8 @@ public async Task<ActionResult<Cursos>> CreateCurso([FromBody] Cursos novocurso,
         return StatusCode(500, $"Erro no servidor: {ex.Message}");
       }
     }
-    [HttpDelete("{intrutorid}/{cursoid}/deletar")] //pro instrutor deletar um curso
+
+    [HttpDelete("{instrutorid}/{cursoid}/deletar")] //pro instrutor deletar um curso
     public async Task<ActionResult<Cursos>> DeleteCurso(int cursoid, int instrutorid)
     {
       var curso = await context.cursos.FirstOrDefaultAsync(c => c.Id_curso == cursoid && c.InstrutorId == instrutorid);

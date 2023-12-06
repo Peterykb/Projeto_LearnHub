@@ -5,7 +5,7 @@
 namespace Projeto.Migrations
 {
     /// <inheritdoc />
-    public partial class Consertando_erro_json : Migration
+    public partial class Consertando_erro_cursocategoria : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
