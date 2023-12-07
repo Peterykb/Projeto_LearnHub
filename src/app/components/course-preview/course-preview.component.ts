@@ -20,7 +20,38 @@ export class CoursePreviewComponent {
     'https://services.meteored.com/img/article/inteligencia-artificial-aprende-a-reconstruir-imagens-vistas-por-pessoas-ciencia-fotos-1679175318563_768.jpg',
   ]
 
-  cardsData: string[] = ['Card 1', 'Card 2', 'Card 3','Card 3','Card 3','Card 3','Card 3','Card 3','Card 3']; // Replace with your card data
+  cardsData = [
+    {
+      name_course: 'Curso de React - Do Zero ao Avançado',
+      price_course: 200,
+      desc_course: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam facere inventore quod iusto dolor perspiciatis reprehenderit officia odio rem? Ex dolores hic, facere quidem enim inventore eos. Fugiat, repellat hic?',
+      banner_course: 'https://povio.com/blog/content/images/2023/05/angular-16-banner.jpg'
+    },
+    {
+      name_course: 'Curso de React',
+      price_course: 200,
+      desc_course: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam facere inventore quod iusto dolor perspiciatis reprehenderit officia odio rem? Ex dolores hic, facere quidem enim inventore eos. Fugiat, repellat hic?',
+      banner_course: 'https://povio.com/blog/content/images/2023/05/angular-16-banner.jpg'
+    },
+    {
+      name_course: 'Curso de React',
+      price_course: 200,
+      desc_course: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam facere inventore quod iusto dolor perspiciatis reprehenderit officia odio rem? Ex dolores hic, facere quidem enim inventore eos. Fugiat, repellat hic?',
+      banner_course: 'https://povio.com/blog/content/images/2023/05/angular-16-banner.jpg'
+    },
+    {
+      name_course: 'Curso de React',
+      price_course: 200,
+      desc_course: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam facere inventore quod iusto dolor perspiciatis reprehenderit officia odio rem? Ex dolores hic, facere quidem enim inventore eos. Fugiat, repellat hic?',
+      banner_course: 'https://povio.com/blog/content/images/2023/05/angular-16-banner.jpg'
+    },
+    {
+      name_course: 'Curso de React',
+      price_course: 200,
+      desc_course: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam facere inventore quod iusto dolor perspiciatis reprehenderit officia odio rem? Ex dolores hic, facere quidem enim inventore eos. Fugiat, repellat hic?',
+      banner_course: 'https://povio.com/blog/content/images/2023/05/angular-16-banner.jpg'
+    },
+  ];
 
 
   verifyBuy(){
