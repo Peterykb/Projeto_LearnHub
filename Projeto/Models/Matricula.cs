@@ -6,6 +6,7 @@ namespace Projeto.Models
   public class Matricula
 {
     public int AlunoId { get; set; }
+    [JsonIgnore]
     public AlunoInformacoes? Aluno { get; set; }
 
     public int CursoId { get; set; }
@@ -14,4 +15,3 @@ namespace Projeto.Models
 }
 
 }
-  

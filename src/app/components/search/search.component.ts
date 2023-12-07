@@ -9,28 +9,27 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent implements OnInit{
+export class SearchComponent implements OnInit {
   categoriaId: any;
   category!: Categoria[];
-  cursos!: Course[];
-  
+  cursos!: any[];
 
-  constructor(private route: ActivatedRoute, private userService: UserService){}
+  constructor(private route: ActivatedRoute, private userService: UserService) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       const categoryIdString = params.get('id');
 
-    if (categoryIdString !== null) {
-      this.categoriaId = +categoryIdString;
-      this.loadCursos();
-    }
-    })
+      if (categoryIdString !== null) {
+        this.categoriaId = +categoryIdString;
+        this.loadCursos();
+      }
+    });
   }
 
-  loadCursos(): void{
-    this.userService.GetCursosdaCategoria(this.categoriaId).subscribe(cursos => {
-      this.cursos = cursos;
+  loadCursos(): void {
+    this.userService.GetCursosdaCategoria(this.categoriaId).subscribe(data => {
+      this.cursos = data; 
     });
   }
 }

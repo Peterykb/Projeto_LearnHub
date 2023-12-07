@@ -10,14 +10,15 @@
         </div>
         <div class="card-content">
           <div class="top">
-            <h1>{{ course.name }}</h1>
+            <h1>{{ course.curso.name }}</h1>
+            <h4>{{course.instrutor}}</h4>
             <i class="fa-solid fa-heart"></i>
           </div>
         </div>
         <div class="card-footer">
           <small
             >Valor:
-            <strong>{{ course.preco | currency : "BRL" }}</strong></small
+            <strong>{{ course.curso.preco | currency : "BRL" }}</strong></small
           >
           <div class="btn-field">
             <button routerLink="/course-preview">Visualizar Curso</button>

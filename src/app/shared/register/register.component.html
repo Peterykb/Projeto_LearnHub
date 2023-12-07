@@ -21,7 +21,7 @@
           type="email"
           class="form-control"
           aria-describedby="emailHelp"
-          placeholder="Insira o seu nome"
+          placeholder="Insira o seu nome "
           formControlName="nome_completo"
           required
           (focus)="borda()"
@@ -61,6 +61,7 @@
           type="text"
           class="form-control"
           formControlName="cpf"
+          placeholder="000.000.000-00"
           required
           (focus)="borda()"
           (blur)="noBorda()"
@@ -91,7 +92,7 @@
         <input
           type="email"
           class="form-control"
-          placeholder="Insira o seu email"
+          placeholder="text@email.com"
           formControlName="email"
           required
           (focus)="borda()"
@@ -116,7 +117,7 @@
           <input
             type="{{ isShowPass ? 'text' : 'password' }}"
             class="form-control"
-            placeholder="Insira sua Senha"
+            placeholder="Senha"
             formControlName="senha"
             required
             (focus)="borda()"
@@ -264,6 +265,7 @@
           type="text"
           class="form-control"
           formControlName="cpf"
+          placeholder="000.000.000-00"
           required
           (focus)="borda()"
           (blur)="noBorda()"
@@ -294,7 +296,7 @@
         <input
           type="email"
           class="form-control"
-          placeholder="Insira o seu email"
+          placeholder="text@email.com"
           formControlName="email"
           required
           (focus)="borda()"

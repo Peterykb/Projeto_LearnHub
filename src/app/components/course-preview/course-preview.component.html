@@ -26,18 +26,17 @@
     </div>
     <div class="details-course">
       <div class="labels">
-        <label>Intrutor:</label>
+        <label>Instrutor:</label>
         <label>Data de criação:</label>
         <label>Última atualização:</label>
         <label>Idioma(s) do curso: </label>
-        <label>Carga horária:</label>
+
       </div>
       <div class="info-text">
         <span>Guilherme Tavares</span>
         <span>04/02/2023</span>
         <span>12/07/2024</span>
         <span>Português - Brasil, Inglês, Francês</span>
-        <span>100h</span>
       </div>
     </div>
     <div class="about-course">
@@ -59,9 +58,7 @@
   <div class="carousel-wrapper">
     <div class="carousel" #carousel>
       <div class="cards" #cards>
-        <!-- Coloque aqui vários cards (divs) com a classe 'card' -->
         <div class="card" *ngFor="let card of cardsData">{{card}}</div>
-        <!-- Adicione mais cards conforme necessário -->
       </div>
     </div>
     <button class="carousel-control prev" (click)="moveCarousel('prev')">←</button>

@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class BackendService {
-  private baseUrl = environment.apiUrl;
+  private baseUrl = environment.baseApiUrl;
   constructor(private http: HttpClient) { }
 
   getData(): Observable<any> {

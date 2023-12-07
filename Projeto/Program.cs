@@ -32,7 +32,6 @@ builder.Services.AddAuthorization();
 // })
 // .AddEntityFrameworkStores<Context>()
 // .AddDefaultTokenProviders();
-
 builder.Services.AddCors(options =>
 {
   options.AddPolicy("AllowAngular", builder =>
