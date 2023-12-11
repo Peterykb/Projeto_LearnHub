@@ -48,26 +48,26 @@
       <hr />
     </div>
     <div class="cards-container">
-      <div class="card-course" *ngFor="let course of coursesAcessed">
+      <div class="card-course" *ngFor="let course of courses">
         <div class="card-banner">
           <p>Banner</p>
         </div>
         <div class="card-content">
           <div class="top">
-            <h1>{{ course.title }}</h1>
+            <h1>{{ course.name }}</h1>
             <i class="fa-solid fa-heart"></i>
           </div>
           <div class="text-description">
-            <p>{{ course.desc }}</p>
+            <p>{{ course.id_curso }}</p>
           </div>
         </div>
         <div class="card-footer">
           <small
             >Valor:
-            <strong>{{ course.price | currency : "BRL" }}</strong></small
+            <strong>{{ course.preco| currency : "BRL" }}</strong></small
           >
           <div class="btn-field">
-            <button routerLink="/course-preview">Visualizar Curso</button>
+            <button routerLink="/course-preview/{{course.name}}">Visualizar Curso</button>
           </div>
         </div>
       </div>
@@ -75,18 +75,18 @@
   </section>
 
   <!-- SEÇÃO DE CATEGORIAS DE CURSOS -->
-  <section class="categories">
-    <div class="title">
-      <h1>Principais Categorias</h1>
-      <hr />
-    </div>
-    <div class="cards-categories">
-      <div class="card" *ngFor="let category of categories" (click)="navigateToCategoriaCursos(category.id_categoria, category.name)">
-        <div class="card-body">
-          <h1>{{category.name}}</h1>
+    <section class="categories">
+      <div class="title">
+        <h1>Principais Categorias</h1>
+        <hr />
+      </div>
+      <div class="cards-categories">
+        <div class="card" *ngFor="let category of categories" (click)="navigateToCategoriaCursos(category.id_categoria, category.name)">
+          <div class="card-body">
+            <h1>{{category.name}}</h1>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
 </main>

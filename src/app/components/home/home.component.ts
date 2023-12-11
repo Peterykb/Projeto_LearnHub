@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Categoria } from 'src/app/models/Categoria';
 import { Course } from 'src/app/models/Course';
 import { UserService } from 'src/app/services/user.service';
+import { CourseService } from 'src/app/services/course.service';
 
 @Component({
   selector: 'app-home',
@@ -15,12 +16,14 @@ export class HomeComponent implements OnInit{
   courses: Course[] = [];
   selectedCategoryName: string = '';
 
-  constructor(private userService: UserService, private router: Router){}
+  constructor(private userService: UserService, private router: Router, private courseService: CourseService){}
 
-  navigateToCategoriaCursos(categoryId: number, categoryName: string): void {
-    this.router.navigate(['/search-result', categoryId]);
-    this.selectedCategoryName = categoryName;
-  }
+// No seu componente home
+navigateToCategoriaCursos(categoryId: number, categoryName: string): void {
+  this.router.navigate(['/search-result', categoryId, categoryName]);
+  this.selectedCategoryName = categoryName;
+}
+
 
   ngOnInit(): void {
     /* Trazendo todas as categorias */
@@ -28,34 +31,10 @@ export class HomeComponent implements OnInit{
       this.categories = data;
       console.log(this.categories)
     })
+
+    this.courseService.getCourses().subscribe(data =>{
+      this.courses = data
+    })
   }
-  /* CURSOS MAIS ACESSADOS DA PLATAFORMA*/
-  coursesAcessed = [
-    {
-      title: 'Banco de Dados - SQL',
-      desc: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde aspernatur odit quasi maxime labore, rerum earum est magnam commodi doloribus impedit soluta fugiat dolorem consequuntur.',
-      price: 300,
-    },
-    {
-      title: 'Angular 15+',
-      desc: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde aspernatur odit quasi maxime labore, rerum earum est magnam commodi doloribus impedit soluta fugiat dolorem consequuntur.',
-      price: 125.55,
-    },
-    {
-      title: 'Chat GPT para Devs',
-      desc: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde aspernatur odit quasi maxime labore, rerum earum est magnam commodi doloribus impedit soluta fugiat dolorem consequuntur.',
-      price: 150,
-    },
-    {
-      title: 'Robótica Educacional',
-      desc: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde aspernatur odit quasi maxime labore, rerum earum est magnam commodi doloribus impedit soluta fugiat dolorem consequuntur.',
-      price: 700,
-    },
-    {
-      title: 'AWS - Cloud Fundations',
-      desc: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde aspernatur odit quasi maxime labore, rerum earum est magnam commodi doloribus impedit soluta fugiat dolorem consequuntur.',
-      price: 450.99,
-    },
-  ];
 
 }

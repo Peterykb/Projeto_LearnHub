@@ -21,7 +21,12 @@ namespace Projeto.Controllers
     {
       return Ok(await context.cursos.ToListAsync());
     }
-
+    [HttpGet("pegarporid/{cursoid}")]
+    public async Task<ActionResult> PegarPorId(int cursoid){
+      var curso = await context.cursos.FindAsync(cursoid);
+      if(curso == null) return NotFound("Curso não encontrado");
+      return Ok(curso);
+    }
     [HttpGet("{nomeCurso}")] //pra pesquisa
     public async Task<ActionResult<Cursos>> GetCurso(string nomeCurso)
     {
