@@ -15,7 +15,7 @@ const routes: Routes = [
 
   {
     path: '',
-    redirectTo: 'relation-courses/edit-course',
+    redirectTo: 'overview',
     pathMatch: 'full',
   },
   {

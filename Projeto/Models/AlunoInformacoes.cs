@@ -9,10 +9,12 @@ namespace Projeto.Models
     [Key]
     public int Id_aluno { get; set; }
     public string Nome { get; set; } = string.Empty;
+    public string Email {get;set;} = string.Empty;
     public string CPF { get; set; } = string.Empty;
     public int DataNascimento { get; set; }
     [JsonIgnore]
     public ICollection<Matricula>? Matriculas { get; set; } = new List<Matricula>();
+    [JsonIgnore]
      public List<Carrinho>? Carrinhos { get; set; }
   }
 }

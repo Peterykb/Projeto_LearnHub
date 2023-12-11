@@ -39,7 +39,7 @@ const routes: Routes = [
   { path: 'profile', component: MyProfileComponent, canActivate: [UserGuard] },
   { path: 'profile/change-pass', component: ChangePassComponent, canActivate: [UserGuard] },
   {
-    path: 'teacher',
+    path: 'instrutor/:id',
     canActivate: [TeacherGuard],
     loadChildren: () =>
     import('./modules/teacher/teacher.module').then((m) => m.TeacherModule),
@@ -49,6 +49,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule, TeacherModule],
+  exports: [RouterModule,  TeacherModule],
 })
 export class AppRoutingModule {}
