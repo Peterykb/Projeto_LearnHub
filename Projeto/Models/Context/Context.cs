@@ -18,6 +18,7 @@ namespace Projeto.Models
     public DbSet<Modulos> modulos { get; set; }
     public DbSet<Aulas> aulas { get; set; }
     public DbSet<Carrinho> carrinhos { get; set; }
+    public DbSet<AuthUsuario> user {get;set;}
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

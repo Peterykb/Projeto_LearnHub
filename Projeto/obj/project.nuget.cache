@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "TC8yMW5ciOgKchTejZfvkaP2/ZjsiA9Lc3hjeeIJKefmpOyrGy1ldpWQM5juizilshjFOJxl+uiQ0Jxj1ZVNhQ==",
+  "dgSpecHash": "LoLfxRsf8ut9nsI822d/MYgIe9gVg+0w7O1RYibjOk3/AKHN1E/birTxL9tpfp1FnSKkZW7hUbva+1LHqVBZ3A==",
   "success": true,
   "projectFilePath": "C:\\Users\\pedro.barbosa\\Documents\\Projeto oficial\\Projeto_LearnHub\\Projeto\\Projeto.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\pedro.barbosa\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\pedro.barbosa\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
+    "C:\\Users\\pedro.barbosa\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\pedro.barbosa\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\pedro.barbosa\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\7.0.13\\microsoft.aspnetcore.authentication.jwtbearer.7.0.13.nupkg.sha512",
     "C:\\Users\\pedro.barbosa\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\7.0.13\\microsoft.aspnetcore.cryptography.internal.7.0.13.nupkg.sha512",

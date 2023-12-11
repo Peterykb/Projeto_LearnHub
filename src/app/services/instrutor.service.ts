@@ -6,12 +6,18 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class BackendService {
+
+export class InstrutorService {
   private baseUrl = environment.baseApiUrl;
   constructor(private http: HttpClient) { }
 
-  getData(): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/instrutor/`);
+  getAllCourses(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/Cursos`);
   }
+
+  getIdProfessor(id: number): Observable<any>{
+    return this.http.get<any>(`${this.baseUrl}/InstrutorInformacoes/${id}`)
+  }
+
 
 }

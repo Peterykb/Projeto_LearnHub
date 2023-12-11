@@ -17,6 +17,7 @@ private apiUrl = environment.baseApiUrl
   getCategorias(): Observable<any>{
     return this.http.get<any>(`${this.apiUrl}/Categorias/Categorias`)
   }
+  
   GetCursosdaCategoria(categoryid: number): Observable<any>{
     return this.http.get<any>(`${this.apiUrl}/Categorias/Categorias/${categoryid}`)
   }
