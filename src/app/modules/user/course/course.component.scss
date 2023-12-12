@@ -121,25 +121,13 @@
   flex-direction: row;
   align-items: center;
   gap: 1rem;
-  padding: 10px 0;
+  padding: 10px 25px;
   transition: .3s ease-in-out;
 }
 
 .content-class:hover{
   background-color: #3d3d3d49;
   cursor: pointer;
-}
-
-.content-class .checkbox-field{
-  width: 40px;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.checkbox-field .check{
-  accent-color: #6610f2;
 }
 
 .icon-play i{
