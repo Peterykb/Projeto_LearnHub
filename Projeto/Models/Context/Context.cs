@@ -1,11 +1,12 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Projeto.Models.Authentication;
 
 
 namespace Projeto.Models
 {
-  public class Context : DbContext
+  public class Context : IdentityDbContext<UserIdentity, UserRole, string>
   {
     public Context(DbContextOptions<Context> options) : base(options) { }
     //Relação nominal das entidades do projeto.

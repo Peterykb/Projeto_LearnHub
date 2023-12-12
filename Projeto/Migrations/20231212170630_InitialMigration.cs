@@ -1,11 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace Projeto.Migrations
 {
     /// <inheritdoc />
-    public partial class Primeira_Migracao : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,8 +18,9 @@ namespace Projeto.Migrations
                     Id_aluno = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CPF = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DataNascimento = table.Column<int>(type: "int", nullable: false)
+                    DataNascimento = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -45,12 +47,27 @@ namespace Projeto.Migrations
                     Id_Instrutor = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CPF = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DataNascimento = table.Column<int>(type: "int", nullable: false)
+                    DataNascimento = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_instrutors", x => x.Id_Instrutor);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "user",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    senhacriptografada = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    professorornot = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_user", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -60,7 +77,8 @@ namespace Projeto.Migrations
                     Id_curso = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Data_criacao = table.Column<int>(type: "int", nullable: false),
+                    Data_criacao = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Idiomas = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Disponivel = table.Column<bool>(type: "bit", nullable: false),
                     Preco = table.Column<double>(type: "float", nullable: false),
                     InstrutorId = table.Column<int>(type: "int", nullable: false)
@@ -229,6 +247,9 @@ namespace Projeto.Migrations
 
             migrationBuilder.DropTable(
                 name: "matriculas");
+
+            migrationBuilder.DropTable(
+                name: "user");
 
             migrationBuilder.DropTable(
                 name: "modulos");

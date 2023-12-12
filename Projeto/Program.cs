@@ -20,7 +20,7 @@ builder.Services.AddDbContext<Context>(options =>
 });
 
 builder.Services.AddAuthorization();
-// builder.Services.AddIdentity<AlunoInformacoes, InstrutorInformacoes>(options =>
+// builder.Services.AddIdentity<AlunoInformacoes, >(options =>
 // {
 //   options.Password.RequireDigit = true;
 //   options.Password.RequiredLength = 8;
@@ -41,7 +41,6 @@ builder.Services.AddCors(options =>
              .AllowAnyHeader();
   });
 });
-
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())

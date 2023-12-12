@@ -19,12 +19,33 @@ namespace Projeto.Controllers
     [HttpGet] // pra todo mundo
     public async Task<ActionResult<List<Cursos>>> GetAllCursos()
     {
-      return Ok(await context.cursos.ToListAsync());
+      var cursos = await context.cursos.Join(
+        context.instrutors,
+        c => c.InstrutorId,
+        i => i.Id_Instrutor,
+        (c, i) => new CursoInstrutorModel
+        {
+          Curso = c,
+          Instrutor = i.Nome
+        }
+      ).ToListAsync();
+      return Ok(cursos);
     }
     [HttpGet("pegarporid/{cursoid}")]
-    public async Task<ActionResult> PegarPorId(int cursoid){
-      var curso = await context.cursos.FindAsync(cursoid);
-      if(curso == null) return NotFound("Curso não encontrado");
+    public async Task<ActionResult> PegarPorId(int cursoid)
+    {
+      var curso = await context.cursos.Where(c => c.Id_curso == cursoid).Join(
+        context.instrutors,
+        c => c.InstrutorId,
+        i => i.Id_Instrutor,
+        (c, i) => new CursoInstrutorModel
+        {
+          Curso = c,
+          Instrutor = i.Nome
+        }
+      ).ToListAsync();
+      if(!curso.Any()) return BadRequest("curso não encontrado");
+
       return Ok(curso);
     }
     [HttpGet("{nomeCurso}")] //pra pesquisa
@@ -36,7 +57,7 @@ namespace Projeto.Controllers
       return Ok(cursos);
     }
 
-    [HttpGet("instrutor/{id}")] // cursos do instrutor
+    [HttpGet("{instrutorid}")] // cursos do instrutor
     public async Task<ActionResult<IEnumerable<Cursos>>> GetCursoInstrutor(int id)
     {
       var cursosDoInstrutor = await context.cursos
@@ -53,7 +74,7 @@ namespace Projeto.Controllers
       return Ok(cursosDoInstrutor);
     }
 
-    [HttpPost("criar")] // pro instrutor criar um curso
+    [HttpPost("{instrutorid}/criar")] // pro instrutor criar um curso
     public async Task<ActionResult<Cursos>> CreateCurso([FromBody] Cursos novocurso, int instrutorid, int categoriaId)
     {
       if (novocurso == null)
@@ -96,8 +117,8 @@ namespace Projeto.Controllers
     }
 
 
-    [HttpPut("instrutor/{id}/atualizar")] //pro instrutor atualizar um curso
-    public async Task<ActionResult<Cursos>> PutCurso(int id, [FromBody] Cursos modifycurso)
+    [HttpPut("{instrutorid}/atualizar")] //pro instrutor atualizar um curso
+    public async Task<ActionResult<Cursos>> PutCurso(int instrutorid, [FromBody] Cursos modifycurso)
     {
       if (modifycurso == null)
       {
@@ -105,7 +126,7 @@ namespace Projeto.Controllers
       }
 
       var cursoExistente = await context.cursos
-          .FirstOrDefaultAsync(c => c.Id_curso == modifycurso.Id_curso && c.InstrutorId == id);
+          .FirstOrDefaultAsync(c => c.Id_curso == modifycurso.Id_curso && c.InstrutorId == instrutorid);
 
       if (cursoExistente == null)
       {
@@ -155,5 +176,10 @@ namespace Projeto.Controllers
 
       return Ok(await context.cursos.ToListAsync());
     }
+  }
+  public class CursoInstrutorModel
+  {
+    public Cursos? Curso { get; set; }
+    public string? Instrutor { get; set; } // Nome do instrutor
   }
 }

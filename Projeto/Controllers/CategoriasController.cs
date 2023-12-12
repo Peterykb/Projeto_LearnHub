@@ -49,8 +49,8 @@ namespace Projeto.Controllers
 
     public class CursoInstrutorModel
     {
-      public Cursos Curso { get; set; }
-      public string Instrutor { get; set; } // Nome do instrutor
+      public Cursos? Curso { get; set; }
+      public string? Instrutor { get; set; } // Nome do instrutor
     }
   }
 }

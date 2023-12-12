@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.VisualBasic;
 
 
 namespace Projeto.Models
@@ -12,7 +13,8 @@ namespace Projeto.Models
     public string Nome { get; set; } = string.Empty;
     public string Email {get;set;} = string.Empty;
     public string CPF { get; set; } = string.Empty;
-    public int DataNascimento { get; set; }
+     [JsonConverter(typeof(DataFormat))]
+    public DateTime DataNascimento { get; set; }
      [JsonIgnore]
     public ICollection<Cursos> Cursos {get;set;} = new List<Cursos>();
   }

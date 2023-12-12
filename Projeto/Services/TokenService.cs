@@ -18,7 +18,6 @@ namespace Projeto.Services
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id),
                 new Claim(ClaimTypes.Name, user.UserName),
-                // Adicionar uma claim personalizada com base no tipo de usuário
                 new Claim("UserType", userType)
             };
 

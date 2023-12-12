@@ -10,7 +10,7 @@ import { Instrutor } from 'src/app/models/Instrutor';
 export class ProfileComponent implements OnInit{
 
   infoInstrutor!: Instrutor;
-  idinstrutor: number = 3;
+  idinstrutor: number = 1;
 
   constructor(private instrutor: InstrutorService){}
 

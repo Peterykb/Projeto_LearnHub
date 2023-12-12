@@ -8,7 +8,8 @@ namespace Projeto.Models
     [Key]
     public int Id_curso { get; set; }
     public string Name { get; set; } = string.Empty;
-    public int Data_criacao { get; set; }
+    [JsonConverter(typeof(DataFormat))]
+    public DateTime Data_criacao { get; set; }
     public string Idiomas {get;set;} = string.Empty;
     public bool Disponivel { get; set; } = true;
     public double Preco { get; set; }
