@@ -3,5 +3,6 @@ export class Instrutor {
     nome!: string;
     cpf!: string;
     dataNascimento!: number;
+    email!: string;
 
 }
