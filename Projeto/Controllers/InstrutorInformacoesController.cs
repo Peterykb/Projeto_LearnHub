@@ -18,6 +18,13 @@ namespace Projeto.Controllers
         public async Task<ActionResult<List<InstrutorInformacoes>>> GetInstrutor(){
             return Ok(await context.instrutors.ToListAsync());
         }
+        [HttpGet("{instrutorid}")]
+        public async Task<ActionResult<InstrutorInformacoes>> PegarPorId(int instrutorid){
+          var instrutor = await context.instrutors.FirstOrDefaultAsync(i => i.Id_Instrutor == instrutorid);
+          if(instrutor == null) return BadRequest("Instrutor não encontrado.");
+
+          return Ok(instrutor);
+        }
         [HttpPost]
         public async Task <ActionResult<InstrutorInformacoes>> PostInstrutor(InstrutorInformacoes newinstrutor){
             var instrutorexiste = await context.instrutors.Where(i => i.Id_Instrutor == newinstrutor.Id_Instrutor).ToListAsync();
@@ -26,7 +33,7 @@ namespace Projeto.Controllers
             context.instrutors.Add(newinstrutor);
             await context.SaveChangesAsync();
 
-            return Ok(newinstrutor); 
+            return Ok(newinstrutor);
         }
     }
 

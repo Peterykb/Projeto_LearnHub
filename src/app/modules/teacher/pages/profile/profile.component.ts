@@ -9,16 +9,17 @@ import { Instrutor } from 'src/app/models/Instrutor';
 })
 export class ProfileComponent implements OnInit{
 
-  infoInstrutor!: Instrutor[];
+  infoInstrutor!: Instrutor;
+  idinstrutor: number = 3;
 
   constructor(private instrutor: InstrutorService){}
 
   ngOnInit(): void {
-    this.instrutor.getIdProfessor().subscribe(data =>{
+    this.instrutor.getIdProfessor(this.idinstrutor).subscribe(data =>{
       this.infoInstrutor = data
+      console.log(data)
     })
   }
-  
   canEdit: boolean = false;
   imageUrl: string | ArrayBuffer | null = null;
 
@@ -41,7 +42,7 @@ export class ProfileComponent implements OnInit{
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
     if (file) {
-      this.imageUrl = URL.createObjectURL(file); 
+      this.imageUrl = URL.createObjectURL(file);
     }
   }
 }

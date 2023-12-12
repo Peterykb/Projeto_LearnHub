@@ -628,3 +628,4 @@ C:\Projeto_LearnHub\Projeto\obj\Debug\net7.0\Projeto.pdb
 C:\Projeto_LearnHub\Projeto\obj\Debug\net7.0\Projeto.genruntimeconfig.cache
 C:\Projeto_LearnHub\Projeto\obj\Debug\net7.0\ref\Projeto.dll
 C:\Projeto_LearnHub\Projeto\bin\Debug\net7.0\BCrypt.Net-Next.dll
+C:\Users\pedro.barbosa\Documents\Projeto oficial\Projeto_LearnHub\Projeto\bin\Debug\net7.0\BCrypt.Net-Next.dll
