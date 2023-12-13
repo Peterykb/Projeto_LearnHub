@@ -1,11 +1,25 @@
-import { Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { InstrutorService } from 'src/app/services/instrutor.service';
+import { Instrutor } from 'src/app/models/Instrutor';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit{
+
+  infoInstrutor!: Instrutor;
+  idinstrutor: number = 1;
+
+  constructor(private instrutor: InstrutorService){}
+
+  ngOnInit(): void {
+    this.instrutor.getIdProfessor(this.idinstrutor).subscribe(data =>{
+      this.infoInstrutor = data
+      console.log(data)
+    })
+  }
   canEdit: boolean = false;
   imageUrl: string | ArrayBuffer | null = null;
 
@@ -28,7 +42,7 @@ export class ProfileComponent {
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
     if (file) {
-      this.imageUrl = URL.createObjectURL(file); 
+      this.imageUrl = URL.createObjectURL(file);
     }
   }
 }

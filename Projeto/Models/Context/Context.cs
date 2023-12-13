@@ -1,13 +1,14 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Projeto.Models.Authentication;
 
 
 namespace Projeto.Models
 {
-  public class Context : DbContext
+  public class Context : IdentityDbContext<UserIdentity, UserRole, string>
   {
-    public Context(DbContextOptions<Context> options) : base(options) {}
+    public Context(DbContextOptions<Context> options) : base(options) { }
     //Relação nominal das entidades do projeto.
     public DbSet<CursoCategoria> CursoCategorias { get; set; }
     public DbSet<Categorias> categorias { get; set; }
@@ -17,7 +18,8 @@ namespace Projeto.Models
     public DbSet<Matricula> matriculas { get; set; }
     public DbSet<Modulos> modulos { get; set; }
     public DbSet<Aulas> aulas { get; set; }
-
+    public DbSet<Carrinho> carrinhos { get; set; }
+    public DbSet<AuthUsuario> user {get;set;}
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -63,6 +65,20 @@ namespace Projeto.Models
           .HasMany(m => m.Aulas)
           .WithOne(a => a.Modulo)
           .HasForeignKey(a => a.Moduloid).IsRequired(false);
+      modelBuilder.Entity<AlunoInformacoes>()
+             .HasMany(a => a.Carrinhos)
+             .WithOne(c => c.Aluno)
+             .HasForeignKey(c => c.AlunoId)
+             .IsRequired();
+
+      modelBuilder.Entity<Cursos>()
+          .HasMany(c => c.Carrinhos)
+          .WithOne(c => c.Curso)
+          .HasForeignKey(c => c.CursoId)
+          .IsRequired();
+
+      modelBuilder.Entity<Carrinho>()
+          .HasKey(c => new { c.AlunoId, c.CursoId });
 
 
     }

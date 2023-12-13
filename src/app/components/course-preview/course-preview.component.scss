@@ -9,9 +9,26 @@
 }
 
 .box :where(.left, .right){
-  width: 50%;
+
   height: 100%;
-  border: 1px solid #636363;
+}
+
+.left{
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border: 1px solid #323232;
+  border-right: none;
+  width: 60%;
+}
+
+.right{
+  width: 40%;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-right: 1px solid #000;
+  border-left: none;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
 }
 
 .preview-video{
@@ -22,6 +39,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-top-left-radius: 20px;
 }
 
 .content-course {
@@ -29,13 +47,14 @@
   justify-content: space-between;
   flex-direction: column;
   height: 30%;
+  border-right: 1px solid #828282;
 }
 
 .content-course .top{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 10px;
+  padding: 20px;
 }
 
 .top h5{
@@ -44,13 +63,24 @@
 
 .content-course .bottom{
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   padding: 20px 10px;
 }
 
-.bottom .price span{
-  font-size: 1.7em;
+.price {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.price span.oficial-price{
+  font-size: 1.5em;
+}
+
+.price span.price-dashed{
+  font-size: .9rem;
+  text-decoration: line-through;
 }
 
 .bottom .buttons{
@@ -69,15 +99,15 @@
 }
 
 .buttons .add-cart{
-  background-color: #323232;
-  color: #fff;
-  border-radius: 4px;
+  background-color: #fff;
+  color: #323232;
+  border-radius: 6px;
+  border-color: #434343;
 }
 
 .buttons .add-cart:hover{
-  color: #323232;
-  background-color: #fff;
-  border-color: #434343;
+  color: #fff;
+  background-color: #323232;
 }
 
 .buttons .buy{
@@ -85,6 +115,7 @@
   text-transform: uppercase;
   background-color: #5F00E3;
   color: #fff;
+  border-radius: 6px;
 }
 
 .buttons .buy:hover{
@@ -115,25 +146,198 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 20px;
+  gap: 1rem;
+  width: 100%;
+  height: 60%;
 }
 
 .labels,.info-text{
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  gap: 2rem;
+  font-style: italic;
 }
 
 .labels label{
   margin: 0;
 }
 
+.about-course label{
+  margin: 0;
+  font-style: italic;
+}
+
 .about-course p{
   margin: 1em 0;
   text-align: justify;
   line-height: 2em;
+  font-style: italic;
 }
 
-.feedback i{
-  color: gold;
+.courses-recommend{
+  width: 1200px;
+  margin: 3rem auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.courses-recommend .title h1{
+  font-size: 1.5rem;
+}
+
+/* CARDS CAROUSEL */
+
+.container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+.carousel-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.cards {
+  display: flex;
+  padding: 0 50px;
+  margin: 1rem 0;
+}
+
+.card {
+  width: 350px;
+  height: auto;
+  margin: 0 10px;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.card .image-card{
+  width: 100%;
+  height: 100px;
+}
+
+.card .image-card img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+}
+
+.card header h4{
+  font-size: .9rem;
+  margin: 0;
+}
+
+
+.card main{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  max-width: 300px;
+  padding: 10px;
+  width: 100%;
+}
+
+.card main .title-course{
+  max-height: 100px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.card main .title-course .name-course{
+    width: 100%;
+    margin: 0;
+}
+
+.card main .title-course h4{
+  font-size: 1rem;
+}
+.card main .info-course{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.card main .info-course .desc-course{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; 
+  max-height: 6em; 
+  overflow: hidden; 
+  text-overflow: ellipsis;
+}
+
+.card main .info-course .instrutor{
+  color: #4343438a;
+  font-size: .8rem;
+  font-weight: 500;
+}
+
+.card main  .info-course p{
+  margin: 0;
+  text-align: left  ;
+}
+
+.card main .price-course{
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+
+
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: #5F00E3;
+  color: #fff;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 1;
+}
+
+.carousel-control.prev {
+  left: 0;
+}
+
+.carousel-control.next {
+  right: 0;
 }

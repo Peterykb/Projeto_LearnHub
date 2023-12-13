@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class DashboardComponent implements OnInit {
   sidebarOpen: boolean = false;
-
+  instrutorId!: string;
   constructor(
     private authTeacher: AuthTeacherService,
     private router: Router,
@@ -19,8 +19,10 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.authTeacher.isLoggedIn()) {
-      this.router.navigate(['./teacher']);
+      const instrutorId = 0;  
+      this.router.navigate([`./instrutor/${instrutorId}`]);
     }
+
   }
 
   toggleSidebar() {

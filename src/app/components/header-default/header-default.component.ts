@@ -11,7 +11,7 @@ export class HeaderDefaultComponent {
   constructor(private router: Router, public authUser: AuthUserService) {}
 
   mostrarCabRod() {
-    return !this.router.url.includes('teacher') && !this.router.url.includes('login') && !this.router.url.includes('register');
+    return !this.router.url.includes('instrutor') && !this.router.url.includes('login') && !this.router.url.includes('register');
   }
 
   number = 2

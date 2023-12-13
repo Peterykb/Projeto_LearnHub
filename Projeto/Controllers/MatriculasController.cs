@@ -13,7 +13,8 @@ namespace Projeto.Controllers
     {
       context = _context;
     }
-    [HttpGet("matriculas/aluno")]
+
+    [HttpGet("alunos")]
     public async Task<ActionResult<Matricula>> GetAllMatriculas(int alunoid)
     {
       var idcurso = context.matriculas.Where(m => m.AlunoId == alunoid).Select(m => m.CursoId);
@@ -21,31 +22,64 @@ namespace Projeto.Controllers
       var cursosdoaluno = await context.cursos.Where(c => idcurso.Contains(c.Id_curso)).ToListAsync();
       return Ok(cursosdoaluno);
     }
-    [HttpGet("{nomecurso}/matriculas/instrutor/{instrutorid}")]
-    public async Task<ActionResult<List<Matricula>>> GetAllMatriculasCursoInstrutor(int instrutorid, string nomecurso)
+    [HttpGet("{nomecurso}")]
+    public async Task<ActionResult<List<AlunoInformacoes>>> GetAllMatriculasCursoInstrutor(int instrutorid, string nomecurso)
     {
-      var idcursosinstrutor = await context.cursos.Where(cursos => cursos.InstrutorId == instrutorid && cursos.Name == nomecurso).Select(cursos => cursos.Id_curso).ToListAsync();
-      if (!idcursosinstrutor.Any())
+      var cursosInstrutor = await context.cursos
+          .Where(c => c.InstrutorId == instrutorid && c.Name == nomecurso)
+          .ToListAsync();
+
+      if (!cursosInstrutor.Any())
       {
         return NotFound($"Não foram encontrados cursos para o instrutor {instrutorid} com o nome '{nomecurso}'.");
       }
 
-      var matriculascursos = await context.matriculas.Where(m => idcursosinstrutor.Contains(m.CursoId)).Select(m => m.AlunoId).ToListAsync();
-      if (!matriculascursos.Any()) return NotFound("Seu curso não possui matriculas");
-      var alunos = await context.alunos.Where(a => matriculascursos.Contains(a.Id_aluno)).ToListAsync();
+      var idCursosInstrutor = cursosInstrutor.Select(c => c.Id_curso).ToList();
+
+      var matriculasAlunos = await context.matriculas
+          .Where(m => idCursosInstrutor.Contains(m.CursoId))
+          .Select(m => m.AlunoId)
+          .ToListAsync();
+
+      if (!matriculasAlunos.Any())
+      {
+        return NotFound("Seu curso não possui matrículas.");
+      }
+
+      var alunos = await context.alunos
+          .Where(a => matriculasAlunos.Contains(a.Id_aluno))
+          .Select(info => new AlunoInformacoes
+          {
+            Nome = info.Nome,
+            DataNascimento = info.DataNascimento
+          })
+          .ToListAsync();
+
       return Ok(alunos);
     }
-    [HttpDelete("matriculas/instrutor/{cursoid}/{alunoid}")]
-    public async Task<ActionResult<Matricula>> DeleteMatricula(int alunoid, int cursoid, int instrutorid)
+
+    [HttpPost("{cursoid}/{alunoid}")]
+    public async Task<ActionResult<Matricula>> ComprarCurso(int cursoid, int alunoid, Matricula matricula)
     {
-      var cursosDoInstrutor = await context.cursos.Where(cursos => cursos.InstrutorId == instrutorid).Select(curso => curso.Id_curso).ToListAsync();
-      var matriculaaluno = await context.matriculas.Where(m => m.AlunoId == alunoid && cursosDoInstrutor.Contains(m.CursoId)).ToListAsync();
-      if (matriculaaluno == null) return NotFound("Matrícula não existe.");
-      context.Remove(matriculaaluno);
-      await context.SaveChangesAsync();
+      var aluno = await context.alunos.FindAsync(alunoid);
+      if (aluno == null) return BadRequest("Aluno não encontrado.");
+      var cursos = await context.cursos.FindAsync(cursoid);
+      if (cursos == null) return BadRequest("Curso não encontrado.");
 
-      return Ok(await context.matriculas.Where(m => cursosDoInstrutor.Contains(m.CursoId)).ToListAsync());
-
+      matricula.AlunoId = alunoid;
+      matricula.CursoId = cursoid;
+      context.matriculas.Add(matricula);
+      try
+      {
+        await context.SaveChangesAsync();
+      }
+      catch (Exception ex)
+      {
+        return BadRequest($"Não foi possível realizar a compra. {ex}");
+      }
+      return Ok("Compra realizada com sucesso.");
     }
+    
   }
 }
+

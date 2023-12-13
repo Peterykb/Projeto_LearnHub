@@ -159,8 +159,12 @@ form{
   border: none;
   border-radius: 8px;
   color: #fff;
+  transition: .3s;
 }
 
+.btn-submit:hover{
+  background-color: rgb(63, 0, 163);
+}
 .help{
   display: flex;
   flex-direction: column;

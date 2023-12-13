@@ -1,16 +1,16 @@
 nav{
-  padding: 10px 50px;
+  padding: 20px 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: .5px solid #dfdfdf;
+  box-shadow:  0 1px 5px rgb(63,63,63,.4);
   z-index: 10000;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   background-color: #fff;
-  position: relative;
+  position: fixed;
 }
 
 

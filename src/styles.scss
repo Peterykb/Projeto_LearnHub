@@ -7,6 +7,16 @@
   text-decoration: none;
 }
 
+:root{
+  --purple-dark: #7338F2;
+  --purple-secondary: #615CF2;
+  --purple-middle: #6B71F2;
+  --blue-steel: #6387F2;
+  --blue-light: #5E9FF2;
+  --white: #fff
+}
+
+
 a {
   cursor: pointer;
 }
@@ -14,6 +24,8 @@ a {
 html,body {
   width: 100%;
   min-height: 100vh;
+  
+  background-color: #fff;
 }
 
 li{

@@ -1,65 +1,40 @@
-import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Categoria } from 'src/app/models/Categoria';
+import { Course } from 'src/app/models/Course';
+import { UserService } from 'src/app/services/user.service';
+import { CourseService } from 'src/app/services/course.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent {
-  /* CURSOS MAIS ACESSADOS DA PLATAFORMA*/
-  coursesAcessed = [
-    {
-      title: 'Banco de Dados - SQL',
-      desc: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde aspernatur odit quasi maxime labore, rerum earum est magnam commodi doloribus impedit soluta fugiat dolorem consequuntur.',
-      price: 300,
-    },
-    {
-      title: 'Angular 15+',
-      desc: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde aspernatur odit quasi maxime labore, rerum earum est magnam commodi doloribus impedit soluta fugiat dolorem consequuntur.',
-      price: 125.55,
-    },
-    {
-      title: 'Chat GPT para Devs',
-      desc: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde aspernatur odit quasi maxime labore, rerum earum est magnam commodi doloribus impedit soluta fugiat dolorem consequuntur.',
-      price: 150,
-    },
-    {
-      title: 'Robótica Educacional',
-      desc: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde aspernatur odit quasi maxime labore, rerum earum est magnam commodi doloribus impedit soluta fugiat dolorem consequuntur.',
-      price: 700,
-    },
-    {
-      title: 'AWS - Cloud Fundations',
-      desc: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde aspernatur odit quasi maxime labore, rerum earum est magnam commodi doloribus impedit soluta fugiat dolorem consequuntur.',
-      price: 450.99,
-    },
-  ];
+export class HomeComponent implements OnInit{
 
-  /* CATEGORIAS DE CURSOS */
-  categories = [
-    {
-      titleCat: 'Front-End',
-      class: 'fa-solid fa-desktop text-white',
-      descCat:
-        'Some quick example text to build on the card title and make up the bulk of the cards content.',
-    },
-    {
-      titleCat: 'Back-End',
-      class: 'fa-solid fa-server text-white',
-      descCat:
-        'Some quick example text to build on the card title and make up the bulk of the cards content.',
-    },
-    {
-      titleCat: 'Banco de Dados',
-      class: 'fa-solid fa-database text-white',
-      descCat:
-        'Some quick example text to build on the card title and make up the bulk of the cards content.',
-    },
-    {
-      titleCat: 'Web Design',
-      class: 'fa-solid fa-palette text-white',
-      descCat:
-        'Some quick example text to build on the card title and make up the bulk of the cards content.',
-    },
-  ];
+  categories: Categoria[] = [];
+  courses: Course[] = [];
+  selectedCategoryName: string = '';
+
+  constructor(private userService: UserService, private router: Router, private courseService: CourseService){}
+
+// No seu componente home
+navigateToCategoriaCursos(categoryId: number, categoryName: string): void {
+  this.router.navigate(['/search-result', categoryId, categoryName]);
+  this.selectedCategoryName = categoryName;
+}
+
+
+  ngOnInit(): void {
+    /* Trazendo todas as categorias */
+    this.userService.getCategorias().subscribe(data => {
+      this.categories = data;
+      console.log(this.categories)
+    })
+
+    this.courseService.getCourses().subscribe(data =>{
+      this.courses = data
+    })
+  }
+
 }
