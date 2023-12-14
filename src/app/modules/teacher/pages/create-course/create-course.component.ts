@@ -59,15 +59,4 @@ export class CreateCourseComponent {
       modulo.aulas.splice(aulaIndex, 1);
     }
   }
-  criarCurso() {
-    this.cursoService.criarCurso(this.curso).subscribe(
-      (resposta) => {
-        console.log('Curso criado com sucesso!', resposta);
-        alert('curso criado')
-      },
-      (erro) => {
-        console.error('Erro ao criar curso', erro);
-      }
-      );
-  }
 }

@@ -19,9 +19,35 @@ namespace Projeto.Controllers
     [HttpGet] // pra todo mundo
     public async Task<ActionResult<List<Cursos>>> GetAllCursos()
     {
-      return Ok(await context.cursos.ToListAsync());
+      var cursos = await context.cursos.Join(
+        context.instrutors,
+        c => c.InstrutorId,
+        i => i.Id_Instrutor,
+        (c, i) => new CursoInstrutorModel
+        {
+          Curso = c,
+          Instrutor = i.Nome
+        }
+      ).ToListAsync();
+      return Ok(cursos);
     }
+    [HttpGet("pegarporid/{cursoid}")]
+    public async Task<ActionResult> PegarPorId(int cursoid)
+    {
+      var curso = await context.cursos.Where(c => c.Id_curso == cursoid).Join(
+        context.instrutors,
+        c => c.InstrutorId,
+        i => i.Id_Instrutor,
+        (c, i) => new CursoInstrutorModel
+        {
+          Curso = c,
+          Instrutor = i.Nome
+        }
+      ).ToListAsync();
+      if(!curso.Any()) return BadRequest("curso não encontrado");
 
+      return Ok(curso);
+    }
     [HttpGet("{nomeCurso}")] //pra pesquisa
     public async Task<ActionResult<Cursos>> GetCurso(string nomeCurso)
     {
@@ -31,7 +57,7 @@ namespace Projeto.Controllers
       return Ok(cursos);
     }
 
-    [HttpGet("instrutor/{id}")] // cursos do instrutor
+    [HttpGet("{instrutorid}")] // cursos do instrutor
     public async Task<ActionResult<IEnumerable<Cursos>>> GetCursoInstrutor(int id)
     {
       var cursosDoInstrutor = await context.cursos
@@ -49,7 +75,7 @@ namespace Projeto.Controllers
       return Ok(cursosDoInstrutor);
     }
 
-    [HttpPost("criar")] // pro instrutor criar um curso
+    [HttpPost("{instrutorid}/criar")] // pro instrutor criar um curso
     public async Task<ActionResult<Cursos>> CreateCurso([FromBody] Cursos novocurso, int instrutorid, int categoriaId)
     {
       if (novocurso == null)
@@ -64,15 +90,27 @@ namespace Projeto.Controllers
       {
         return BadRequest("O curso já existe");
       }
-
-      context.cursos.Add(novocurso);
       novocurso.InstrutorId = instrutorid;
+      context.cursos.Add(novocurso);
 
-      context.CursoCategorias.Add(new CursoCategoria
+      await context.SaveChangesAsync();
+
+      var pegaridcategoria = await context.categorias
+          .Where(c => c.Id_categoria == categoriaId)
+          .Select(c => c.Id_categoria)
+          .FirstOrDefaultAsync();
+
+      if (pegaridcategoria == default)
+      {
+        return BadRequest("Categoria não encontrada");
+      }
+      var cursoCategoria = new CursoCategoria
       {
         CursoId = novocurso.Id_curso,
-        CategoriaId = categoriaId
-      });
+        CategoriaId = pegaridcategoria
+      };
+
+      context.CursoCategorias.Add(cursoCategoria);
 
       await context.SaveChangesAsync();
 
@@ -80,8 +118,8 @@ namespace Projeto.Controllers
     }
 
 
-    [HttpPut("instrutor/{id}/atualizar")] //pro instrutor atualizar um curso
-    public async Task<ActionResult<Cursos>> PutCurso(int id, [FromBody] Cursos modifycurso)
+    [HttpPut("{instrutorid}/atualizar")] //pro instrutor atualizar um curso
+    public async Task<ActionResult<Cursos>> PutCurso(int instrutorid, [FromBody] Cursos modifycurso)
     {
       if (modifycurso == null)
       {
@@ -89,7 +127,7 @@ namespace Projeto.Controllers
       }
 
       var cursoExistente = await context.cursos
-          .FirstOrDefaultAsync(c => c.Id_curso == modifycurso.Id_curso && c.InstrutorId == id);
+          .FirstOrDefaultAsync(c => c.Id_curso == modifycurso.Id_curso && c.InstrutorId == instrutorid);
 
       if (cursoExistente == null)
       {
@@ -113,7 +151,8 @@ namespace Projeto.Controllers
         return StatusCode(500, $"Erro no servidor: {ex.Message}");
       }
     }
-    [HttpDelete("{intrutorid}/{cursoid}/deletar")] //pro instrutor deletar um curso
+
+    [HttpDelete("{instrutorid}/{cursoid}/deletar")] //pro instrutor deletar um curso
     public async Task<ActionResult<Cursos>> DeleteCurso(int cursoid, int instrutorid)
     {
       var curso = await context.cursos.FirstOrDefaultAsync(c => c.Id_curso == cursoid && c.InstrutorId == instrutorid);
@@ -138,5 +177,10 @@ namespace Projeto.Controllers
 
       return Ok(await context.cursos.ToListAsync());
     }
+  }
+  public class CursoInstrutorModel
+  {
+    public Cursos? Curso { get; set; }
+    public string? Instrutor { get; set; } // Nome do instrutor
   }
 }

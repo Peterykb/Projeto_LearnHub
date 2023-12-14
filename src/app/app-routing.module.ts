@@ -20,10 +20,10 @@ import { ChangePassComponent } from './components/change-pass/change-pass.compon
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent, canActivate:[BlockGuard]},
-  { path: 'search-result', component: SearchComponent, canActivate:[BlockGuard]},
+  { path: 'search-result/:id/:nome', component: SearchComponent, canActivate:[BlockGuard]},
   { path: 'login', component: LoginComponent, canActivate: [BlockGuard]},
   { path: 'register', component: RegisterComponent, canActivate: [BlockGuard] },
-  { path: 'course-preview', component: CoursePreviewComponent },
+  { path: 'course-preview/:name', component: CoursePreviewComponent },
   { path: 'my-cart', component: MyCartComponent, canActivate: [UserGuard] },
   { path: 'buy', component: BuyComponent, canActivate: [UserGuard] },
   {
@@ -39,7 +39,7 @@ const routes: Routes = [
   { path: 'profile', component: MyProfileComponent, canActivate: [UserGuard] },
   { path: 'profile/change-pass', component: ChangePassComponent, canActivate: [UserGuard] },
   {
-    path: 'teacher',
+    path: 'instrutor/:id',
     canActivate: [TeacherGuard],
     loadChildren: () =>
     import('./modules/teacher/teacher.module').then((m) => m.TeacherModule),
@@ -49,6 +49,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule, TeacherModule],
+  exports: [RouterModule,  TeacherModule],
 })
 export class AppRoutingModule {}

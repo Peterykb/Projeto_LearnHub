@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
       if(this.isTeacherEmail(loginData.email)){
         this.authTeacher.loginTeacher(loginData).subscribe(
           (res) => {
-            this.router.navigate(['teacher', 'overview']);
+            this.router.navigate(['instrutor', 'overview']);
           },
           (err: Error) => {
             alert(err.message);

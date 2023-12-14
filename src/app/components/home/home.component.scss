@@ -75,6 +75,10 @@ section .title {
   gap: 1.3rem;
 }
 
+.card-title{
+  color: #000;
+}
+
 .card-course {
   max-width: 400px;
   box-shadow: 0 1px 10px #6363639a;
@@ -82,6 +86,7 @@ section .title {
   min-width: calc(50% - 50px);
   min-width: calc(50% - 50px);
   padding: 0;
+  border-radius: 10px;
 }
 
 .card-course.full-width-card {
@@ -98,6 +103,8 @@ section .title {
   font-size: 1.5rem;
   background-color: #434343;
   color: #fff;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
 }
 
 .card-content {
@@ -192,11 +199,3 @@ section .title {
   box-shadow: 0 3px 15px rgb(21, 21, 21, 0.5);
 }
 
-.cards-categories .card .icon-category {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100px;
-  font-size: 2em;
-}

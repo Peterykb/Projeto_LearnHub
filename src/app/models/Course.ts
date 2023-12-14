@@ -1,8 +1,9 @@
 export class Course {
-    id?: number;
+    id_curso?: number;
     name!: string;
-    data_criacao!: Date;
+    data_criacao!: number;
     disponivel!: boolean;
+    idiomas!: string;
     preco!: number;
-    idTeacher!: number;
+    instrutorid!: number;
 }

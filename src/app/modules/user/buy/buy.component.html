@@ -15,23 +15,23 @@
             <label for="accordion1" class="accordion-header" (click)="clickDescription()">Cartão de Crédito</label>
             <div class="accordion-content card-pay">
               <h1>* Detalhes do pagamento</h1>
-              <form class="form-pay">
+              <form class="form-pay" [formGroup]="creditForm" #formDir="ngForm">
                 <div class="field-input">
                   <label>Número do cartão</label>
-                  <input type="text">
+                  <input type="text" formControlName="numero_cartao">
                 </div>
                 <div class="field-input">
                   <label>Nome do Titular</label>
-                  <input type="text">
+                  <input type="text" formControlName="nome_titular">
                 </div>
                 <div class="bottom-field">
                   <div class="field-input">
                     <label>Vencimento</label>
-                    <input type="date">
+                    <input type="date" formControlName="validade">
                   </div>
                   <div class="field-input">
                     <label>Código de Segurança (CVV)</label>
-                    <input type="text">
+                    <input type="text" formControlName="codigo_seguranca">
                   </div>
                 </div>
               </form>
@@ -44,19 +44,7 @@
               id="accordion2"
               class="accordion-input"
             />
-            <label for="accordion2" class="accordion-header" (click)="confirmPix()">Pix</label>
-          </div>
-          <div class="accordion-item">
-            <input
-              type="radio"
-              name="radio-item"
-              id="accordion3"
-              class="accordion-input"
-            />
-            <label for="accordion3" class="accordion-header" (click)="clickDescription()">Boleto</label>
-            <div class="accordion-content">
-              <p>desc</p>
-            </div>
+            <label for="accordion2" class="accordion-header">Pix</label>
           </div>
         </div>
       </form>
@@ -83,7 +71,7 @@
       </div>
       <hr>
       <div class="btn-field">
-        <button class="btn-buy" (click)="compraEfetuada()">Comprar</button>
+        <button class="btn-buy" (click)="onBuy()">Comprar</button>
       </div>
     </div>
   </div>
