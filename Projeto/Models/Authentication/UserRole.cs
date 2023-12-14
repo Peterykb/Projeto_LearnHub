@@ -4,6 +4,6 @@ namespace Projeto.Models.Authentication
 {
     public class UserRole : IdentityRole
     {
-
+        
     }
 }
