@@ -1,25 +1,29 @@
 using Microsoft.AspNetCore.Identity;
-using Projeto.Models;
+using Projeto.Models.Authentication;
 using System.Threading.Tasks;
 
 public class UsuarioService
 {
-  private readonly UserManager<AlunoInformacoes> _userManagerAluno;
-  private readonly UserManager<InstrutorInformacoes> _userManagerInstrutor;
+    private readonly UserManager<UserIdentity> _userManager;
+    private readonly RoleManager<UserRole> _roleManager;
 
-  public UsuarioService(UserManager<AlunoInformacoes> userManagerAluno, UserManager<InstrutorInformacoes> userManagerInstrutor)
-  {
-    _userManagerAluno = userManagerAluno;
-    _userManagerInstrutor = userManagerInstrutor;
-  }
+    public UsuarioService(UserManager<UserIdentity> userManager, RoleManager<UserRole> roleManager)
+    {
+        _userManager = userManager;
+        _roleManager = roleManager;
+    }
 
-  public async Task<IdentityResult> CadastrarAlunoAsync(AlunoInformacoes aluno)
-  {
-    return await _userManagerAluno.CreateAsync(aluno, "SenhaPadrao"); // Defina a senha conforme necessário
-  }
+    public async Task<IdentityResult> CadastrarUsuarioAsync(UserIdentity usuario, string senha, string roleName)
+    {
+        // Verifica se a role especificada já existe; se não existir, cria a role.
+        var roleExists = await _roleManager.RoleExistsAsync(roleName);
+        if (!roleExists)
+        {
+            await _roleManager.CreateAsync(new UserRole { Name = roleName, NormalizedName = roleName.ToUpper() });
+        }
 
-  public async Task<IdentityResult> CadastrarInstrutorAsync(InstrutorInformacoes instrutor)
-  {
-    return await _userManagerInstrutor.CreateAsync(instrutor, "SenhaPadrao"); // Defina a senha conforme necessário
-  }
+        await _userManager.AddToRoleAsync(usuario, roleName);
+
+        return await _userManager.CreateAsync(usuario, senha);
+    }
 }

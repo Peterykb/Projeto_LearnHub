@@ -10,29 +10,39 @@ namespace Projeto.Services
 {
     public class TokenService
     {
-        public static string GenerateToken(IdentityUser user, string userType)
-        {
-            var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Key.Secret));
+        private readonly string _issuer;
+        private readonly string _audience;
+        private readonly string _secretKey;
 
-            var claims = new[]
-            {
-                new Claim(ClaimTypes.NameIdentifier, user.Id),
-                new Claim(ClaimTypes.Name, user.UserName),
-                new Claim("UserType", userType)
-            };
+        public TokenService(string issuer, string audience, string secretKey)
+        {
+            _issuer = issuer;
+            _audience = audience;
+            _secretKey = secretKey;
+        }
+
+        public string GerarToken(string userId, string userName, string role)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_secretKey);
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.UtcNow.AddHours(3),
-                SigningCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature),
-                Audience = "audience",
-                Issuer = "https://localhost:7009"
+                Subject = new ClaimsIdentity(new[]
+                {
+                new Claim(ClaimTypes.Name, userName),
+                new Claim(ClaimTypes.NameIdentifier, userId),
+                new Claim(ClaimTypes.Role, role)
+            }),
+                Expires = DateTime.UtcNow.AddHours(1),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
+                Issuer = _issuer,
+                Audience = _audience
             };
 
-            var tokenHandler = new JwtSecurityTokenHandler();
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
         }
+
     }
 }
