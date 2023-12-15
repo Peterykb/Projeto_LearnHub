@@ -13,15 +13,17 @@ namespace Projeto.Models
         public DbSet<CursoCategoria> CursoCategorias { get; set; }
         public DbSet<Categorias> categorias { get; set; }
         public DbSet<Cursos> cursos { get; set; }
-        public DbSet<AlunoInformacoes> alunos { get; set; }
+        public DbSet<AlunoInformacoes> estudante { get; set; }
         public DbSet<InstrutorInformacoes> instrutors { get; set; }
         public DbSet<Matricula> matriculas { get; set; }
         public DbSet<Modulos> modulos { get; set; }
         public DbSet<Aulas> aulas { get; set; }
         public DbSet<Carrinho> carrinhos { get; set; }
+     
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder   );
             //Configurando relacionamentos
             modelBuilder.Entity<Matricula>()
                 .HasKey(ac => new { ac.AlunoId, ac.CursoId });
@@ -82,10 +84,8 @@ namespace Projeto.Models
                 new UserRole { Name = "Aluno", NormalizedName = "ALUNO" },
                 new UserRole { Name = "Instrutor", NormalizedName = "INSTRUTOR" }
             );
-
-
-        }
     }
 
+}
 }
 

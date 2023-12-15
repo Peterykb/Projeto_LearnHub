@@ -1,7 +1,11 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Projeto.Models;
+using Projeto.Models.Authentication;
+using Projeto.Services;
 
 namespace Projeto.Controllers
 {
@@ -10,9 +14,13 @@ namespace Projeto.Controllers
   public class CursosController : ControllerBase
   {
     public readonly Context context;
+    private readonly TokenService tokenService;
+    private readonly UserManager<UserIdentity> userManager;
 
-    public CursosController(Context _context)
+    public CursosController(TokenService token, UserManager<UserIdentity> user, Context _context)
     {
+      tokenService = token;
+      userManager = user;
       context = _context;
     }
 
@@ -44,7 +52,7 @@ namespace Projeto.Controllers
           Instrutor = i.Nome
         }
       ).ToListAsync();
-      if(!curso.Any()) return BadRequest("curso não encontrado");
+      if (!curso.Any()) return BadRequest("curso não encontrado");
 
       return Ok(curso);
     }
@@ -57,23 +65,37 @@ namespace Projeto.Controllers
       return Ok(cursos);
     }
 
-    [HttpGet("{instrutorid}")] // cursos do instrutor
-    public async Task<ActionResult<IEnumerable<Cursos>>> GetCursoInstrutor(int id)
+    [HttpGet("instrutor")]
+    [Authorize(Roles = "Instrutor")]
+    public async Task<ActionResult<IEnumerable<Cursos>>> GetCursoInstrutor()
     {
-      var cursosDoInstrutor = await context.cursos
-     .Where(c => c.InstrutorId == id)
-     .Select(c => new
-     {
-       c.Id_curso,
-       c.Name,
-       c.Data_criacao,
-       c.Disponivel,
-       c.Preco
-     }).ToListAsync();
+      // Obtém o ID do instrutor a partir do usuário autenticado
+      var instrutorId = userManager.GetUserId(User);
 
-      if (!cursosDoInstrutor.Any()) return NotFound("Não foi encontrado");
-      return Ok(cursosDoInstrutor);
+      if (int.TryParse(instrutorId, out int instrutorIdInt)) // Tenta converter para int
+      {
+        var cursosDoInstrutor = await context.cursos
+            .Where(c => c.InstrutorId == instrutorIdInt)
+            .Select(c => new
+            {
+              c.Id_curso,
+              c.Name,
+              c.Data_criacao,
+              c.Disponivel,
+              c.Preco
+            }).ToListAsync();
+
+        if (!cursosDoInstrutor.Any()) return NotFound("Cursos não encontrados para este instrutor");
+        return Ok(cursosDoInstrutor);
+      }
+      else
+      {
+        // Lida com o caso em que a conversão falha (instrutorId é nulo ou não é um número válido)
+        return BadRequest("ID do instrutor inválido");
+      }
     }
+
+
 
     [HttpPost("{instrutorid}/criar")] // pro instrutor criar um curso
     public async Task<ActionResult<Cursos>> CreateCurso([FromBody] Cursos novocurso, int instrutorid, int categoriaId)

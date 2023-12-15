@@ -46,8 +46,7 @@ namespace Projeto.Controllers
         return NotFound("Seu curso não possui matrículas.");
       }
 
-      var alunos = await context.alunos
-          .Where(a => matriculasAlunos.Contains(a.Id_aluno))
+      var alunos = await context.estudante.Where(a => matriculasAlunos.Contains(a.Id_aluno))
           .Select(info => new AlunoInformacoes
           {
             Nome = info.Nome,
@@ -61,7 +60,7 @@ namespace Projeto.Controllers
     [HttpPost("{cursoid}/{alunoid}")]
     public async Task<ActionResult<Matricula>> ComprarCurso(int cursoid, int alunoid, Matricula matricula)
     {
-      var aluno = await context.alunos.FindAsync(alunoid);
+      var aluno = await context.estudante.FindAsync(alunoid);
       if (aluno == null) return BadRequest("Aluno não encontrado.");
       var cursos = await context.cursos.FindAsync(cursoid);
       if (cursos == null) return BadRequest("Curso não encontrado.");
@@ -79,7 +78,7 @@ namespace Projeto.Controllers
       }
       return Ok("Compra realizada com sucesso.");
     }
-    
+
   }
 }
 

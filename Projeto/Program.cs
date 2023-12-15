@@ -7,6 +7,7 @@ using Projeto.Models;
 using Projeto.Models.Authentication;
 using Microsoft.Extensions.DependencyInjection;
 using System.Text;
+using Projeto.Services;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -54,6 +55,7 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
+builder.Services.AddScoped<TokenService>();
 
 builder.Services.AddAuthorization();
 

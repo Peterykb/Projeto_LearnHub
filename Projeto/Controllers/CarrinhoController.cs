@@ -16,7 +16,7 @@ namespace Projeto.Controllers
     [HttpGet("cursos")]
     public async Task<ActionResult<Carrinho>> GetCursosCarrinho(int alunoid)
     {
-      var aluno = await context.alunos.FindAsync(alunoid);
+      var aluno = await context.estudante.FindAsync(alunoid);
       if (aluno == null) return BadRequest("Aluno não encontrado.");
 
       var carrinho = await context.carrinhos.Where(carrinho => carrinho.AlunoId == alunoid).Select(carrinho => carrinho.CursoId).ToListAsync();
@@ -28,7 +28,7 @@ namespace Projeto.Controllers
     [HttpPost("adicionar")]
     public async Task<ActionResult<Carrinho>> PostCursoCarrinho(int alunoid, int cursoid)
     {
-      var aluno = await context.alunos.FindAsync(alunoid);
+      var aluno = await context.estudante.FindAsync(alunoid);
       if (aluno == null)
       {
         return BadRequest("Aluno não encontrado.");
