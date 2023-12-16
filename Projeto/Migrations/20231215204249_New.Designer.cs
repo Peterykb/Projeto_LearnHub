@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Projeto.Models;
 
@@ -11,9 +12,11 @@ using Projeto.Models;
 namespace Projeto.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20231215204249_New")]
+    partial class New
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -151,9 +154,6 @@ namespace Projeto.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Username")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id_aluno");
 
                     b.ToTable("estudante");
@@ -279,13 +279,13 @@ namespace Projeto.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "0eff01c6-4bc4-4038-8afd-1bc86ede5953",
+                            Id = "bf48d785-c43c-4ae5-9130-576e6c39b0eb",
                             Name = "Aluno",
                             NormalizedName = "ALUNO"
                         },
                         new
                         {
-                            Id = "06b2c16e-37f5-4f4e-a200-e22a95ea0e1a",
+                            Id = "6e63d07d-cd21-4dd9-8378-def5c1c7425d",
                             Name = "Instrutor",
                             NormalizedName = "INSTRUTOR"
                         });
@@ -394,9 +394,6 @@ namespace Projeto.Migrations
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Username")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id_Instrutor");

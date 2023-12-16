@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Identity;
 namespace Projeto.Models.Authentication
 {
     
-    public class UserIdentity : IdentityUser<string>
+    public class UserIdentity : IdentityUser
     {
    
     }

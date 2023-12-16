@@ -16,7 +16,33 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+  c.SwaggerDoc("v1", new OpenApiInfo { Title = "Projeto", Version = "v1" });
+
+  var securityScheme = new OpenApiSecurityScheme
+  {
+    Name = "JWT Authentication",
+    Description = "Insira seu token JWT abaixo",
+    In = ParameterLocation.Header,
+    Type = SecuritySchemeType.Http,
+    Scheme = "bearer",
+    BearerFormat = "JWT",
+    Reference = new OpenApiReference
+    {
+      Type = ReferenceType.SecurityScheme,
+      Id = "Bearer"
+    }
+  };
+
+  c.AddSecurityDefinition("Bearer", securityScheme);
+  var securityRequirement = new OpenApiSecurityRequirement  
+    {
+        { securityScheme, new[] { "Bearer" } }
+    };
+
+  c.AddSecurityRequirement(securityRequirement);
+});
 
 builder.Services.AddDbContext<Context>(options =>
 {
@@ -38,21 +64,21 @@ builder.Services.AddIdentity<UserIdentity, UserRole>(options =>
 
 builder.Services.AddAuthentication(options =>
 {
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+  options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+  options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 })
 .AddJwtBearer(options =>
 {
-    options.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-        ValidIssuer = builder.Configuration["Jwt:Issuer"],
-        ValidAudience = builder.Configuration["Jwt:Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"]))
-    };
+  options.TokenValidationParameters = new TokenValidationParameters
+  {
+    ValidateIssuer = true,
+    ValidateAudience = true,
+    ValidateLifetime = true,
+    ValidateIssuerSigningKey = true,
+    ValidIssuer = builder.Configuration["Jwt:Issuer"],
+    ValidAudience = builder.Configuration["Jwt:Audience"],
+    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Key.Secret))
+  };
 });
 
 builder.Services.AddScoped<TokenService>();
@@ -73,7 +99,13 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
   app.UseSwagger();
-  app.UseSwaggerUI();
+  app.UseSwaggerUI(c =>
+{
+  c.SwaggerEndpoint("/swagger/v1/swagger.json", "Projeto V1");
+  c.RoutePrefix = string.Empty;
+  c.OAuthClientId("swagger-ui");
+  c.OAuthAppName("Swagger UI");
+});
 }
 
 app.UseCors("AllowAngular");

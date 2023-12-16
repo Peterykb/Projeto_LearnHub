@@ -56,7 +56,8 @@ namespace Projeto.Controllers
 
       return Ok(curso);
     }
-    [HttpGet("{nomeCurso}")] //pra pesquisa
+    [HttpGet("{nomeCurso}")]
+    [Authorize(Roles = "Aluno")]
     public async Task<ActionResult<Cursos>> GetCurso(string nomeCurso)
     {
       var cursos = await context.cursos.Where(c => c.Name.Contains(nomeCurso)).ToListAsync();
@@ -64,18 +65,21 @@ namespace Projeto.Controllers
 
       return Ok(cursos);
     }
-
     [HttpGet("instrutor")]
     [Authorize(Roles = "Instrutor")]
     public async Task<ActionResult<IEnumerable<Cursos>>> GetCursoInstrutor()
     {
-      // Obtém o ID do instrutor a partir do usuário autenticado
-      var instrutorId = userManager.GetUserId(User);
+      var instrutorName = userManager.GetUserName(User);
+      if (instrutorName == null) return BadRequest("Usuário não encontrado.");
 
-      if (int.TryParse(instrutorId, out int instrutorIdInt)) // Tenta converter para int
+      var instrutor = await userManager.FindByNameAsync(instrutorName);
+      if (instrutor == null) return BadRequest("Instrutor não encontrado");
+      var instrutorid = await context.instrutors.Where(i => i.Email == instrutor.Email).Select(i => i.Id_Instrutor).ToListAsync();
+
+      if (instrutorid != null)
       {
         var cursosDoInstrutor = await context.cursos
-            .Where(c => c.InstrutorId == instrutorIdInt)
+            .Where(c => instrutorid.Contains(c.InstrutorId))
             .Select(c => new
             {
               c.Id_curso,
@@ -90,10 +94,10 @@ namespace Projeto.Controllers
       }
       else
       {
-        // Lida com o caso em que a conversão falha (instrutorId é nulo ou não é um número válido)
-        return BadRequest("ID do instrutor inválido");
+        return NotFound("Instrutor não encontrado");
       }
     }
+
 
 
 
