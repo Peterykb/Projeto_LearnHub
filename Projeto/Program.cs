@@ -89,7 +89,7 @@ builder.Services.AddCors(options =>
 {
   options.AddPolicy("AllowAngular", builder =>
   {
-    builder.WithOrigins("http://localhost:4200") // Substitua pelo seu URL Angular
+    builder.WithOrigins("https://deploy-learn-hub.vercel.app") 
              .AllowAnyMethod()
              .AllowAnyHeader();
   });

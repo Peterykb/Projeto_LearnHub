@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Projeto.Models;
@@ -15,6 +16,7 @@ namespace Projeto.Controllers
     }
 
     [HttpGet("alunos")]
+    [Authorize(Roles = "Aluno")]
     public async Task<ActionResult<Matricula>> GetAllMatriculas(int alunoid)
     {
       var idcurso = context.matriculas.Where(m => m.AlunoId == alunoid).Select(m => m.CursoId);
@@ -23,6 +25,7 @@ namespace Projeto.Controllers
       return Ok(cursosdoaluno);
     }
     [HttpGet("{nomecurso}")]
+    [Authorize(Roles = "Instrutor")]
     public async Task<ActionResult<List<AlunoInformacoes>>> GetAllMatriculasCursoInstrutor(int instrutorid, string nomecurso)
     {
       var cursosInstrutor = await context.cursos
@@ -58,6 +61,7 @@ namespace Projeto.Controllers
     }
 
     [HttpPost("{cursoid}/{alunoid}")]
+    [Authorize(Roles = "Aluno")]
     public async Task<ActionResult<Matricula>> ComprarCurso(int cursoid, int alunoid, Matricula matricula)
     {
       var aluno = await context.estudante.FindAsync(alunoid);
