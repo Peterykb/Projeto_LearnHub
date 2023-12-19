@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { FormBuilder, Validators, AbstractControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -19,34 +19,31 @@ export class LoginComponent implements OnInit {
   ) {
     this.loginForm = loginBuilder.group({
       email: ['', [Validators.required /*  this.emailValidator */]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
+      senha: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
   ngOnInit(): void {
   }
 
   onSubmit() {
-    this.formSubmitted = true;
-
-    if (!this.loginForm.valid) {
-      alert('form invalido')
-    } else {
+   
+    if (this.loginForm.valid) {
       const credentials = {
-        email: this.loginForm.get('email')!.value,
-        password: this.loginForm.get('password')!.value
-      }; // Obtém as credenciais do formulário
+        email:  this.loginForm.get('email')!.value,
+        senha: this.loginForm.get('senha')!.value
+      };
 
       this.authService.login(credentials).subscribe(
         (response) => {
           // Tratar a resposta do login bem-sucedido aqui
           console.log('Login bem-sucedido', response);
-          this.authService.setToken(response.token); // Salva o token no localStorage
-          this.router.navigate(['dashboard']); // Redireciona para a página do dashboard após o login
+          this.authService.setToken(response.token); 
+          this.router.navigate(['home']); 
         },
         (error) => {
           // Tratar erros de login aqui
           console.error('Falha no login', error);
-          // Você pode exibir uma mensagem de erro para o usuário
+          // Exibir mensagem de erro para o usuário, se necessário
         }
       );
     }
@@ -56,11 +53,6 @@ export class LoginComponent implements OnInit {
     this.showPass = !this.showPass;
   }
 
-  get email() {
-    return this.loginForm.get('email')!;
-  }
 
-  get password() {
-    return this.loginForm.get('password')!;
-  }
+
 }

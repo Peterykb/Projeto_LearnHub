@@ -85,15 +85,30 @@ builder.Services.AddScoped<TokenService>();
 
 builder.Services.AddAuthorization();
 
+// builder.Services.AddCors(options =>
+// {
+//   options.AddPolicy("AllowAngular", builder =>
+//   {
+//     // builder.WithOrigins("https://deploy-learn-hub.vercel.app") 
+//        builder
+//                 .AllowAnyOrigin() // Permite qualquer origem
+//                 .AllowAnyMethod()
+//                 .AllowAnyHeader()
+//                 .AllowCredentials();
+//   });
+// });
 builder.Services.AddCors(options =>
 {
-  options.AddPolicy("AllowAngular", builder =>
-  {
-    builder.WithOrigins("https://deploy-learn-hub.vercel.app") 
-             .AllowAnyMethod()
-             .AllowAnyHeader();
-  });
+    options.AddPolicy("AllowAnyOriginPolicy",
+        builder =>
+        {
+            builder
+                .AllowAnyOrigin() // Permite qualquer origem
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+        });
 });
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -108,10 +123,11 @@ if (app.Environment.IsDevelopment())
 });
 }
 
-app.UseCors("AllowAngular");
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseCors("AllowAnyOriginPolicy");
 app.MapControllers();
+
 
 app.Run();

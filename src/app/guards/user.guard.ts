@@ -15,6 +15,6 @@ export class UserGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-   return false;
+   return true;
   }
 }

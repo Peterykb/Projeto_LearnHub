@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Projeto.Models;
 using Projeto.Models.Authentication;
 using Projeto.Services;
@@ -90,7 +91,7 @@ namespace Projeto.Controllers
             }
         }
         [HttpPost("login")]
-        public async Task<ActionResult> Login(LoginModel model)
+        public async Task<ActionResult> Login([FromBody] LoginModel model)
         {
             try
             {
