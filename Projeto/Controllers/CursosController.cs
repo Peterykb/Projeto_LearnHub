@@ -24,7 +24,8 @@ namespace Projeto.Controllers
       context = _context;
     }
 
-    [HttpGet] // pra todo mundo
+    [HttpGet]
+
     public async Task<ActionResult<List<Cursos>>> GetAllCursos()
     {
       var cursos = await context.cursos.Join(
@@ -40,6 +41,7 @@ namespace Projeto.Controllers
       return Ok(cursos);
     }
     [HttpGet("pegarporid/{cursoid}")]
+    [Authorize(Roles = "Instrutor")]
     public async Task<ActionResult> PegarPorId(int cursoid)
     {
       var curso = await context.cursos.Where(c => c.Id_curso == cursoid).Join(
@@ -101,7 +103,8 @@ namespace Projeto.Controllers
 
 
 
-    [HttpPost("{instrutorid}/criar")] // pro instrutor criar um curso
+    [HttpPost("{instrutorid}/criar")] 
+    [Authorize(Roles = "Instrutor")]
     public async Task<ActionResult<Cursos>> CreateCurso([FromBody] Cursos novocurso, int instrutorid, int categoriaId)
     {
       if (novocurso == null)
@@ -144,7 +147,8 @@ namespace Projeto.Controllers
     }
 
 
-    [HttpPut("{instrutorid}/atualizar")] //pro instrutor atualizar um curso
+    [HttpPut("{instrutorid}/atualizar")] 
+    [Authorize(Roles = "Instrutor")]
     public async Task<ActionResult<Cursos>> PutCurso(int instrutorid, [FromBody] Cursos modifycurso)
     {
       if (modifycurso == null)
@@ -178,7 +182,8 @@ namespace Projeto.Controllers
       }
     }
 
-    [HttpDelete("{instrutorid}/{cursoid}/deletar")] //pro instrutor deletar um curso
+    [HttpDelete("{instrutorid}/{cursoid}/deletar")] 
+    [Authorize(Roles = "Instrutor")]
     public async Task<ActionResult<Cursos>> DeleteCurso(int cursoid, int instrutorid)
     {
       var curso = await context.cursos.FirstOrDefaultAsync(c => c.Id_curso == cursoid && c.InstrutorId == instrutorid);

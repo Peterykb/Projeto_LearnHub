@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Projeto.Models;
@@ -14,7 +15,7 @@ namespace Projeto.Controllers
       context = _context;
     }
 
-    [HttpGet("{moduloid}/aulas")] //pegar as aulas de um módulo
+    [HttpGet("{moduloid}/aulas")]
     public async Task<ActionResult<List<Aulas>>> GetAllAulas(int moduloid)
     {
 
@@ -23,7 +24,8 @@ namespace Projeto.Controllers
 
       return Ok(aulasDomodulo);
     }
-    [HttpPost("{cursoid}/{moduloid}/adicionar-aula")] //adicionar uma aula ao módulo
+    [HttpPost("{cursoid}/{moduloid}/adicionar-aula")]
+    [Authorize(Roles = "Instrutor")]
     public async Task<ActionResult<Aulas>> PostAulas(int cursoid, int moduloid, Aulas newaula)
     {
       var cursos = await context.cursos.FindAsync(cursoid);
@@ -41,7 +43,8 @@ namespace Projeto.Controllers
 
       return Ok(await context.aulas.Where(a => a.Moduloid == moduloid).ToListAsync());
     }
-    [HttpPut("{cursoid}/{moduloid}/{aulaid}/modificar-aula")] //modificar uma aula de um módulo
+    [HttpPut("{cursoid}/{moduloid}/{aulaid}/modificar-aula")] 
+    [Authorize(Roles = "Instrutor")]
     public async Task<ActionResult<Aulas>> PutAulas(int cursoid, int moduloid, int aulaid, Aulas modifyaula)
     {
       var cursos = await context.cursos.FindAsync(cursoid);
@@ -67,7 +70,8 @@ namespace Projeto.Controllers
 
       return Ok(await context.aulas.Where(a => a.Moduloid == moduloid).ToListAsync());
     }
-    [HttpDelete("{cursoid}/{moduloid}/{aulaid}/deletar-aula")] //deletar a aula de um módulo
+    [HttpDelete("{cursoid}/{moduloid}/{aulaid}/deletar-aula")] 
+    [Authorize(Roles = "Instrutor")]
     public async Task<ActionResult<List<Aulas>>> DeleteAulas(int cursoid, int moduloid, int aulaid)
     {
       var curso = await context.cursos.FindAsync(cursoid);
