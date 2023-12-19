@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthTeacherService } from 'src/app/services/auth-teacher.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -12,16 +11,15 @@ export class DashboardComponent implements OnInit {
   sidebarOpen: boolean = false;
   instrutorId!: string;
   constructor(
-    private authTeacher: AuthTeacherService,
     private router: Router,
     private auth: AuthService
   ) {}
 
   ngOnInit(): void {
-    if (this.authTeacher.isLoggedIn()) {
+    /* if (this.authTeacher.isLoggedIn()) {
       const instrutorId = 0;  
       this.router.navigate([`./instrutor/${instrutorId}`]);
-    }
+    } */
 
   }
 

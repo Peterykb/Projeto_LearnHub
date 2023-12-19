@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthTeacherService } from 'src/app/services/auth-teacher.service';
-import { AuthUserService } from 'src/app/services/auth-user.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -16,8 +15,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private loginBuilder: FormBuilder,
     private router: Router,
-    private authUser: AuthUserService,
-    private authTeacher: AuthTeacherService
+    private authService: AuthService,
   ) {
     this.loginForm = loginBuilder.group({
       email: ['', [Validators.required /*  this.emailValidator */]],
@@ -33,28 +31,24 @@ export class LoginComponent implements OnInit {
     if (!this.loginForm.valid) {
       alert('form invalido')
     } else {
+      const credentials = {
+        email: this.loginForm.get('email')!.value,
+        password: this.loginForm.get('password')!.value
+      }; // Obtém as credenciais do formulário
 
-      const   loginData = this.loginForm.value
-
-      if(this.isTeacherEmail(loginData.email)){
-        this.authTeacher.loginTeacher(loginData).subscribe(
-          (res) => {
-            this.router.navigate(['instrutor', 'overview']);
-          },
-          (err: Error) => {
-            alert(err.message);
-          }
-        );
-      } else{
-        this.authUser.login(loginData).subscribe(
-          (res) => {
-            this.router.navigate(['home']);
-          },
-          (err: Error) => {
-            alert(err.message);
-          }
-        );
-      }
+      this.authService.login(credentials).subscribe(
+        (response) => {
+          // Tratar a resposta do login bem-sucedido aqui
+          console.log('Login bem-sucedido', response);
+          this.authService.setToken(response.token); // Salva o token no localStorage
+          this.router.navigate(['dashboard']); // Redireciona para a página do dashboard após o login
+        },
+        (error) => {
+          // Tratar erros de login aqui
+          console.error('Falha no login', error);
+          // Você pode exibir uma mensagem de erro para o usuário
+        }
+      );
     }
   }
 
@@ -68,11 +62,5 @@ export class LoginComponent implements OnInit {
 
   get password() {
     return this.loginForm.get('password')!;
-  }
-
-  isTeacherEmail(email: string): boolean{
-    const teacherEmailRegex = /@professor\.com$/i;
-
-    return teacherEmailRegex.test(email)
   }
 }

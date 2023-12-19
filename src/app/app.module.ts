@@ -32,7 +32,7 @@ import {HttpClientModule} from '@angular/common/http';
   declarations: [
     AppComponent,
     LoginComponent,
-    CoursePreviewComponent,
+    CoursePreviewComponent, 
     MyCoursesComponent,
     NotFoundComponent,
     FooterDefaultComponent,
