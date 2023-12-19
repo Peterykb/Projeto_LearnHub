@@ -1,12 +1,17 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private router: Router) { }
+  private apiURL = environment.baseApiUrl
+
+  constructor(private router: Router, private http: HttpClient) { }
 
   setToken(token: string): void{
     localStorage.setItem('token', token)
@@ -14,6 +19,10 @@ export class AuthService {
 
   getToken(): string | null {
     return localStorage.getItem('token');
+  }
+
+  login(credentials: any): Observable<any>{
+    return this.http.post<any>(`${this.apiURL}/Autentication/login`, credentials)
   }
 
   logout() {
