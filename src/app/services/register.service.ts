@@ -1,17 +1,22 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from '../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RegisterService {
+  private apiURL = environment.baseApiUrl;
 
-  constructor(private registerBuilder: FormBuilder) { }
+  constructor(private registerBuilder: FormBuilder, private http: HttpClient) {}
 
-  createRegisterForm(): FormGroup{
+  createRegisterForm(): FormGroup {
     return this.registerBuilder.group({
       nome_completo: ['', Validators.required],
       data_nascimento: ['', Validators.required],
+      username: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9]+$/)]],
       cpf: ['', Validators.required],
       email: [
         '',
@@ -42,6 +47,7 @@ export class RegisterService {
       ],
     });
   }
+
   formatCPF(cpfInput: string): string {
     const cpf = cpfInput.replace(/\D/g, ''); // Remove caracteres não numéricos
     const cpfFormatted = cpf
@@ -51,5 +57,13 @@ export class RegisterService {
       .replace(/(-\d{2})\d+?$/, '$1');
 
     return cpfFormatted;
+  }
+
+  cadastrarAluno(alunoData: any): Observable<any> {
+    return this.http.post<any>(`${this.apiURL}/Autentication/aluno`, alunoData);
+  }
+
+  cadastrarInstrutor(instrutorData: any): Observable<any> {
+    return this.http.post<any>(`${this.apiURL}/Autentication/instrutor`, instrutorData);
   }
 }

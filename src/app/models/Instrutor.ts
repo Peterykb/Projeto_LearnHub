@@ -1,8 +1,8 @@
 export class Instrutor {
-    id_Instrutor!: number;
+    username?: string;
     nome!: string;
-    cpf!: string;
-    dataNascimento!: number;
     email!: string;
+    cpf!: string;
+    dataNascimento!: Date;
 
 }

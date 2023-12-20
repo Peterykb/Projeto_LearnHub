@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
+import { Student } from 'src/app/models/Student-cad';
+import { cadastro, cadastroInstrutor } from 'src/app/models/cadastro';
 import { RegisterService } from 'src/app/services/register.service';
 
 @Component({
@@ -9,7 +11,7 @@ import { RegisterService } from 'src/app/services/register.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
-export class RegisterComponent implements OnInit{
+export class RegisterComponent implements OnInit {
   faLock = faLock;
   formRegister: any;
   errorMessage: string = '';
@@ -23,8 +25,7 @@ export class RegisterComponent implements OnInit{
 
   isActivated: boolean = false;
 
-  constructor(private router: Router, private registerService: RegisterService) {
-  }
+  constructor(private router: Router, private registerService: RegisterService) {}
 
   ngOnInit() {
     this.formRegister = this.registerService.createRegisterForm();
@@ -37,37 +38,80 @@ export class RegisterComponent implements OnInit{
     } else {
       if (this.senha.value !== this.confirmSenha.value) {
         this.errorMessage = 'As senhas não coincidem';
+      } else {
+        const alunoData: cadastro = {
+          email: this.formRegister.get('email')!.value,
+          senha: this.formRegister.get('senha')!.value,
+          aluno: {
+            nome: this.formRegister.get('nome_completo')!.value,
+            cpf: this.formRegister.get('cpf')!.value,
+            dataNascimento: this.formRegister.get('data_nascimento')!.value,
+            email: this.formRegister.get('email')!.value,
+            username: this.formRegister.get('username')!.value
+          }
+        };
+        this.registerService.cadastrarAluno(alunoData).subscribe(
+          (response) => {
+            
+            this.router.navigate(['login']);
+          },
+          (error) => {
+            // Handle error, e.g., display error message
+            console.error(error);
+            this.errorMessage = 'Erro ao cadastrar aluno.';
+          }
+        );
       }
     }
-    this.router.navigate(['login'])
   }
 
-  onRegistTeacher(){
-    this.submitted = true
-    if(this.formRegister.invalid){
+  onRegistTeacher() {
+    this.submitted = true;
+    if (this.formRegister.invalid) {
       return;
-    }
-    else{
-      if(this.senha.value !== this.confirmSenha.value){
-        this.errorMessage = "As senhas não coincidem"
+    } else {
+      if (this.senha.value !== this.confirmSenha.value) {
+        this.errorMessage = 'As senhas não coincidem';
+      } else {
+        const instrutorData: cadastroInstrutor = {
+          email: this.formRegister.get('email')!.value,
+          senha: this.formRegister.get('senha')!.value,
+          instrutor: {
+            nome: this.formRegister.get('nome_completo')!.value,
+            cpf: this.formRegister.get('cpf')!.value,
+            dataNascimento: this.formRegister.get('data_nascimento')!.value,
+            email: this.formRegister.get('email')!.value,
+            username: this.formRegister.get('username')!.value
+          }
+        };
+        this.registerService.cadastrarInstrutor(instrutorData).subscribe(
+          (response) => {
+            // Handle success, e.g., navigate to login page
+            this.router.navigate(['login']);
+          },
+          (error) => {
+            // Handle error, e.g., display error message
+            console.error(error);
+            this.errorMessage = 'Erro ao cadastrar instrutor.';
+          }
+        );
       }
-      this.router.navigate(['login'])
     }
   }
 
-  showPass(){
+  showPass() {
     this.isShowPass = !this.isShowPass;
   }
 
-  showConfirmPass(){
+  showConfirmPass() {
     this.isShowConfirmPass = !this.isShowConfirmPass;
   }
 
-  showPassTeacher(){
+  showPassTeacher() {
     this.isShowPassTeacher = !this.isShowPassTeacher;
   }
 
-  showConfirmPassTeacher(){
+  showConfirmPassTeacher() {
     this.isShowConfirmPassTeacher = !this.isShowConfirmPassTeacher;
   }
 
@@ -110,7 +154,7 @@ export class RegisterComponent implements OnInit{
   updateCPFValue(event: Event): void {
     const inputElement = event.target as HTMLInputElement;
     const cpfControl = this.formRegister.get('cpf');
-    
+
     if (cpfControl) {
       cpfControl.setValue(this.registerService.formatCPF(inputElement.value));
     }

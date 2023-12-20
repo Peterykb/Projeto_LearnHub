@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./my-profile.component.scss'],
 })
 export class MyProfileComponent {
-  constructor( private auth: AuthService, private formBuilder: FormBuilder) {
+  constructor( public auth: AuthService, private formBuilder: FormBuilder) {
 
     this.dateForm = formBuilder.group({
       nome_completo: ['', Validators.required],

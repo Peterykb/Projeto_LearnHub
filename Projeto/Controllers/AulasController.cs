@@ -15,7 +15,7 @@ namespace Projeto.Controllers
       context = _context;
     }
 
-    [HttpGet("{moduloid}/aulas")]
+    [HttpGet("{moduloid}")]
     public async Task<ActionResult<List<Aulas>>> GetAllAulas(int moduloid)
     {
 
@@ -24,7 +24,7 @@ namespace Projeto.Controllers
 
       return Ok(aulasDomodulo);
     }
-    [HttpPost("{cursoid}/{moduloid}/adicionar-aula")]
+    [HttpPost("adicionar-aula/{cursoid}/{moduloid}")]
     [Authorize(Roles = "Instrutor")]
     public async Task<ActionResult<Aulas>> PostAulas(int cursoid, int moduloid, Aulas newaula)
     {
@@ -43,7 +43,7 @@ namespace Projeto.Controllers
 
       return Ok(await context.aulas.Where(a => a.Moduloid == moduloid).ToListAsync());
     }
-    [HttpPut("{cursoid}/{moduloid}/{aulaid}/modificar-aula")] 
+    [HttpPut("modificar-aula/{cursoid}/{moduloid}/{aulaid}")] 
     [Authorize(Roles = "Instrutor")]
     public async Task<ActionResult<Aulas>> PutAulas(int cursoid, int moduloid, int aulaid, Aulas modifyaula)
     {
@@ -70,7 +70,7 @@ namespace Projeto.Controllers
 
       return Ok(await context.aulas.Where(a => a.Moduloid == moduloid).ToListAsync());
     }
-    [HttpDelete("{cursoid}/{moduloid}/{aulaid}/deletar-aula")] 
+    [HttpDelete("deletar-aula/{cursoid}/{moduloid}/{aulaid}")] 
     [Authorize(Roles = "Instrutor")]
     public async Task<ActionResult<List<Aulas>>> DeleteAulas(int cursoid, int moduloid, int aulaid)
     {

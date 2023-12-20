@@ -55,7 +55,6 @@ builder.Services.AddIdentity<UserIdentity, UserRole>(options =>
   options.Password.RequireDigit = true;
   options.Password.RequiredLength = 8;
   options.Password.RequireUppercase = true;
-  options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromHours(1);
   options.Lockout.MaxFailedAccessAttempts = 3;
   options.SignIn.RequireConfirmedEmail = true;
   options.User.RequireUniqueEmail = true;

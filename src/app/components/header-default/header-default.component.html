@@ -9,19 +9,19 @@
   <div class="nav-wrapper">
     <ul id="nav-mobile">
       <li><a routerLink="home" class="custom-link">Home</a></li>
-      <!-- <li>
-        <a routerLink="my-courses" class="custom-link">Meus Cursos</a>
+       <li *ngIf="this.authService.isLoggedIn()">
+        <a routerLink="user/my-courses" class="custom-link">Meus Cursos</a>
       </li>
-      <li>
-        <a routerLink="my-cart" class="custom-link">Carrinho</a>
-      </li> -->
-      <li>
+      <li *ngIf="this.authService.isLoggedIn()">
+        <a routerLink="user/my-cart" class="custom-link">Carrinho</a>
+      </li> 
+      <li *ngIf="!this.authService.isLoggedIn()">
         <a routerLink="/register" class="custom-link">Registrar</a>
       </li>
-      <li>
+      <li *ngIf="!this.authService.isLoggedIn()">
         <a routerLink="/login" class="custom-link">Entrar</a>
       </li>
-      <li routerLink="profile">
+      <li routerLink="user/profile" *ngIf="this.authService.isLoggedIn()">
         <div class="user-profile">
           <i class="fa-solid fa-user"></i>
         </div>

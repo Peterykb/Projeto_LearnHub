@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using Projeto.Models;
 using Projeto.Models.Authentication;
 using Projeto.Services;
@@ -13,18 +14,17 @@ namespace Projeto.Controllers
   [Route("api/[controller]")]
   public class CursosController : ControllerBase
   {
-     private readonly Context _context;
+     private readonly Context context;
 
-        public CursosController(Context context)
+        public CursosController(Context _context)
         {
-            _context = context;
+            context = _context;
         }
 
         [HttpGet]
-        [Authorize(Roles = "Aluno, Instrutor")]
         public async Task<ActionResult<List<Cursos>>> GetAllCursos()
         {
-            var cursos = await _context.cursos.ToListAsync();
+            var cursos = await context.cursos.ToListAsync();
 
             if (!cursos.Any())
             {
@@ -33,12 +33,19 @@ namespace Projeto.Controllers
 
             return Ok(cursos);
         }
+        [HttpGet("{nomecurso}")]
+        public async Task<ActionResult<Cursos>> GetCursoByNome(string nomecurso){
+            var curso = await context.cursos.Where(c => c.Name == nomecurso).ToListAsync();
+
+            if(!curso.Any()) return BadRequest($"Nenhum curso com o nome {nomecurso} foi encontrado.");
+            return Ok(curso);
+        }
 
         [HttpGet("{cursoid}")]
         [Authorize(Roles = "Aluno, Instrutor")]
         public async Task<ActionResult<Cursos>> GetCursoById(int cursoid)
         {
-            var curso = await _context.cursos.FindAsync(cursoid);
+            var curso = await context.cursos.FindAsync(cursoid);
 
             if (curso == null)
             {
@@ -52,8 +59,8 @@ namespace Projeto.Controllers
         [Authorize(Roles = "Instrutor")]
         public async Task<ActionResult<Cursos>> AddCurso(Cursos curso)
         {
-            _context.cursos.Add(curso);
-            await _context.SaveChangesAsync();
+            context.cursos.Add(curso);
+            await context.SaveChangesAsync();
 
             return Ok(curso);
         }
@@ -67,11 +74,11 @@ namespace Projeto.Controllers
                 return BadRequest("IDs de curso não coincidem.");
             }
 
-            _context.Entry(curso).State = EntityState.Modified;
+            context.Entry(curso).State = EntityState.Modified;
 
             try
             {
-                await _context.SaveChangesAsync();
+                await context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -92,21 +99,21 @@ namespace Projeto.Controllers
         [Authorize(Roles = "Instrutor")]
         public async Task<ActionResult<Cursos>> DeleteCurso(int cursoid)
         {
-            var curso = await _context.cursos.FindAsync(cursoid);
+            var curso = await context.cursos.FindAsync(cursoid);
             if (curso == null)
             {
                 return NotFound($"Curso com o ID {cursoid} não encontrado.");
             }
 
-            _context.cursos.Remove(curso);
-            await _context.SaveChangesAsync();
+            context.cursos.Remove(curso);
+            await context.SaveChangesAsync();
 
             return Ok(curso);
         }
 
         private bool CursoExists(int cursoid)
         {
-            return _context.cursos.Any(c => c.Id_curso == cursoid);
+            return context.cursos.Any(c => c.Id_curso == cursoid);
         }
     }
 }
