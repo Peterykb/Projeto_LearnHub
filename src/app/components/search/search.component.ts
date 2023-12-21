@@ -33,6 +33,7 @@ export class SearchComponent implements OnInit {
     });
   }
 
+
   navigateToCoursePreview(courseId: number): void {
     this.router.navigate(['/course-preview', courseId]);
   }

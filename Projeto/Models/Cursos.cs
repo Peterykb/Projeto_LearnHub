@@ -14,6 +14,7 @@ namespace Projeto.Models
     public bool Disponivel { get; set; } = true;
     public double Preco { get; set; }
     public int InstrutorId { get; set; }
+    public string descricao {get;set;} = string.Empty;
     [JsonIgnore]
 
     public InstrutorInformacoes? Instrutor { get; set; }
