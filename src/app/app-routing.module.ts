@@ -39,7 +39,7 @@ const routes: Routes = [
   { path: 'user/profile', component: MyProfileComponent, canActivate: [UserGuard] },
   { path: 'user/profile/change-pass', component: ChangePassComponent, canActivate: [UserGuard] },
   {
-    path: 'instrutor/:id',
+    path: 'instrutor',
     canActivate: [TeacherGuard],
     loadChildren: () =>
     import('./modules/teacher/teacher.module').then((m) => m.TeacherModule),

@@ -10,9 +10,9 @@ import { EditCourseComponent } from './pages/edit-course/edit-course.component';
 import { StudentsComponent } from './pages/students/students.component';
 import { StudentsTableComponent } from './pages/students-table/students-table.component';
 import { CreateCourseComponent } from './pages/create-course/create-course.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditModuleComponent } from './pages/edit-module/edit-module.component';
-  
+
 
 @NgModule({
   declarations: [
@@ -30,6 +30,7 @@ import { EditModuleComponent } from './pages/edit-module/edit-module.component';
     CommonModule,
     TeacherRoutingModule,
     FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class TeacherModule { }

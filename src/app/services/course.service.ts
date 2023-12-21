@@ -22,4 +22,8 @@ export class CourseService {
   getCourseByName(courseName: string): Observable<any> {
     return this.http.get<any  >(`${this.baseURL}/Cursos/${courseName}`)
   }
+
+  createCourse(course: Course): Observable<Course>{
+    return this.http.post<Course>(`${this.baseURL}/Cursos`, course);
+  }
 }

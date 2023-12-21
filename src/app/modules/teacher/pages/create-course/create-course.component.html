@@ -6,7 +6,13 @@
 
       <!-- Campos do Curso -->
       <label for="nomeCurso">Nome do Curso:</label>
-      <input type="text" id="nomeCurso" name="nomeCurso" [(ngModel)]="curso.nome" required>
+      <input type="text" id="nomeCurso" name="nomeCurso" formControlName="nameCurso" [(ngModel)]="curso.nome" required>
+
+      <label for="idiomasCurso">Idiomas:</label>
+      <input type="text" id="idiomasCurso" name="idiomasCurso" formControlName="idiomasCurso" [(ngModel)]="curso.nome" required>
+
+      <label for="precoCurso">Preço:</label>
+      <input type="text" id="precoCurso" name="precoCurso" formControlName="precoCurso" [(ngModel)]="curso.nome" required>
 
       <button type="button" (click)="toggleButton()" [class.active]="isActive" class="toggle-button">
         <i [class]="isActive ? 'fas fa-toggle-on' : 'fas fa-toggle-off'"></i>
