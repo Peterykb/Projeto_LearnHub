@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Course } from 'src/app/models/Course';
 import { CourseService } from 'src/app/services/course.service';
 
 
@@ -10,6 +12,8 @@ import { CourseService } from 'src/app/services/course.service';
 export class CreateCourseComponent {
 
   isActive: boolean = false;
+
+  courseForm!: FormGroup;
 
   toggleButton() {
     this.isActive = !this.isActive;
@@ -26,7 +30,34 @@ export class CreateCourseComponent {
     ],
   };
 
-  constructor(private cursoService: CourseService) {}
+  constructor( private courseService: CourseService, private formBuilder: FormBuilder) {
+
+    this.courseForm = formBuilder.group({
+      id_curso: [''],
+      name: [''],
+      data_criacao:[''],
+      idiomas: [''],
+      disponivel: [''],
+      preco: [''],
+      instrutor_id: ['']
+    })
+  }
+
+
+  /* createCourse(){
+
+    const curso: Course = {
+      name: this.courseForm.get('name')!.value,
+
+    }
+
+    this.courseService.createCourse(curso).subscribe((response)=>{
+      console.log("Curso criada com sucesso");
+    }, (error) =>{
+      console.error("Erro ao criar curso", error);
+    })
+  } */
+
 
   adicionarModulo() {
     this.curso.modulos.push({
