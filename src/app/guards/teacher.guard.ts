@@ -22,6 +22,6 @@ export class TeacherGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-   return true;
+   return false;
   }
 }

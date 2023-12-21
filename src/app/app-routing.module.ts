@@ -18,8 +18,8 @@ import { SearchComponent } from './components/search/search.component';
 import { ChangePassComponent } from './components/change-pass/change-pass.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent, canActivate:[BlockGuard]},
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent},
   { path: 'search-result/:id/:nome', component: SearchComponent, canActivate:[BlockGuard]},
   { path: 'login', component: LoginComponent, canActivate: [BlockGuard]},
   { path: 'register', component: RegisterComponent, canActivate: [BlockGuard] },
