@@ -2,9 +2,10 @@
   <div class="logo">
     <h1 href="#" class="title-header">LearnHub</h1>
   </div>
+  <!-- (click)="getcourse(pesquisar)" -->
   <div class="search-field">
-    <i class="fa-solid fa-search" routerLink="search-result"></i>
-    <input type="search" class="input-search" id="mySearchInput" />
+    <i class="fa-solid fa-search" (click)="getcourse(pesquisar)"></i>
+    <input type="search" class="input-search" id="mySearchInput" [(ngModel)]="pesquisar" />
   </div>
   <div class="nav-wrapper">
     <ul id="nav-mobile">

@@ -1,29 +1,25 @@
 <section class="courses-acessed">
-    <div class="title">
-      <h3>Resultados de "{{selectedCategoryName}}"</h3>
-      <hr/>
-    </div>
-    <div class="cards-container">
-      <div class="card-course" *ngFor="let course of cursos">
-        <div class="card-banner">
-          <p>Banner</p>
+  <div class="title">
+    <h3>Resultados de ""</h3>
+    <hr />
+  </div>
+  <div class="cards-container">
+    <div class="card-course" *ngFor="let course of cursos">
+      <div class="card-banner">
+        <p>Banner</p>
+      </div>
+      <div class="card-content">
+        <div class="top">
+          <h1>{{ course.name }}</h1>
+          <i class="fa-solid fa-heart"></i>
         </div>
-        <div class="card-content">
-          <div class="top">
-            <h1>{{ course.curso.name }}</h1>
-            <h4>{{course.instrutor}}</h4>
-            <i class="fa-solid fa-heart"></i>
-          </div>
-        </div>
-        <div class="card-footer">
-          <small
-            >Valor:
-            <strong>{{ course.curso.preco | currency : "BRL" }}</strong></small
-          >
-          <div class="btn-field">
-            <button (click)="navigateToCoursePreview(course.curso.id)">Visualizar Curso</button>
-          </div>
+      </div>
+      <div class="card-footer">
+        <small>Valor: <strong>{{ course.preco | currency: 'BRL' }}</strong></small>
+        <div class="btn-field">
+          <button (click)="navigateToCoursePreview(course.id_curso)">Visualizar Curso</button>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>

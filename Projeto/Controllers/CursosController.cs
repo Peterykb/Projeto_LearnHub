@@ -10,11 +10,11 @@ using Projeto.Services;
 
 namespace Projeto.Controllers
 {
-  [ApiController]
-  [Route("api/[controller]")]
-  public class CursosController : ControllerBase
-  {
-     private readonly Context context;
+    [ApiController]
+    [Route("api/[controller]")]
+    public class CursosController : ControllerBase
+    {
+        private readonly Context context;
 
         public CursosController(Context _context)
         {
@@ -33,11 +33,16 @@ namespace Projeto.Controllers
 
             return Ok(cursos);
         }
-        [HttpGet("{nomecurso}")]
-        public async Task<ActionResult<Cursos>> GetCursoByNome(string nomecurso){
+        [HttpGet("searchbyname/{nomecurso}")]
+        public async Task<ActionResult> GetCursoByNome(string nomecurso)
+        {
             var curso = await context.cursos.Where(c => c.Name == nomecurso).ToListAsync();
 
-            if(!curso.Any()) return BadRequest($"Nenhum curso com o nome {nomecurso} foi encontrado.");
+            if (!curso.Any())
+            {
+                return NotFound($"Nenhum curso com o nome {nomecurso} foi encontrado.");
+            }
+
             return Ok(curso);
         }
 

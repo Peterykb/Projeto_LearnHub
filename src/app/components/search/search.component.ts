@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Categoria } from 'src/app/models/Categoria';
 import { Course } from 'src/app/models/Course';
-import { UserService } from 'src/app/services/user.service';
+import { CourseService } from 'src/app/services/course.service';
 
 @Component({
   selector: 'app-search',
@@ -10,40 +9,31 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent implements OnInit {
-  categoriaId: any;
-  category!: Categoria[];
-  cursos!: any[];
-  selectedCategoryName!: any;
+  cursos: Course[] = [];
+  nomeCurso: string | null = null;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private userService: UserService
+    private courseservice: CourseService
   ) {}
 
-  // No seu componente de busca
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params) => {
-      const categoryIdString = params.get('id');
-      const categoryName = params.get('nome');
+    // Captura o parâmetro 'cursos' da URL (agora usando queryParams)
+    this.route.queryParams.subscribe(params => {
+      const cursosJSON = params['cursos'];
 
-      if (categoryIdString !== null && categoryName !== null) {
-        this.categoriaId = +categoryIdString;
-        this.loadCursos();
-        this.selectedCategoryName = categoryName;
+      // Verifica se há uma string JSON válida
+      if (cursosJSON) {
+        // Deserializa a string JSON para a lista de cursos
+        this.cursos = JSON.parse(cursosJSON);
+      } else {
+        console.warn('Nenhum parâmetro de cursos fornecido na URL.');
       }
     });
   }
-  /* CURSOS MAIS ACESSADOS DA PLATAFORMA*/
+
   navigateToCoursePreview(courseId: number): void {
     this.router.navigate(['/course-preview', courseId]);
-  }
-
-  loadCursos(): void {
-    this.userService
-      .GetCursosdaCategoria(this.categoriaId)
-      .subscribe((data) => {
-        this.cursos = data;
-      });
   }
 }

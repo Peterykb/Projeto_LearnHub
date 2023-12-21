@@ -14,13 +14,13 @@ export class CourseService {
 
   constructor(private http: HttpClient) { }
 
-  getCourses(): Observable<Course[]> {
-    return this.http.get<Course[]>(`${this.baseURL}/Cursos`)
+  getCourses(): Observable<any> {
+    return this.http.get<any>(`${this.baseURL}/Cursos`)
   }
 
   // Obter detalhes de um curso por ID
-  getCourseByName(courseName: string): Observable<any> {
-    return this.http.get<any  >(`${this.baseURL}/Cursos/${courseName}`)
+  getCourseByName(coursename: string): Observable<any> {
+    return this.http.get<any>(`${this.baseURL}/Cursos/searchbyname/${coursename}`)
   }
 
   createCourse(course: Course): Observable<Course>{
